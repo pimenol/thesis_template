@@ -5,17 +5,18 @@
 
 %% | ---------------- document meta information --------------- |
 
-\newcommand{\Author}{John Smith}
+\newcommand{\Author}{Olga Pimenova}
 \newcommand{\Department}{Department of Cybernetics}
-\newcommand{\Supervisor}{Ing. My Supervisor, Ph.D.}
-\newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
-\newcommand{\Programme}{Electrical Engineering and Information Technology}
-\newcommand{\Field}{Artificial Intelligence and Biocybernetics}
-\newcommand{\Title}{My Thesis Title\\[0.5em]Can Span Multiple Lines}
+\newcommand{\Supervisor}{Ing. Jan Šedivý, CSc.}
+% \newcommand{\SupervisorSpecialist}{Ing. My Specialist, Ph.D.}
+\newcommand{\Programme}{Open Informatics}
+\newcommand{\Field}{Artificial Intelligence and Computer Science}
+\newcommand{\Title}{Classification of journalistic quality
+\\[0.5em]of articles}
 \newcommand{\Keywords}{Unmanned Aerial Vehicles, Automatic Control}
 \newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Automatické Řízení}
-\newcommand{\Year}{2021}
-\newcommand{\Month}{January}
+\newcommand{\Year}{2025}
+\newcommand{\Month}{May}
 \newcommand{\Date}{\Month~\Year}
 \newcommand{\Location}{Prague}
 
@@ -23,6 +24,9 @@
 
 % most of the configuration stuff happens here
 \input{src/document_setup.tex}
+
+% Add bibliography file
+\addbibresource{src/main.bib}
 
 %% | ---------------------- the contents ---------------------- |
 
@@ -112,9 +116,7 @@
 \pagestyle{full}
 \pagenumbering{arabic}
 
-%% --------------------------------------------------------------
-%% |                        introduction                        |
-%% --------------------------------------------------------------
+%% -----------------------------------------------------------------------------------------
 
 \input{src/introduction.tex}
 
