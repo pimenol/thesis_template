@@ -1,5 +1,65 @@
-[0] Config.pm:308> INFO - This is Biber 2.20
-[0] Config.pm:311> INFO - Logfile is 'main.blg'
-[33] biber-darwin:340> INFO - === Mon Apr 21, 2025, 00:38:24
-[104] Utils.pm:410> ERROR - Cannot find 'main.bcf'!
-[104] Biber.pm:136> INFO - ERRORS: 1
+This is BibTeX, Version 0.99d (TeX Live 2024/Homebrew)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: biblatex.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: main-blx.bib
+Database file #2: main.bib
+Biblatex version: 3.20
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 12 entries,
+            6402 wiz_defined-function locations,
+            1274 strings with 11703 characters,
+and the built_in function-call counts, 103792 in all, are:
+= -- 7443
+> -- 3883
+< -- 454
++ -- 5129
+- -- 3005
+* -- 6727
+:= -- 13114
+add.period$ -- 0
+call.type$ -- 12
+change.case$ -- 211
+chr.to.int$ -- 176
+cite$ -- 22
+duplicate$ -- 9590
+empty$ -- 8231
+format.name$ -- 752
+if$ -- 19011
+int.to.chr$ -- 0
+int.to.str$ -- 36
+missing$ -- 0
+newline$ -- 419
+num.names$ -- 555
+pop$ -- 4078
+preamble$ -- 1
+purify$ -- 283
+quote$ -- 0
+skip$ -- 2270
+stack$ -- 0
+substring$ -- 13979
+swap$ -- 1920
+text.length$ -- 340
+text.prefix$ -- 11
+top$ -- 1
+type$ -- 395
+warning$ -- 0
+while$ -- 1336
+width$ -- 0
+write$ -- 408

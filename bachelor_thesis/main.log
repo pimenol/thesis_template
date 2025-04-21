@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  21 APR 2025 00:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  21 APR 2025 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1706,7 +1706,7 @@ x-dm.def
 File: blx-dm.def 2024/03/21 v3.20 biblatex datamodel (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'ieee.dbx' not found.
+Package biblatex Info: ... file 'authoryear.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count455
@@ -1830,24 +1830,12 @@ File: biblatex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
 \biburllcskip=\muskip21
 \c@smartand=\count531
 )
-Package biblatex Info: Trying to load bibliography style 'ieee'...
-Package biblatex Info: ... file 'ieee.bbx' found.
-
-(/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/biblatex-ie
-ee/ieee.bbx
-File: ieee.bbx 2021/12/06 v1.3f biblatex bibliography style
-Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
-Package biblatex Info: ... file 'numeric-comp.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
 
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/biblatex/bb
-x/numeric-comp.bbx
-File: numeric-comp.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'numeric'...
-Package biblatex Info: ... file 'numeric.bbx' found.
-
-(/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/biblatex/bb
-x/numeric.bbx
-File: numeric.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+x/authoryear.bbx
+File: authoryear.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
@@ -1856,38 +1844,20 @@ x/standard.bbx
 File: standard.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count532
 \c@bbx:relatedtotal=\count533
-))))
-Package biblatex Info: Trying to load citation style 'ieee'...
-Package biblatex Info: ... file 'ieee.cbx' found.
-
-(/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/biblatex-ie
-ee/ieee.cbx
-File: ieee.cbx 2021/12/06 v1.3f biblatex citation style
-Package biblatex Info: Trying to load citation style 'numeric-comp'...
-Package biblatex Info: ... file 'numeric-comp.cbx' found.
+))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
 
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/biblatex/cb
-x/numeric-comp.cbx
-File: numeric-comp.cbx 2024/03/21 v3.20 biblatex citation style (PK/MW)
-\c@cbx@tempcnta=\count534
-\c@cbx@tempcntb=\count535
-\c@cbx@tempcntc=\count536
-\c@cbx@tempcntd=\count537
+x/authoryear.cbx
+File: authoryear.cbx 2024/03/21 v3.20 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\smartcites'.
-)
-Package biblatex Info: Redefining '\cite'.
-Package biblatex Info: Redefining '\supercite'.
-Package biblatex Info: Redefining '\cites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -1915,7 +1885,7 @@ Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
 stautogobble.sty
 Package: lstautogobble 2012/05/03 v0.1 Implements 'autogobble' option for 'list
 ings'
-\lstag@spacecount=\count538
+\lstag@spacecount=\count534
 )
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/inconsolata
 /zi4.sty
@@ -1926,7 +1896,7 @@ Package: zi4 2019/05/17 v1.12
 mp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-\zifour@ocount=\count539
+\zifour@ocount=\count535
 ))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1935,41 +1905,41 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/context/base/mkii
 /supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count540
+\scratchcounter=\count536
 \scratchdimen=\dimen345
 \scratchbox=\box171
-\nofMPsegments=\count541
-\nofMParguments=\count542
+\nofMPsegments=\count537
+\nofMParguments=\count538
 \everyMPshowfont=\toks62
-\MPscratchCnt=\count543
+\MPscratchCnt=\count539
 \MPscratchDim=\dimen346
-\MPnumerator=\count544
-\makeMPintoPDFobject=\count545
+\MPnumerator=\count540
+\makeMPintoPDFobject=\count541
 \everyMPtoPDFconversion=\toks63
 )
-\c@lstlisting=\count546
+\c@lstlisting=\count542
 
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/pdflscape/p
 dflscape.sty
@@ -1986,7 +1956,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 29.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -2039,7 +2009,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 33.
+or `english'. on input line 29.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -2058,15 +2028,15 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 33.
-Package biblatex Info: Reference segment=0 on input line 33.
+Package biblatex Info: Reference section=0 on input line 29.
+Package biblatex Info: Reference segment=0 on input line 29.
 
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/upquote/upq
 uote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 ) (./src/title.tex
-<fig/ctu_lion.pdf, id=183, 561.09625pt x 440.64626pt>
+<fig/ctu_lion.pdf, id=211, 561.09625pt x 440.64626pt>
 File: fig/ctu_lion.pdf Graphic file (type pdf)
 <use fig/ctu_lion.pdf>
 Package pdftex.def Info: fig/ctu_lion.pdf  used on input line 10.
@@ -2083,35 +2053,35 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 ap/pdftex.map} <./fig/ctu_lion.pdf>]) (./src/acknowledgments.tex) [2
 
 ]
-<src/assignment.pdf, id=199, 614.295pt x 794.97pt>
+<src/assignment.pdf, id=228, 614.295pt x 794.97pt>
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf>
-Package pdftex.def Info: src/assignment.pdf  used on input line 64.
+Package pdftex.def Info: src/assignment.pdf  used on input line 60.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf>
-Package pdftex.def Info: src/assignment.pdf  used on input line 64.
+Package pdftex.def Info: src/assignment.pdf  used on input line 60.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<src/assignment.pdf, id=202, page=1, 614.295pt x 794.97pt>
+<src/assignment.pdf, id=231, page=1, 614.295pt x 794.97pt>
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
-Package pdftex.def Info: src/assignment.pdf , page1 used on input line 64.
+Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
-Package pdftex.def Info: src/assignment.pdf , page1 used on input line 64.
+Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
-Package pdftex.def Info: src/assignment.pdf , page1 used on input line 64.
+Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
-Package pdftex.def Info: src/assignment.pdf , page1 used on input line 64.
+Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
-Package pdftex.def Info: src/assignment.pdf , page1 used on input line 64.
+Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 [3
@@ -2150,25 +2120,21 @@ LaTeX Font Info:    Trying to load font information for U+lasy on input line 2.
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/base/ulasy.
 fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
-Underfull \vbox (badness 1107) has occurred while \output is active []
-
- [8
+) [8
 
 ])
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
-
-[9] (./src/introduction.tex
+ [9] (./src/introduction.tex
 Chapter 1.
-<./fig/photos/Seznam_main_page.png, id=290, 829.0975pt x 825.0825pt>
+<./fig/photos/Seznam_main_page.png, id=325, 829.0975pt x 825.0825pt>
 File: ./fig/photos/Seznam_main_page.png Graphic file (type png)
 <use ./fig/photos/Seznam_main_page.png>
 Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 
 31.
 (pdftex.def)             Requested size: 199.73708pt x 198.76663pt.
-<./fig/photos/Current_Editorial_Workflow.png, id=292, 366.36874pt x 374.39874pt
+<./fig/photos/Current_Editorial_Workflow.png, id=327, 366.36874pt x 374.39874pt
 >
 File: ./fig/photos/Current_Editorial_Workflow.png Graphic file (type png)
 <use ./fig/photos/Current_Editorial_Workflow.png>
@@ -2179,42 +2145,9 @@ nput line 38.
 
 
  <./fig/photos/Seznam_main_page.png>] [2 <./fig/photos/Current_Editorial_Workfl
-ow.png>]
+ow.png>] [3
 
-LaTeX Warning: Citation 'lacy2015' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Citation 'calvo2024' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Citation 'pitler2008' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'quantum2024' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'potthast2018' on page 3 undefined on input line 102.
-
-
-LaTeX Warning: Citation 'gonzalez2021' on page 3 undefined on input line 102.
-
-
-LaTeX Warning: Citation 'minaee2020' on page 3 undefined on input line 115.
-
-
-LaTeX Warning: Citation 'schmidt2019' on page 3 undefined on input line 117.
-
-[3]
-
-LaTeX Warning: Citation 'newman2025' on page 4 undefined on input line 121.
-
-
-LaTeX Warning: Citation 'frontiers2025' on page 4 undefined on input line 121.
-
-
-LaTeX Warning: Citation 'schmidt2019' on page 4 undefined on input line 125.
-
-) (./src/how_to_write_thesis.tex [4]
+] [4] [5]) (./src/how_to_write_thesis.tex [6]
 Chapter 2.
 LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 1
 7.
@@ -2234,7 +2167,7 @@ LaTeX Font Warning: Font shape `OMS/zi4/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textbackslash' on input line 17.
 
-[5
+[7
 
 ]
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
@@ -2243,7 +2176,7 @@ LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
 (Font)              scaled to size 6.0pt on input line 95.
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
 (Font)              scaled to size 5.0pt on input line 95.
- [6{/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/enc/dvips/in
+ [8{/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/enc/dvips/in
 consolata/i4-ot1-0.enc}]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 109.
@@ -2254,7 +2187,7 @@ n
 although it is yet undefined on input line 121.
 Package acronym Info: Label `acro:GPS' newly defined as it shall be overridden
 although it is yet undefined on input line 121.
- [7]
+ [9]
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
 (Font)              scaled to size 8.0pt on input line 155.
  (./fig/tikz/example_diagram.tex
@@ -2267,46 +2200,31 @@ Overfull \hbox (1.41165pt too wide) in paragraph at lines 44--44
  [][]\OT1/cmr/m/n/8 Localization 
  []
 
-) [8]
-<./fig/plots/example_plot/hypotheses.pdf, id=384, 412.81627pt x 58.15025pt>
+) [10]
+<./fig/plots/example_plot/hypotheses.pdf, id=452, 412.81627pt x 58.15025pt>
 File: ./fig/plots/example_plot/hypotheses.pdf Graphic file (type pdf)
 <use ./fig/plots/example_plot/hypotheses.pdf>
 Package pdftex.def Info: ./fig/plots/example_plot/hypotheses.pdf  used on input
  line 190.
 (pdftex.def)             Requested size: 443.86319pt x 62.52359pt.
-<./fig/sketch/coordinate_frames.pdf, id=387, 159.59625pt x 103.38625pt>
+<./fig/sketch/coordinate_frames.pdf, id=455, 159.59625pt x 103.38625pt>
 File: ./fig/sketch/coordinate_frames.pdf Graphic file (type pdf)
 <use ./fig/sketch/coordinate_frames.pdf>
 Package pdftex.def Info: ./fig/sketch/coordinate_frames.pdf  used on input line
  208.
 (pdftex.def)             Requested size: 177.54256pt x 115.01248pt.
-<./fig/photos/uav1.jpg, id=389, 385.44pt x 192.72pt>
+<./fig/photos/uav1.jpg, id=457, 385.44pt x 192.72pt>
 File: ./fig/photos/uav1.jpg Graphic file (type jpg)
 <use ./fig/photos/uav1.jpg>
 Package pdftex.def Info: ./fig/photos/uav1.jpg  used on input line 224.
 (pdftex.def)             Requested size: 213.05243pt x 106.52563pt.
-<./fig/photos/uav2.jpg, id=390, 385.44pt x 192.72pt>
+<./fig/photos/uav2.jpg, id=458, 385.44pt x 192.72pt>
 File: ./fig/photos/uav2.jpg Graphic file (type jpg)
 <use ./fig/photos/uav2.jpg>
 Package pdftex.def Info: ./fig/photos/uav2.jpg  used on input line 228.
 (pdftex.def)             Requested size: 213.05243pt x 106.52563pt.
-
-
-LaTeX Warning: Citation 'baca2021mrs' on page 9 undefined on input line 240.
-
 Package biblatex Info: Redefining '\fullcite' on input line 242.
-
-LaTeX Warning: Citation 'baca2021mrs' on page 9 undefined on input line 242.
-
-
-Overfull \hbox (41.78398pt too wide) in paragraph at lines 242--242
-[][]  
- []
-
-
-LaTeX Warning: Citation 'baca2021mrs' on page 9 undefined on input line 242.
-
-(./fig/tikz/overlay_example.tex
+ (./fig/tikz/overlay_example.tex
 File: ./fig/photos/uav1.jpg Graphic file (type jpg)
 <use ./fig/photos/uav1.jpg>
 Package pdftex.def Info: ./fig/photos/uav1.jpg  used on input line 33.
@@ -2315,22 +2233,23 @@ File: ./fig/photos/uav2.jpg Graphic file (type jpg)
 <use ./fig/photos/uav2.jpg>
 Package pdftex.def Info: ./fig/photos/uav2.jpg  used on input line 63.
 (pdftex.def)             Requested size: 199.73708pt x 99.86797pt.
-) [9 <./fig/plots/example_plot/hypotheses.pdf> <./fig/sketch/coordinate_frames.
-pdf>] [10 <./fig/photos/uav1.jpg> <./fig/photos/uav2.jpg>]) (./src/conclusion.t
-ex [11]
+) [11 <./fig/plots/example_plot/hypotheses.pdf> <./fig/sketch/coordinate_frames
+.pdf>] [12 <./fig/photos/uav1.jpg> <./fig/photos/uav2.jpg>]) (./src/conclusion.
+tex [13]
 Chapter 3.
-) [12
+) [14
 
 ]
 Chapter 4.
-
-LaTeX Warning: Empty bibliography on input line 141.
-
-[13
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 137.
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 7.0pt on input line 137.
+[15
 
 ]
 Appendix A.
-[14
+[16
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
@@ -2343,28 +2262,20 @@ L3 programming layer <2024-02-20>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 02F702E09D8F3DD6A2E6766DD3173455;6715.
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: 06DA298043B4B064D4AAD729DA2EC160;9012.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57741 strings out of 474116
- 1333688 string characters out of 5732613
- 2260376 words of memory out of 5000000
- 79040 multiletter control sequences out of 15000+600000
- 575443 words of font info for 102 fonts, out of 8000000 for 9000
+ 57792 strings out of 474116
+ 1335190 string characters out of 5732613
+ 2259826 words of memory out of 5000000
+ 79076 multiletter control sequences out of 15000+600000
+ 579297 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,17n,96p,1881b,2819s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,17n,96p,1881b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/
 inconsolata/Inconsolata-zi4r.pfb></opt/homebrew/Cellar/texlive/20240312_1/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/tex
@@ -2388,10 +2299,10 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></opt/homebrew/Cellar
 fonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/202
 40312_1/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (23 pages, 1642268 bytes).
+Output written on main.pdf (25 pages, 1664604 bytes).
 PDF statistics:
- 553 PDF objects out of 1000 (max. 8388607)
- 454 compressed objects within 5 object streams
- 93 named destinations out of 1000 (max. 500000)
- 468 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 650 PDF objects out of 1000 (max. 8388607)
+ 548 compressed objects within 6 object streams
+ 113 named destinations out of 1000 (max. 500000)
+ 524 words of extra memory for PDF output out of 10000 (max. 10000000)
 

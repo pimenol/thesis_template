@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Problem Formulation}{2}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Structure of the Thesis}{2}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Related Work}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Related Work}{3}{section.1.4}%
 \contentsline {subsection}{\numberline {1.4.1}Quality Assessment Frameworks in Journalism}{3}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Computational Approaches to Text Quality Assessment}{3}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Machine Learning for Classification of Media Content}{3}{subsection.1.4.3}%
@@ -11,29 +11,36 @@
 \contentsline {subsection}{\numberline {1.4.5}AI in Journalism and Quality Implications}{4}{subsection.1.4.5}%
 \contentsline {subsection}{\numberline {1.4.6}Linguistic Features for Quality Assessment}{4}{subsection.1.4.6}%
 \contentsline {subsection}{\numberline {1.4.7}Research Gaps}{4}{subsection.1.4.7}%
-\contentsline {section}{\numberline {1.5}Contributions}{4}{section.1.5}%
-\contentsline {chapter}{\numberline {2}How to write thesis in LaTeX}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Versioning with git}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Forming paragraphs}{5}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Linguistic anti patterns}{5}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Narrative}{5}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Pronouns}{5}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Mathematical notation with LaTeX}{5}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Common errors}{6}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Equations}{6}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Using footnotes}{7}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Referencing document elements}{7}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Abbreviations with Acronym}{7}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Units of measurements with Siunitx}{7}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Hyphens and dashes}{7}{section.2.9}%
-\contentsline {section}{\numberline {2.10}Double quotation marks}{8}{section.2.10}%
-\contentsline {section}{\numberline {2.11}2D Diagrams with Tikz}{8}{section.2.11}%
-\contentsline {section}{\numberline {2.12}Data plots with PGFPlots}{8}{section.2.12}%
-\contentsline {section}{\numberline {2.13}3D Plots with Sketch}{9}{section.2.13}%
-\contentsline {section}{\numberline {2.14}Image collages with Subfig}{9}{section.2.14}%
-\contentsline {section}{\numberline {2.15}Citations with Biblatex}{9}{section.2.15}%
-\contentsline {section}{\numberline {2.16}Image overlays with Tikz}{9}{section.2.16}%
-\contentsline {section}{\numberline {2.17}General tips}{10}{section.2.17}%
-\contentsline {chapter}{\numberline {3}Conclusion}{12}{chapter.3}%
-\contentsline {chapter}{\numberline {4}References}{13}{chapter.4}%
-\contentsline {chapter}{\numberline {A}Appendix A}{14}{appendix.A}%
+\contentsline {section}{\numberline {1.5}Contributions}{5}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Development of a Robust Classification System:}{5}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Innovative Handling of Class Imbalance and Overfitting:}{5}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Comprehensive Feature Engineering for Journalistic Quality:}{5}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Comparative Analysis of Pre-trained Language Models:}{5}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Advanced Model Testing and Superior Performance:}{5}{subsection.1.5.5}%
+\contentsline {subsection}{\numberline {1.5.6}Innovations in Data Collection and Preprocessing:}{6}{subsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.5.7}Establishment of a Human Editor Benchmark:}{6}{subsection.1.5.7}%
+\contentsline {chapter}{\numberline {2}How to write thesis in LaTeX}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Versioning with git}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Forming paragraphs}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Linguistic anti patterns}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Narrative}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Pronouns}{7}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Mathematical notation with LaTeX}{7}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Common errors}{8}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Equations}{8}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Using footnotes}{9}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Referencing document elements}{9}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Abbreviations with Acronym}{9}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Units of measurements with Siunitx}{9}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Hyphens and dashes}{9}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Double quotation marks}{10}{section.2.10}%
+\contentsline {section}{\numberline {2.11}2D Diagrams with Tikz}{10}{section.2.11}%
+\contentsline {section}{\numberline {2.12}Data plots with PGFPlots}{10}{section.2.12}%
+\contentsline {section}{\numberline {2.13}3D Plots with Sketch}{11}{section.2.13}%
+\contentsline {section}{\numberline {2.14}Image collages with Subfig}{11}{section.2.14}%
+\contentsline {section}{\numberline {2.15}Citations with Biblatex}{11}{section.2.15}%
+\contentsline {section}{\numberline {2.16}Image overlays with Tikz}{12}{section.2.16}%
+\contentsline {section}{\numberline {2.17}General tips}{12}{section.2.17}%
+\contentsline {chapter}{\numberline {3}Conclusion}{14}{chapter.3}%
+\contentsline {chapter}{\numberline {4}References}{15}{chapter.4}%
+\contentsline {chapter}{\numberline {A}Appendix A}{16}{appendix.A}%

@@ -10,3 +10,9 @@ $(PROJNAME).pdf: $(PROJNAME).tex
 
 clean:
 	latexmk -output-directory=$(BUILDDIR) -c && rm -rf build/*
+
+manual:
+	pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex
+	bibtex $(BUILDDIR)/$(PROJNAME)
+	pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex
+pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex

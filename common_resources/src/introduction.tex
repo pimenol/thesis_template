@@ -64,7 +64,7 @@ In the context of this thesis, \textbf{"journalistic quality"} is defined by a c
 % Outline what each chapter covers
 % Provide a roadmap for the reader
 
-
+\clearpage
 \section{Related Work}
 % Review existing approaches to content quality assessment
 % Discuss relevant literature on text classification
@@ -131,9 +131,59 @@ This thesis aims to address these gaps by developing a multi-class classificatio
 
 \section{Contributions}
 
-Summarize your specific contributions and innovations
-Highlight what makes your approach unique
+This thesis makes several significant contributions to the field of automated journalistic quality assessment, particularly in the context of the Czech language and platforms like Seznam.cz. These contributions are outlined below:
 
+\subsection{Development of a Robust Classification System:}
+\begin{itemize}
+  \item Introduced a DebertaV3-based classification system for categorizing journalistic articles into four quality levels: Insufficient, Short but Sufficient, Standard, and High-Quality.
+  \item Achieved a weighted F1 score of 0.77, closely approaching the human editor agreement upper bound of 80\%, demonstrating the system's effectiveness in mimicking human editorial judgments.
+\end{itemize}
+
+\subsection{Innovative Handling of Class Imbalance and Overfitting:}
+
+\begin{itemize}
+  \item Addressed the challenge of class imbalance (e.g., only 0.9\% of articles are High-Quality) through sequential training, a hybrid loss function combining Cross-Entropy and Mean Squared Error, and class weighting ([1.0, 0.5, 1.0, 20.0]).
+  \item These strategies effectively balanced model performance across all classes, particularly improving recall for the minority High-Quality class.
+\end{itemize}
+
+\subsection{Comprehensive Feature Engineering for Journalistic Quality:}
+
+\begin{itemize}
+  \item Developed a feature set grounded in journalistic quality dimensions (Diversity, Transparency, Attractiveness, and Independence).
+  \item Incorporated linguistic complexity features (e.g., syntactic complexity, lexical diversity), structural composition features (e.g., section organization, citation quality), readability metrics adapted for Czech, and metadata features (e.g., channel\_id, publication timing).
+  \item Utilized Latent Semantic Analysis (LSA) to reduce text embeddings to a single dimension, streamlining quality assessment.
+  \item Introduced new features such as readability, manipulativity, and formality, addressing gaps in previous research.
+\end{itemize}
+
+\subsection{Comparative Analysis of Pre-trained Language Models:}
+
+\begin{itemize}
+  \item Evaluated three pre-trained language models (BrowCzech, RetroMAE, DebertaV3 base and DebertaV3 large) for Czech journalistic content.
+  \item Identified DebertaV3 large as the superior model due to its relative position embeddings and bilingual capabilities, providing insights for model selection in similar tasks, especially in low-resource languages.
+\end{itemize}
+
+\subsection{Advanced Model Testing and Superior Performance:}
+
+\begin{itemize}
+  \item Tested multiple models, including a neural network with Bert-like models embeddings and a CatBoost classifier.
+  \item Achieved the highest F1 score of 0.77 with the DebertaV3 large + CatBoost model.
+\end{itemize}
+
+\subsection{Innovations in Data Collection and Preprocessing:}
+
+\begin{itemize}
+  \item Created refined datasets (e.g., editor-reviewed, unchecked) and cleaned text data by removing emojis and HTML tags.
+  \item Highlighted the importance of article length as a quality indicator, with High-Quality articles averaging 1542.5 words compared to 486.5 for the majority class.
+\end{itemize}
+
+\subsection{Establishment of a Human Editor Benchmark:}
+
+\begin{itemize}
+  \item Conducted a detailed editor agreement study, setting a realistic upper bound of 80\% for automated systems.
+  \item This benchmark provides a target for model performance and validates the complexity of journalistic quality assessment, ensuring that automated systems are evaluated against a feasible standard.
+\end{itemize}
+
+These contributions collectively advance the state-of-the-art in automated journalistic quality assessment, offering a scalable and effective solution for platforms like Seznam.cz while addressing technical challenges such as class imbalance, overfitting, and language-specific nuances. The thesis also lays a foundation for future research by documenting extensive experiments, baseline comparisons, and error analyses.
 
 % \begin{table*}[!h]
 %   \scriptsize
