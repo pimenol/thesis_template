@@ -19,28 +19,55 @@
 \contentsline {subsection}{\numberline {1.5.5}Advanced Model Testing and Superior Performance:}{5}{subsection.1.5.5}%
 \contentsline {subsection}{\numberline {1.5.6}Innovations in Data Collection and Preprocessing:}{6}{subsection.1.5.6}%
 \contentsline {subsection}{\numberline {1.5.7}Establishment of a Human Editor Benchmark:}{6}{subsection.1.5.7}%
-\contentsline {chapter}{\numberline {2}How to write thesis in LaTeX}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Versioning with git}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Forming paragraphs}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Linguistic anti patterns}{7}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Narrative}{7}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Pronouns}{7}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Mathematical notation with LaTeX}{7}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Common errors}{8}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Equations}{8}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Using footnotes}{9}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Referencing document elements}{9}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Abbreviations with Acronym}{9}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Units of measurements with Siunitx}{9}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Hyphens and dashes}{9}{section.2.9}%
-\contentsline {section}{\numberline {2.10}Double quotation marks}{10}{section.2.10}%
-\contentsline {section}{\numberline {2.11}2D Diagrams with Tikz}{10}{section.2.11}%
-\contentsline {section}{\numberline {2.12}Data plots with PGFPlots}{10}{section.2.12}%
-\contentsline {section}{\numberline {2.13}3D Plots with Sketch}{11}{section.2.13}%
-\contentsline {section}{\numberline {2.14}Image collages with Subfig}{11}{section.2.14}%
-\contentsline {section}{\numberline {2.15}Citations with Biblatex}{11}{section.2.15}%
-\contentsline {section}{\numberline {2.16}Image overlays with Tikz}{12}{section.2.16}%
-\contentsline {section}{\numberline {2.17}General tips}{12}{section.2.17}%
-\contentsline {chapter}{\numberline {3}Conclusion}{14}{chapter.3}%
-\contentsline {chapter}{\numberline {4}References}{15}{chapter.4}%
-\contentsline {chapter}{\numberline {A}Appendix A}{16}{appendix.A}%
+\contentsline {chapter}{\numberline {2}Data Collection and Analysis}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Data Source}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Data Collection Timeline and Challenges}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Data Cleaning and Filtering}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Annotation Process}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Dataset Statistics}{8}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Dataset Size and Splits}{8}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.6}Data Analysis}{9}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Evaluation Metrics}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Limitations of Accuracy}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Precision, Recall, and F1 Score}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Weighted F1 Score}{10}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Business Relevance}{11}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Cost of Classification Errors}{11}{subsection.3.4.1}%
+\contentsline {chapter}{\numberline {4}Methodology}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Editor Analysis and Upper Bound}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Baseline Model Performance}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Performance of Pre-trained Language Models}{12}{section.4.3}%
+\contentsline {section}{\numberline {4.4}\@expl@@@filehook@file@pop@assign@@nnnn }{12}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Experiments and Results}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimental Setup}{13}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Model Comparison}{13}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{13}{section.5.3}%
+\contentsline {chapter}{\numberline {6}How to write thesis in LaTeX}{14}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Versioning with git}{14}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Forming paragraphs}{14}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Linguistic anti patterns}{14}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Narrative}{14}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Pronouns}{14}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Mathematical notation with LaTeX}{14}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Common errors}{15}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Equations}{15}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Using footnotes}{16}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Referencing document elements}{16}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Abbreviations with Acronym}{16}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Units of measurements with Siunitx}{16}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Hyphens and dashes}{16}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Double quotation marks}{17}{section.6.10}%
+\contentsline {section}{\numberline {6.11}2D Diagrams with Tikz}{17}{section.6.11}%
+\contentsline {section}{\numberline {6.12}Data plots with PGFPlots}{17}{section.6.12}%
+\contentsline {section}{\numberline {6.13}3D Plots with Sketch}{18}{section.6.13}%
+\contentsline {section}{\numberline {6.14}Image collages with Subfig}{18}{section.6.14}%
+\contentsline {section}{\numberline {6.15}Citations with Biblatex}{18}{section.6.15}%
+\contentsline {section}{\numberline {6.16}Image overlays with Tikz}{19}{section.6.16}%
+\contentsline {section}{\numberline {6.17}General tips}{19}{section.6.17}%
+\contentsline {chapter}{\numberline {7}Discussion, Conclusion and Future Work}{21}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Discussion}{21}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Conclusion}{21}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Future Work}{21}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Conclusion}{22}{chapter.8}%
+\contentsline {chapter}{\numberline {9}References}{23}{chapter.9}%
+\contentsline {chapter}{\numberline {A}Appendix A}{24}{appendix.A}%

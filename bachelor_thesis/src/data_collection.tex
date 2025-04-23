@@ -1,19 +1,133 @@
 %!TEX root = ../main.tex
 
-\chapter{Data Collection and Analysis\label{chap:data_colection}}
+\chapter{Data Collection and Analysis\label{chap:data_collection}}
 
-\section{Dataset Description}
-Detail the sources of articles
-Explain the annotation process by human editors
-Provide statistics on dataset size and distribution
+\section{Data Source}
 
-\section{Data Preprocessing}
-Describe text cleaning and normalization
-Explain handling of metadata
-Detail any feature extraction techniques
+The data for this research originates from the internal systems of Seznam.cz, a major Czech online platform. The dataset comprises articles published on the platform, along with associated metadata and quality assessments provided by the editorial team. For the purpose of this thesis, we primarily utilized the following information for each article:
 
-\section{Data Exploratory Analysis}
-Analyze class distribution
-Examine correlations between features and quality labels
-Visualize key insights from the data
+\begin{itemize}
+  \item \textbf{Title:} The headline of the article.
+  \item \textbf{Content:} The full text body of the article.
+  \item \textbf{Channel ID:} An identifier for the specific source or section within Seznam.cz where the article was published.
+  \item \textbf{Entity type: }Type of entity (e.g., article, video, etc.)
+  \item \textbf{Published date:} Date when the content was published
+  \item \textbf{Content type:} Type of content (e.g., news, blog, etc.)
+  \item \textbf{Annotated Quality Correction:} The quality label assigned by a human editor, serving as the ground truth for our classification task.
+\end{itemize}
 
+\section{Data Collection Timeline and Challenges}
+Data collection for this study began in July 2023 but faced significant challenges due to data transmission issues between departments. These issues affected the integrity of the dataset during the initial phases of collection. To illustrate the impact of these challenges, a plot  (\reffig{fig:num_labeled_articles}) of the number of labeled articles per day reveals inconsistencies in labeling frequency.
+
+These problems were resolved after \textbf{August 30, 2024}, when accurate recording of confirmations began. 
+% However, fully reliable and consistent data collection, aligned with improved editorial standards, was not achieved until \textbf{December 19, 2024}.
+
+Additionally, discussions with editors revealed that the evaluation process evolved significantly over time. After \textbf{August 30, 2024}, more detailed training was introduced for editors, leading to cleaner and more consistent data. These improvements enhanced the quality of annotations, making the data collected after this date particularly robust.
+
+As a result, the dataset used in this study benefits from a refined evaluation process and improved editor training, ensuring higher reliability and consistency in the annotations used for training and evaluating the classification model.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\textwidth]{./fig/plots/num_editor_articles.png}
+  \caption{Number of labeled articles.}
+  \label{fig:num_labeled_articles}
+\end{figure}
+
+\section{Data Cleaning and Filtering}
+To prepare the dataset, the following steps were taken:
+
+\begin{enumerate}
+  \item Articles with fewer than 50 words were excluded to ensure sufficient content for classification.
+  \item Text was cleaned to remove emojis, HTML tags, and other non-text elements, focusing on title and main content.
+  \item Only articles were included, excluding other entity types like videos or images.
+\end{enumerate}
+
+These measures ensured a clean and relevant dataset for journalistic quality classification.
+
+\section{Annotation Process}
+The quality labels used as the ground truth in this supervised learning task were assigned by experienced human editors at Seznam.cz. This annotation process is a routine part of content management on the platform, aimed at maintaining consistent editorial standards.
+
+Editors evaluate articles based on a set of internal guidelines, but also rely significantly on their professional judgment and experience. They assess various aspects, including depth of content, writing quality, factual accuracy, structure, sourcing, and overall adherence to journalistic principles. Based on this assessment, each article is assigned one of the four quality labels defined in Section \ref{sec:problem_formulation}:
+
+\ac{Class 0}
+
+\ac{Class 1}
+
+\ac{Class 2}
+
+\ac{Class 3}
+
+\section{Dataset Statistics}\label{sec:dataset_statistics}
+\subsection{Dataset Size and Splits}
+After cleaning and filtering, the data was split into three sets: Training Set, Validation Set and Test set. The distribution of articles across the four quality labels within each dataset split is presented in Tab.~\ref{tab:class_distribution}
+
+\begin{table}[h]
+  \centering
+  \caption{Class Distribution Across Dataset Splits}
+  \label{tab:class_distribution}
+  \begin{tabular}{|l|c|c|c|c|}
+  \hline
+  \textbf{Set} & \textbf{Label 0} & \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} \\
+  \hline
+  Training & 12,994 (22.9\%) & 32,086 (56.5\%) & 11,166 (19.7\%) & 542 (0.9\%) \\
+  Validation & 2,785 & 6,876 & 2,393 & 116 \\
+  Test & 2,795 & 6,863 & 2,404 & 118 \\
+  \hline
+  \end{tabular}
+\end{table}
+
+As clearly visible from Tab.~\ref{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 56\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
+
+
+\section{Data Analysis}
+
+\subsection{Article length}  
+Figure \reffig{fig:num_words} shows the marginal distribution of article length in words for each class. The average article length is 545 words. 
+
+The distribution is strongly right–skewed: the shortest admissible texts contain 51 words, the median is 434 words and the longest article reaches almost 9000 words.
+This long tail already hints at a qualitative difference between routine news briefs and in-depth reporting.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\textwidth]{./fig/plots/num_words_plot.png}
+  \caption{Distribution of article length in words.}
+  \label{fig:num_words}
+\end{figure}
+
+\subsection{Length by label}
+
+This \reffig{fig:num_words_per_label} shows the distribution of article lengths for each quality label. The x-axis represents the number of words in an article, and the y-axis shows the probability density, so we can compare how article lengths differ across quality levels.
+
+The results clearly show that better articles tend to be longer:
+
+\begin{itemize}
+  \item \ac{Class 0} and \ac{Class 1} articles are the shortest. Most of them are under 600 words, with label 1 forming the sharpest peak around 300-400 words.
+  \item \ac{Class 2} articles are longer, typically ranging from 400 to 1 200 words. They overlap with label 1 but clearly shift toward the right.
+  \item \ac{Class 3} articles are the longest. They have a wide distribution, with many texts over 1 500 words and some even exceeding 7 000 words. The long tail in the purple distribution reflects very detailed, in-depth articles.
+\end{itemize}
+
+This confirms that article length is a strong signal for quality. Longer texts are more likely to include detailed explanations, sources, and structured content—all features editors associate with high-quality journalism.
+
+However, since the distributions overlap, especially between classes 1 and 2, article length alone is not enough to classify quality.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\textwidth]{./fig/plots/num_words_per_labelplot.png}
+  \caption{Distribution of article length in words by label}
+  \label{fig:num_words_per_label}
+\end{figure}
+
+\subsection{Unique-token probability density}
+
+The number of unique words in each article helps show how rich and varied the language is. Figure~\reffig{fig:num_unique_tokens} shows that higher-quality articles usually have more unique words.
+
+\ac{Class 0} often have between 280 and 380 unique words and rarely go above 800. Most articles in \ac{Class 1} also stay under 500 unique words. \ac{Class 2} articles use more words, and \ac{Class 3} articles often have over 1000 unique words. Some even go above 3000.
+
+This means that better articles tend to use a wider vocabulary. However, there is still a lot of overlap between the groups, especially for shorter texts. So, the number of unique words alone cannot perfectly tell the article quality but is still a useful signal. It works best when combined with other features like article length and sentence structure.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\textwidth]{./fig/plots/num_unique_tokens_plot.png}
+  \caption{Distribution of unique tokens in articles.}
+  \label{fig:num_unique_tokens}
+\end{figure}

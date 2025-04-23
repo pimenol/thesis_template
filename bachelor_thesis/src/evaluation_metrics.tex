@@ -1,0 +1,96 @@
+%!TEX root = ../main.tex
+
+\chapter{Evaluation Metrics\label{chap:evaluation}}
+
+Evaluating the performance of a multi-class classification model for journalistic article quality requires careful selection of metrics, especially given the class imbalance in the dataset. As described in the Section~\ref{sec:dataset_statistics}, the four quality categories are not equally represented. This severe imbalance means that naive models could achieve seemingly high performance by favoring the majority class. Evaluation metrics must be chosen to reflect performance across all quality levels, rather than be dominated by the majority class.
+
+\section{Limitations of Accuracy}
+Accuracy measures the proportion of correct predictions out of all predictions. While it is a simple and intuitive metric, accuracy is inadequate for imbalanced datasets. In our context of quality classification, accuracy treats all prediction errors uniformly and thus can be misleading. A model labeling every article as \ac{Class 1} would achieve 54\% accuracy by virtue of Class 1’s prevalence, potentially outperforming more nuanced models that try to distinguish all four classes but incur some mistakes on the majority class. This illustrates a key limitation: \textbf{accuracy can be artificially high even if the model entirely ignores minority classes.} 
+
+For a journalistic quality assessment system, such behavior is unacceptable – correctly identifying the minority classes (e.g. truly high-quality pieces) is crucial. Therefore, relying on accuracy alone would not highlight a model’s failure to detect rare yet important cases. In light of this, we turn to alternative metrics that better capture performance across all classes, giving due weight to both common and uncommon article categories. These metrics focus on the balance between types of errors, rather than just the overall fraction correct.
+
+\section{Precision}
+
+\textbf{Precision} is calculated as:
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP},
+\end{equation}
+where \ac{TP} is the number of correctly predicted instances of a class, and \ac{FP} is the number of incorrectly predicted instances where the model predicted the positive class but the actual label was negative.
+
+Precision answers the question: “When the model predicts a certain class (especially a positive or high-quality outcome), how often is it correct?” In the context of our highest class (Class 3, high-quality articles), a high precision means that whenever the model flags an article as high-quality, it is usually correct. This is crucial for a platform like Seznam.cz because high precision in identifying top-quality content ensures that any article highlighted or promoted as “high-quality” truly meets the standards. In other words, high precision protects against false positives – it avoids promoting lower-quality articles as if they were premium content.
+
+\section{Recall}
+\textbf{Recall} measures the fraction of actual positive instances correctly identified by the model, calculated as:
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN},
+\end{equation}
+where \ac{FN} is the number of actual positive instances that were incorrectly predicted as negative. It addresses “How many of the actual instances of a class did the model successfully find?” For \ac{Class 3}, high recall means the model manages to identify most of the truly high-quality articles in the dataset. This is equally critical for our application: a high recall ensures that valuable content is not overlooked. In terms of business impact, high recall minimizes false negatives – it reduces the chance that an excellent article slips through the cracks and fails to be recognized or showcased as such. Missing a high-quality piece (a false negative) is a lost opportunity for user engagement and platform value, since exceptional content might not reach the audience it deserves.
+
+\section{F1 Score}
+The balance between precision and recall is a classic trade-off: improving one can often degrade the other. In our case, both are important. To illustrate:
+
+\textbf{High Precision} – Ensures that the articles labeled as high-quality are truly valuable, avoiding the risk of promoting subpar content to users.
+
+\textbf{High Recall} – Ensures that most high-quality articles are detected and not ignored, maximizing the coverage of valuable content.
+
+Depending on the application needs, one might prioritize precision over recall or vice-versa. For example, if the platform strictly wants to avoid ever featuring a low-quality article as top-tier content, it would emphasize precision (even if some good articles are missed). Conversely, if the goal is to surface as many great articles as possible, it would emphasize recall (even if a few lower-quality ones are misclassified among them). In this thesis, however, we aim for a balance, since both types of errors have costs (as discussed later).
+
+To evaluate model performance holistically, we employ the \textbf{F1 score}, which is the harmonic mean of precision and recall. The F1 score provides a balanced measure that only yields a high value when both precision and recall are high, making it well-suited for our imbalanced multi-class problem. It is defined as:
+
+\begin{equation}
+\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+This formulation accounts for the trade-off between false positives (FP) and false negatives (FN): a model cannot maximize F1 by excelling in only one of precision or recall at the expense of the other. 
+
+Unlike accuracy—which, as noted, treats all errors the same and can be dominated by the majority class—the F1 score ensures that performance on minority classes is not masked. A high F1 indicates the model is catching most of the high-quality articles (high recall) and not mislabeling too many low-quality articles as high-quality (high precision). In practical terms, F1 was used as the primary metric during model development: for example, the training procedure monitored the F1 score on the validation set and employed early stopping when it ceased improving %TODO(see Methodology chapter)
+, ensuring the final model is the one that best balances precision and recall.
+
+
+\section{Weighted F1 Score}
+When extending precision/recall/F1 to a multi-class setting, one must decide how to aggregate performance across classes. In this project we report the weighted F1 score as the primary evaluation metric, given the differing frequencies of each quality class. The weighted F1 is computed by calculating the F1 for each class separately, then taking a weighted average of these F1 scores using the class’s support (proportion of samples) as weights. Formally:
+
+\begin{equation}
+\text{F1W} = \sum_{i=1}^{n} (w_i \times \text{F1}_i)
+\end{equation}
+where $i \in \{0,1,2,3\}$, \(w_i = \frac{N_i}{N}\) is the fraction of samples belonging to class \(i\) in the dataset (i.e. its empirical probability) and \(\text{F1}_i\) is the F1 score for class \(i\). This approach gives more influence to classes with more samples, while still incorporating performance on all classes.
+
+\subsection{Why use weighted F1?}
+In an imbalanced multi-class scenario like ours, weighted F1 offers several advantages over other averaging schemes (such as macro or micro averaging):
+\begin{itemize}
+  \item Balances Class Influence: Macro-averaged F1 treats all classes equally, which can over-emphasize performance on very rare classes, while micro-averaging is dominated by the majority class (since it effectively counts every instance equally, making the aggregate metric similar to accuracy in a single-label setting). The weighted F1 is a compromise that considers each class’s importance proportional to its frequency, preventing both the over-domination of majority classes and the over-sensitivity to tiny classes.
+  \item Comprehensive Single Metric: The weighted F1 provides a single summary statistic that still reflects precision-recall balance across all categories. This is convenient for model selection and comparison. During development, we used the weighted F1 on the validation set to pick the best model and tune hyperparameters (see Methodology chapter on training procedure)% TODO:
+  , since it ensured we were improving performance in an overall sense, not just for one favored class.
+  \item Reflects Real Data: Weighted F1 aligns evaluation with the actual class distribution, ensuring that minority classes are considered without letting rare classes overly affect the result.
+\end{itemize}
+
+\section{Confusion Matrix}
+The confusion matrix is a powerful tool for visualizing the performance of a multi-class classification model. It provides a detailed breakdown of how many instances from each true class were predicted as each possible class. This allows us to see not only the overall accuracy but also where the model is making specific errors. Example of Confusion Matrix in \reffig{fig:confusion_example}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{./fig/plots/confusion_matrix_Deberta_large.png}
+  \caption{Example of Confusion Matrix. DebertaV3 Large.}
+  \label{fig:confusion_example}
+\end{figure}
+
+In summary, the weighted F1 score was deemed the most appropriate metric for this study, and it is the primary metric reported for our results. It directly influenced model training as well: for instance, the final model was selected based on the highest validation weighted F1, and training was stopped early once this metric stopped improving to avoid overfitting. By using weighted F1 consistently, we maintain evaluation consistency between training and testing phases in the face of class imbalance.
+
+\section{Business Relevance}
+
+The choice of evaluation metrics is not only a technical consideration but also a business decision in the context of a platform like Seznam.cz. The ultimate goal of automating journalistic quality assessment is to have the model’s predictions align with human editors’ judgments across all quality categories, from \ac{Class 0} up to \ac{Class 3}. As described in the Methodology chapter, human editors currently provide the quality labels, and their agreement rate sets an upper bound on model performance. The metrics we choose should thus reflect how well the model replicates those editorial decisions. 
+
+In this regard, the weighted F1 score aligns well with business objectives. It measures the model’s accuracy in mirroring human judgment while accounting for the prevalence of each quality category. In effect, a high weighted F1 indicates that the model is making the right distinctions between article qualities in roughly the same proportions as the real content mix on the platform. This is important for maintaining consistent quality standards: the platform seeks to reliably identify top-quality content and flag insufficient content, just as an editor would, but with far less manual effort. By using weighted F1 (which, as explained, ensures reasonable performance on each class), we directly support the goal that no class of article quality is neglected by the automated system. In business terms, this means the automation will uphold the overall editorial policy — it won’t simply label everything as “average” to get a good accuracy, but will correctly spot the outstanding pieces and the sub-par ones according to their true frequency. A metric aligned with these needs helps guide model development towards an outcome that is valuable for the platform’s content curation aims.
+
+
+\subsection{Cost of Classification Errors}
+In the context of content management, different types of classification errors carry distinct consequences, each affecting the platform in unique ways:
+
+\begin{itemize}
+    \item \textbf{False Positives (FPs)}  When lower-quality articles are incorrectly labeled as high-quality, they may be promoted as premium content. This can undermine user trust, as readers may feel misled by the platform’s recommendations. Over time, such errors could harm the platform’s reputation, making it less reliable in the eyes of its audience.
+    \item \textbf{False Negatives (FNs)} Conversely, when truly high-quality articles are not recognized as such, the platform misses opportunities to showcase valuable material. This can reduce user engagement, as exceptional content fails to reach the audience it deserves, potentially limiting the platform’s ability to retain and attract readers.
+
+\end{itemize}
+
+The F1 score addresses these challenges by striking a balance between precision (avoiding false positives) and recall (avoiding false negatives). This balance is crucial for managing the trade-off between promoting quality content and maintaining credibility. Additionally, the weighted variant of the F1 score ensures that less frequent categories—such as high-quality or insufficient articles—are not overlooked, despite their smaller presence in the dataset. By giving appropriate consideration to these minority classes, the metric supports a more comprehensive evaluation of the model’s effectiveness, aligning with the platform’s broader quality objectives.
+

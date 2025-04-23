@@ -2,15 +2,26 @@
 
 \chapter{Methodology\label{chap:methodology}}
 
+\section{Editor Analysis and Upper Bound}
+
+% \subsection{Why Human Editors Are Important}
+
+% When it comes to deciding what makes a good article, human judgment is key. Editors look at many factors, such as the depth of the content, the quality of the writing, the language used, and whether the article follows journalism standards. At Seznam.cz, experienced editors review articles to ensure they meet high standards. They follow clear guidelines but also rely on their own expertise. This human approach is valuable because it picks up on details and context that machines might miss. However, it’s not perfect—it can be hard to stay consistent, it takes time, and it requires a lot of effort. Understanding how humans evaluate articles, including both their strengths and weaknesses, helps us design automatic systems that can do a similar job.
+% Editors don’t just focus on simple things like grammar or structure. They also check bigger issues, like whether the facts are correct, the story makes sense, and the journalism is fair and honest. But quality isn’t always clear-cut—some aspects depend on personal opinions, so editors don’t always agree. This is especially true for articles that aren’t obviously great or terrible. These differences aren’t a flaw; they just show how complex it is to judge quality.
+
+\section{Baseline Model Performance}
+
+\section{Performance of Pre-trained Language Models}
+
 \section{Feature Engineering}
-Describe textual features (e.g., readability metrics, sentiment)
-Detail metadata features (e.g., source, publication time)
-Explain linguistic features (e.g., grammar, vocabulary diversity)
-\section{Model Architecture}
-Justify your choice of classification algorithms
-Explain the structure of your models
-Detail any ensemble or hybrid approaches
-\section{Training Process}
-Describe training methodology
-Explain hyperparameter tuning
-Detail cross-validation approach
+
+\section{CatBoost}
+
+
+\section{Per-Class Performance Analysis}
+% Here we delve into class-wise results to ensure the model performs adequately on each article quality category. We will present the precision, recall, and F1 for each class (Class 0 through Class 3) and discuss any disparities. For example, the final model might show high precision and recall for Class 1 (the majority class) by virtue of abundant data, while Class 3 (high-quality articles) might have significantly lower precision or recall. We will interpret these results, noting improvements due to our imbalance handling (such as the class weighting scheme described in Methodology). For instance, if Class 3’s recall improved from 0.00 to 0.27 after applying class-weighted loss, we will explain that this indicates the model learned to recognize some high-quality articles that would otherwise be missed. We will also mention any acceptable trade-offs, such as a slight drop in precision for Class 1 (from ~0.99 to ~0.75) as an outcome of making the model more sensitive to minority classes – a necessary compromise to achieve balanced performance. This section ensures that we evaluate the model on each quality tier, verifying that no class (especially the high-quality content) is entirely neglected by the classifier.
+\section{Error Analysis}
+% Even with strong overall performance, analyzing errors provides insight into model limitations and opportunities for improvement. In this section, we will examine common patterns in the model’s mistakes. Likely points of discussion include:
+% Confusion Between Adjacent Classes: We expect the model may confuse articles of adjacent quality levels (e.g., mixing up Class 2 vs Class 1, or Class 3 vs Class 2) more often than wildly disparate classes. Such boundary cases might mirror the subjectivity or ambiguity that even human editors face – for instance, distinguishing a borderline high-quality article (Class 3) from a standard good article (Class 2) can be challenging. We will quantify these confusions using a confusion matrix or specific examples, showing that most errors occur between neighboring quality ratings.
+% Over-reliance on Article Length: Given that higher-quality articles in our dataset tend to be longer on average (recall from earlier chapters that Class 3 articles had a mean length of ~1542 words), the model might develop a bias where it heavily factors in length. We will investigate if some misclassifications were due to this bias – for example, a very long but not truly high-quality article incorrectly labeled as Class 3, or a concise yet excellent article being underrated. Any observed length sensitivity will be discussed, potentially with evidence such as model confidence scores correlating with length or error cases illustrating this effect.
+% Other Notable Error Cases: If there were systematic errors related to specific content features (e.g., articles with certain topics or styles that the model finds difficult), we will describe those. This might include scenarios like the model mislabeling very opinionated pieces or failing to catch subtle quality issues that require world knowledge. By providing concrete examples of misclassified articles and analyzing why the model struggled with them, we gain understanding that can inform future im
