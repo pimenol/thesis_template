@@ -4,14 +4,257 @@
 
 \section{Editor Analysis and Upper Bound}
 
-% \subsection{Why Human Editors Are Important}
+\subsection{Why Human Editors Are Important}
 
-% When it comes to deciding what makes a good article, human judgment is key. Editors look at many factors, such as the depth of the content, the quality of the writing, the language used, and whether the article follows journalism standards. At Seznam.cz, experienced editors review articles to ensure they meet high standards. They follow clear guidelines but also rely on their own expertise. This human approach is valuable because it picks up on details and context that machines might miss. However, it’s not perfect—it can be hard to stay consistent, it takes time, and it requires a lot of effort. Understanding how humans evaluate articles, including both their strengths and weaknesses, helps us design automatic systems that can do a similar job.
-% Editors don’t just focus on simple things like grammar or structure. They also check bigger issues, like whether the facts are correct, the story makes sense, and the journalism is fair and honest. But quality isn’t always clear-cut—some aspects depend on personal opinions, so editors don’t always agree. This is especially true for articles that aren’t obviously great or terrible. These differences aren’t a flaw; they just show how complex it is to judge quality.
+When it comes to deciding what makes a good article, human judgment is key. Editors look at many factors, such as the depth of the content, the quality of the writing, the language used, and whether the article follows journalism standards. At Seznam.cz, experienced editors review articles to ensure they meet high standards. They follow clear guidelines but also rely on their own expertise. This human approach is valuable because it picks up on details and context that machines might miss. However, it's not perfect—it can be hard to stay consistent, it takes time, and it requires a lot of effort. Understanding how humans evaluate articles, including both their strengths and weaknesses, helps us design automatic systems that can do a similar job.
+Editors don't just focus on simple things like grammar or structure. They also check bigger issues, like whether the facts are correct, the story makes sense, and the journalism is fair and honest. But quality isn't always clear-cut—some aspects depend on personal opinions, so editors don't always agree. This is especially true for articles that aren't obviously great or terrible. These differences aren't a flaw; they just show how complex it is to judge quality.
+
+\subsection{How We Studied Editor Agreement}
+To understand how much editors agree and to set a target for automatic systems, we carried out a detailed study. We selected 100 articles from our dataset, choosing a mix of topics, dates, and quality levels to get a fair sample. Three experienced editors reviewed each article independently and sorted them into four categories. They followed the same rules used every day at Seznam.cz.
+\subsection{What We Learned About Editor Agreement}
+The results of our study were surprisingly strong—better than we expected. All three editors gave the same quality rating to 70 out of the 100 articles, which means a 70\% full agreement rate. Even more impressive, at least two out of three editors agreed on the rating for every single article, giving us a 100\% partial agreement rate.
+Interestingly, there was never a case where all three editors completely disagreed by picking totally different ratings. This tells us that while editors don't always see things exactly the same way, their disagreements are small—usually just between nearby categories, not about the article's overall quality. This shows a solid level of consistency among human experts.
+
+\subsection{Setting the Upper Bound}
+The 70\% full agreement rate gives us a clear target, or “upper bound,” for our automatic classification model. This is the level where even human experts fully agree, so it's a realistic goal for the system to aim for. It's also important to note that disagreements between editors were never drastic—they typically differed by just one category. This means that a reliable model should also aim to stay within this range. In practice, it's acceptable if the model's predictions differ from human ratings by at most one category, since even experienced editors make mistakes of only ±1 level. Ensuring this small margin of error helps maintain the system's trustworthiness and mirrors real-world human judgment.
 
 \section{Baseline Model Performance}
+Before developing complex models, we established baseline classifiers to provide lower-bound reference points. Baseline models are simple heuristics that do not incorporate any deep linguistic understanding, but they set minimum performance thresholds that any useful model should exceed. We implemented two naive strategies - a Random Classifier (Sec.~\ref{sec:random_classifier}) and a Most Frequent Class Classifier (Sec.~\ref{sec:most_frequent_classifier}) - and measured their effectiveness on the dataset. We report primarily the weighted F1 score as our performance metric.
+
+\subsection{Random Classifier}\label{sec:random_classifier}
+
+The Random baseline assigns a quality label to each article by sampling from the training set's class distribution. In other words, it ignores the article text and simply guesses a label at random, but with probabilities proportional to the observed frequencies of each class in the training data. This strategy produces an expected performance near chance level. Indeed, in our dataset – which is highly imbalanced (only ~0.9\% of articles are High-Quality, while the majority belong to the middle categories) – the random classifier achieved a weighted F1 of approximately 0.27. This very low F1 confirms that a classifier must do far more than random guessing to be useful. The random baseline underscores the challenge of the task: given the small fraction of high-quality articles and the dominance of the \ac{Class 1}, unguided guessing will mostly fail to identify the minority classes. This also highlights that any effective model needs to incorporate article-specific information (beyond class frequencies) to improve performance.
+
+\subsection{Most Frequent Class Classifier}\label{sec:most_frequent_classifier}
+
+The second baseline always predicts the single most common class from the training data for every article. In our case, the majority class was the \ac{Class 1}, which comprised a large portion of the dataset (Section \ref{sec:dataset_statistics} details the class distribution). By labeling every article as \ac{Class 1}, this classifier exploits the class imbalance to maximize overall accuracy, while entirely ignoring content. Perhaps surprisingly, this simplistic strategy achieved a weighted F1 of around 0.43, significantly higher than the random baseline. The reason is that by always predicting the majority class, it correctly “classifies” all truly Short but Sufficient Article (recall for \ac{Class 1} is 1.0), which carry a lot of weight in the weighted F1 calculation. This result demonstrates how a skewed dataset can let a trivial predictor attain a deceptively decent aggregate score. However, the limitations of the most-frequent-class model are clear: it fails to recognize any minority class (Precision and Recall are 0 for minority classes). It cannot differentiate the subtle cues that distinguish high-quality journalism from mediocre content.
+
+\subsection{Discussion}
+The results of these baseline models shed light on key aspects of our classification challenge. The Random Classifier’s minimal performance underscores the necessity of incorporating article-specific information to achieve meaningful outcomes, rather than depending on random predictions. In contrast, the Most Frequent Class Classifier’s score of 0.43 demonstrates the pronounced effect of class imbalance, as it achieves a respectable result solely by leveraging the majority class.
+These baselines set clear standards for evaluating future models. Any advanced classifier—whether employing intricate feature engineering or sophisticated machine learning techniques—must exceed these initial benchmarks. Beyond improving overall metrics, we seek models that excel at correctly classifying less frequent yet significant quality categories. This establishes a critical goal for further development: to create systems that capture the nuanced elements of journalistic quality and more closely align with human editorial assessments.
+
 
 \section{Performance of Pre-trained Language Models}
+Transformer-based language models have revolutionized natural language processing across multiple languages, including Czech. This chapter examines the theoretical foundations, architectures, and practical applications of pre-trained language models for Czech text classification tasks, with special attention to models specifically designed for the Czech language and their performance characteristics.
+
+\subsection{Theoretical Foundations}
+Pre-trained language models represent a paradigm shift in natural language processing, moving beyond traditional lexical approaches to capture deeper semantic relationships within text. These models leverage transformer architectures introduced by \cite{vaswani2017attention} to create contextual representations that have proven remarkably effective for downstream tasks like classification, retrieval, and generation.
+
+\subsection{Evaluation of Multiple Pre-trained Models}
+For this research, four pre-trained \ac{BERT}-like (\cite{devlin2019bert}) language models developed internally at Seznam were evaluated. The models – \ac{BROWCzech}, \ac{RetroMAE}, \ac{DeBERTaV3} Base, and \ac{DeBERTaV3} Large – were fine-tuned to predict quality ratings for articles. 
+
+\subsubsection{\ac{BROWCzech}}
+\textbf{Architecture}
+\ac{BROWCzech} is a monolingual Czech language model developed by Seznam.cz. It is based on the RoBERTa (\cite{liu2019roberta}) architecture and was pre-trained on an extensive internal corpus of Czech webpages, encompassing diverse topics and writing styles. This extensive pre-training enables the model to capture the nuances of the Czech language effectively.
+
+\begin{itemize}
+    \item Parameters: 109.5 million (23.4M in the embedding layer + 86.0M in the transformer layers)
+    \item Layers: 12 transformer layers
+    \item Hidden Dimensions: 768
+    \item Input Tokens: Maximum of 512
+    \item Tokenizer: Monolingual, supporting only Czech
+\end{itemize}
+
+\textbf{Pre-Training}
+The model was trained using the \ac{MLM} objective, where a portion of the input tokens is masked, and the model learns to predict these masked tokens. This training approach allows the model to develop a deep understanding of the language structure and semantics. The pre-training corpus consisted of a vast collection of Czech web pages, ensuring a comprehensive representation of the language used in various contexts.
+
+\textbf{Special Capabilities}
+Due to its monolingual focus and extensive pre-training on Czech data, \ac{BROWCzech} excels in tasks requiring a deep understanding of the Czech language. It is particularly effective in scenarios where the text is exclusively in Czech, providing high-quality contextual embeddings that enhance performance in downstream tasks such as text classification and sentiment analysis.
+
+
+\subsubsection{\ac{RetroMAE}}
+
+\textbf{Architecture}
+\ac{RetroMAE} (\cite{xiao2022retromae}) is a transformer encoder that integrates a specialized pre-training architecture for better document-level representations. It introduces an asymmetric encoder-decoder setup during pre-trainin. The encoder is a full-scale \ac{BERT}-like transformer which produces a condensed vector representation of the input text (for instance, the [CLS] token embedding). The decoder is a lightweight one-layer transformer that uses this representation to reconstruct the original text. This design does not change the model’s structure at fine-tuning time – we still fine-tune the 12-layer encoder on the classification task – but the pre-training setup encourages the encoder to act as a powerful sentence/document encoder. \ac{RetroMAE} uses a Czech tokenizer, so in architecture it is comparable to \ac{BROWCzech} aside from the pre-training apparatus.
+
+\begin{itemize}
+  \item Parameters: 130.0 million (43.9M in the embedding layer + 86.0M in the transformer layers)
+  \item Layers: 12 transformer layers
+  \item Hidden Dimensions: 768
+  \item Input Tokens: Maximum of 512
+  \item Positional Embedding: absolute
+  \item Tokenizer: Monolingual, supporting only Czech
+\end{itemize}
+
+\textbf{Pre-Training}
+\ac{RetroMAE} was pre-trained on a massive Czech text corpus (~253 GB of news and web articles) with a novel masked autoencoding strategy geared towards retrieval. The key idea is to train the encoder to produce embeddings that capture the meaning of the entire text, which can be used to regenerate the text. To achieve this, \ac{RetroMAE} applies different masking ratios to the encoder and decoder inputs: for each input, the encoder sees a moderately masked version (20\% tokens removed) while the decoder sees a heavily masked version (50\% tokens masked out). The encoder must output a representation that, when fed into the decoder along with the decoder’s masked input, allows the decoder to reconstruct the original sentence (recover the masked tokens). Additionally, \ac{RetroMAE} employs an asymmetric model structure, with the encoder being a full transformer (to encode rich features) and the decoder being minimal (to force the burden of representation onto the encoder). This pre-training approach effectively teaches the encoder to compress each document’s essential content into its embedding. Beyond autoencoding, \ac{RetroMAE}’s training in this project also included retrieval-based contrastive learning: the model was periodically tasked to bring embeddings of similar documents closer and push dissimilar ones apar. This two-pronged pre-training (reconstruction + contrastive objectives) leads to embeddings that are not only information-rich but also arranged in a semantic space useful for comparing texts. Indeed, the creators of \ac{RetroMAE} report that it dramatically improves performance on retrieval benchmarks like BEIR and MS MARC, confirming that the encoder learns powerful semantic representations.
+
+\textbf{Special Capabilities}
+Thanks to its training, \ac{RetroMAE} excels at capturing document-level semantics and topical depth. It effectively encodes the “aboutness” of an article – the model was literally trained to compress an article’s meaning into one vector. For journalistic quality, this means \ac{RetroMAE} can distinguish content-rich, in-depth articles from superficial ones. For example, an article with thorough coverage of a subject (lots of pertinent details, background context, and related information) will produce a dense embedding that \ac{RetroMAE} recognizes as distinct from that of a short news brief. This strength aligns with the “depth” dimension of quality: \ac{RetroMAE} should be adept at flagging articles that lack substance (likely classifying them as lower quality) versus those with comprehensive coverage (higher quality). Its retrieval objective may also enhance detection of factual consistency – articles that cover similar events should have similar embeddings, so if an article’s content is anomalous or off-topic (potentially indicating lower factual accuracy or relevance), \ac{RetroMAE} might more readily identify it. On the other hand, \ac{RetroMAE} does not introduce special handling of language beyond Czech. It might not handle foreign names or code-switching as well as a bilingual model, and it relies on the same 512-token input limit as \ac{BROWCzech}. Also, because its focus is on what is said (semantic content) more than how it’s structured, \ac{RetroMAE} might be less sensitive to certain stylistic or structural quality signals (e.g., subtle differences in tone or the presence of formatting elements like citations). In practice, however, document embeddings can encode some structural indicators if they correlate with content. Overall, \ac{RetroMAE}’s semantic prowess is expected to help on quality aspects like factual depth and topic relevance, complementing other models that emphasize linguistic or structural nuances.
+
+\subsubsection{\ac{DeBERTaV3} Base}
+\textbf{Architecture}
+\ac{DeBERTaV3} (\cite{he2021debertav3}) is a transformer encoder that builds on the \ac{BERT} family with two major innovations: disentangled attention and improved embeddings. In \ac{DeBERTaV3}, each token is characterized by two vectors – one for its content (token identity) and one for its position – instead of a single combined embeddin. During self-attention, the model can attend to content and position information separately, a mechanism known as \textbf{Disentangled Attention}. This enables a form of relative position encoding: the model doesn’t just rely on fixed absolute positions, but learns relative positional biases so it can better handle long-range dependencies and varied word order. The Base model also employs an extended vocabulary (in our case, a bilingual Czech-English tokenizer) which increases the embedding layer parameters. The bilingual tokenizer and vocabulary allow it to natively process both Czech and English text. This is particularly useful for Czech news, which often contain English names, technical terms, or quotes. In summary, \ac{DeBERTaV3} Base’s architecture offers a more expressive attention mechanism and cross-lingual lexical coverage, setting it apart from \ac{BROWCzech} and \ac{RetroMAE} which use standard attention and monolingual vocabularies.
+
+\begin{itemize}
+  \item Parameters: 129.4 million (43.9M in the embedding layer + 85.5M in the transformer layers)
+  \item Layers: 12 transformer layers
+  \item Hidden Dimensions: 768
+  \item Input Tokens: Pre-trained with sentences with max 512 tokens, generalizes up to 2048 due to relative position embeddings
+  \item Tokenizer: Bilingual, supporting both Czech and English
+\end{itemize}
+
+\textbf{Pre-Training}
+\ac{DeBERTaV3} Base was pre-trained with a state-of-the-art strategy that combines ideas from \ac{ELECTRA} and DeBERTa. Instead of the traditional \ac{MLM} objective, it uses \ac{RTD} (\cite{clark2020electra}) – the model is trained to distinguish real tokens from plausible but fake tokens generated by a small generator network. This task is more sample-efficient than MLM, yielding better learning of token distinctions. Additionally, \ac{DeBERTaV3} introduced Gradient-Disentangled Embedding Sharing, a technique to allow the generator and discriminator (in the \ac{ELECTRA} setup) to share token embeddings without conflicting gradients (avoiding a “tug-of-war” in embedding updates). By applying \ac{RTD} with disentangled embeddings, \ac{DeBERTaV3} achieves faster and more effective pre-training than MLM-based model. The model was trained on a mixture of English and Czech text (a bilingual corpus), reflecting its dual-language design. This means it saw Czech news articles and possibly English texts during pre-training, enabling it to handle code-switching and borrowed foreign phrases. The disentangled attention from the original DeBERTa (\cite{he2020deberta}) is retained, meaning the model also learns relative position representations during pre-training. Overall, this advanced pre-training regimen endows \ac{DeBERTaV3} Base with both multilingual understanding and robust language modeling, which have been shown to boost performance on a wide range of NLP tasks and even cross-lingual benchmark.
+
+\textbf{Special Capabilities}
+\ac{DeBERTaV3} Base brings together several capabilities that are particularly relevant for assessing journalistic quality. First, its bilingual nature ensures that the presence of English names or excerpts in a Czech article will not confuse the model – it recognizes those tokens and their meanings. This supports the transparency dimension, as articles often mention international organizations or use English technical terms; DeBERTa can comprehend these in context and contribute to a fair quality assessment. Second, the disentangled attention and relative positional encoding give DeBERTa an edge in understanding text structure and long-distance relationships. News articles have important structural elements (e.g., key facts at the beginning, quotes and references throughout). \ac{DeBERTaV3} can better model such patterns, for instance understanding that a statement followed by a dash and a name is likely a quote attribution – a subtle structural cue linked to transparency and credibility. It is also less likely to be thrown off by long sentences or paragraphs, since relative positioning helps it maintain coherence over longer spans. These abilities align with the structure and coherence aspect of quality: \ac{DeBERTaV3} might more accurately evaluate whether an article is well-organized and whether information is appropriately placed. Third, the model’s \ac{ELECTRA}-style pre-training (\ac{RTD}) tends to sharpen its ability to catch anomalies or errors in text (since it learned to spot “implausible” tokens). This could translate into better detection of factual errors or inconsistent details, aiding the factual accuracy dimension. In essence, \ac{DeBERTaV3} Base is expected to perform strongly across multiple quality criteria – it handles language diversity, captures long-range context, and has a finely-tuned sense for language correctness. Its main limitation relative to its Large counterpart is capacity: as a base model, it may sometimes miss very subtle signals that a larger model could pick up, and it shares the same 512-token input limit (mitigated by relative encoding, but still in effect). Nonetheless, among base-sized models, \ac{DeBERTaV3} Base is the most advanced in this lineup.
+
+\subsubsection{\ac{DeBERTaV3} Large}
+\textbf{Architecture}
+The Large variant of \ac{DeBERTaV3} significantly scales up the Base model, enhancing its capacity for handling nuanced and complex language tasks. It is specifically optimized for scenarios requiring deeper semantic understanding and improved performance in demanding classification and cross-encoder tasks.
+\begin{itemize}
+  \item Parameters: 361.4 million (58.6M in the embedding layer + 302.8M in the transformer layers)
+  \item Layers: 24
+  \item Hidden Dimensions: 1024
+  \item Input Tokens: pre-trained with 512 tokens, generalizes up to 2048 via relative position encoding
+  \item Vocabulary Size: bilingual Czech-English
+\end{itemize}
+
+\textbf{Pre-Training}
+Unlike the Base variant, \ac{DeBERTaV3} Large is trained with an increased model capacity, allowing it to capture subtler language nuances and richer contextual relationships. While maintaining the \ac{ELECTRA}-style \ac{RTD} objective, its larger model size provides more parameters to effectively differentiate authentic and artificially generated tokens, resulting in improved learning efficiency and deeper semantic representations. The training corpus remains bilingual, similar to the Base variant, but the enhanced parameter count enables superior assimilation of cross-lingual contextual clues and more robust modeling of long-form and nuanced texts.
+
+\textbf{Special Capabilities}
+Compared to \ac{DeBERTaV3} Base, the Large model demonstrates markedly improved performance in tasks requiring detailed semantic comprehension and fine-grained textual distinctions. Its increased number of transformer layers and expanded hidden dimensions enhance its ability to resolve subtle language patterns, ambiguous contexts, and complex factual consistency scenarios. The larger model is better suited for detailed anomaly detection tasks, such as identifying intricate factual errors or subtle inconsistencies. Additionally, its superior long-range modeling capability due to enhanced relative positional encoding makes it particularly effective in evaluating coherence and structural quality of lengthy articles or documents. This positions \ac{DeBERTaV3} Large as the preferred choice for high-stakes journalistic quality assessments and intricate text classification tasks, surpassing the Base variant in overall accuracy and contextual sensitivity.
+
+\subsection{Model Selection}
+To compare the performance of the evaluated models, we trained them using the same loss function 
+% TODO
+(described in detail below), identical features, and the same context window size. Hyperparameters for each model were carefully tuned to achieve the best possible validation performance. Below, we present the weighted F1 scores and the F1 scores for each quality class (F1\textsubscript{1}--F1\textsubscript{4}) on the test set.
+
+% TODO:
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\textbf{Model} & \textbf{F1\textsubscript{1}} & \textbf{F1\textsubscript{2}} & \textbf{F1\textsubscript{3}} & \textbf{F1\textsubscript{4}} & \textbf{F1 Weighted} \\
+\ac{BROWCzech} & 0.727 & 0.752 & 0.656 & 0.359 & 0.711 \\
+\ac{RetroMAE} & 0.725 & 0.749 & 0.656 & 0.299 & 0.721 \\
+\ac{DeBERTaV3} Base & 0.727 & 0.752 & 0.656 & 0.359 & 0.724 \\
+\ac{DeBERTaV3} Large & - & - & - & - & 0.740 \\
+\end{tabular}
+\caption{Validation F1 scores for each model. F1\textsubscript{1}--F1\textsubscript{4} correspond to classification quality for each label class.}
+\label{tab:validation_scores}
+\end{table}
+
+DeBERTaV3 Large achieved the best weighted F1 score on the validation set, indicating that it is better suited for the quality classification task compared to the other models. Despite all models being trained under the same conditions, the increased model capacity and architectural improvements of DeBERTaV3 Large allowed it to generalize more effectively on unseen data.
+
+\section{Classifier Architecture Design}
+The classification architecture implemented in this research was designed to efficiently leverage the semantic information extracted by large pre-trained language models while introducing minimal additional complexity to prevent overfitting, particularly given the class imbalance of the dataset.
+
+Initially, during experiments with the \ac{BROWCzech} model, a simple classification head was developed, consisting of a dropout layer, a dense projection layer, and a softmax output. However, through systematic experimentation, it became evident that a slightly deeper and regularized architecture led to improved performance without significant computational overhead. These improvements, although first tested with \ac{BROWCzech}, were later adapted and finalized in conjunction with the \ac{DeBERTaV3} model, which ultimately demonstrated superior performance and became the backbone of the final system.
+
+The overall data flow and model architecture are illustrated in Figure \ref{fig:model_architecture}
+As shown, the input text is first pre-processed and tokenized, then passed through the pre-trained transformer model to obtain contextual embeddings.
+The [CLS] token embedding is processed through a regularized fully connected classifier head, including dropout, dense projection, GELU activation, and another dropout, before producing the final logits for prediction.
+Separately, additional features and metadata were extracted for possible use in ensemble models (described later in Section X.X)
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{./fig/diagrams/model_architecture_llm.png}
+  \caption{Model architecture overview for journalistic quality classification.}
+  \label{fig:model_architecture}
+\end{figure}
+
+% This architecture first processes the input text through the language model, then extracts the representation of the [CLS] token, which serves as an aggregate representation of the entire document. This vector is then passed through a series of fully connected layers with dropout regularization and GELU activation, culminating in a final classification layer that outputs logits for each quality category.
+
+\section{Loss Function Engineering}
+A critical aspect of this research was designing a loss function to address the challenges of journalistic quality classification, particularly the significant errors in predicting extreme quality differences and the dataset's class imbalance. The process evolved through several stages, reflecting observations and experiments tailored to the task.
+
+\subsection{Initial Approach: Cross-Entropy Loss}
+The default loss function was Cross-Entropy (CE) Loss, a standard choice for classification tasks, defined as:
+CE = …
+Initially, CE was used alone, achieving an F1 score of 0.67. However, analysis revealed significant errors, such as predicting label 0 (Insufficient) for articles with true label 3 (High-Quality). These large mistakes indicated that CE alone was insufficient for penalizing such discrepancies appropriately, as it treats all misclassifications equally regardless of their magnitude relative to the ordinal scale of quality.
+
+
+\subsection{Adding Mean Squared Error Loss}
+% To address these larger mistakes, Mean Squared Error (MSE) Loss was introduced alongside CE to penalize predictions based on their distance from the true label, reflecting the ordinal nature of the quality categories. MSE is defined as:
+% LMSE=…
+% MSE ensures that predicting label 0 for a true label 3 incurs a higher penalty (e.g., (3−0)^2=9) than a smaller error like predicting label 2 for label 3 ((3−2)^2=1). To balance CE and MSE, their expected values were calculated:
+% E[LCE​]=0.6830
+% E[LMSE]=0.4389
+% Ratio α=E[LCE]/E[LMSE]=1.556
+% Since CE was intended to remain the primary driver of classification accuracy, several experiments tested different mse_weight values in the combined loss:
+% % L=LCE+mseweight⋅LMSE
+% After multiple iterations, an mse_weight of 1.0 was selected as a pragmatic compromise, keeping CE dominant while still penalizing large ordinal errors effectively. This combination improved the F1 score to 0.70 when training the full model.
+
+
+\subsection{Addressing Class Imbalance with Focal Loss}
+The dataset’s imbalance—class 3 at 0.9\% versus class 1 at over 54\%—prompted exploration of Focal Loss to focus on hard-to-classify examples, particularly the rare high-quality articles. Focal Loss modifies CE as:
+FL=...
+% Focal Loss was originally designed for object detection and segmentation tasks, where it excels at handling foreground-background imbalances. In this multi-class classification context, however, it underperformed. With γ=2, it increased recall for class 3 but destabilized performance on majority classes, lowering overall precision. This was likely due to its segmentation-specific design, which didn’t translate effectively to the ordinal, multi-class nature of quality classification, where distinguishing between four nuanced categories required broader balance rather than extreme focus on rare instances.
+
+
+\subsection{Final Loss Function}
+The final choice reverted to the CE + MSE combination:
+% L=LCE+1.0⋅LMSE
+With class weights [1.0, 0.5, 1.0, 20.0] applied within CE to address imbalance. This hybrid approach:
+Maintains classification accuracy via CE
+Penalizes large ordinal errors via MSE (e.g., label 3 predicted as 0)
+Mitigates imbalance via class weighting, prioritizing class 3
+This configuration achieved the highest weighted F1 score of 0.723, outperforming CE alone (0.67) and Focal Loss + MSE variants, balancing the need to correct large mistakes and handle imbalanced data effectively.
+
+
+\section{Training Methodology}
+
+The training process for the DebertaV3-based classification system was meticulously designed to optimize performance on the journalistic quality classification task, with particular attention to the model’s tendency to overfit quickly. This rapid overfitting necessitated careful regularization and learning rate management, influencing the choice of warmup, weight decay, and scheduler strategies. The methodology spanned data preparation, model optimization, and evaluation, tailored to the dataset’s characteristics and computational constraints.
+
+
+\section{Tokenization and Sequence Handling}
+In the process of tokenizing and handling sequences for the model, the maximum sequence length started at 512 tokens and was later increased to 1024 tokens. Here’s why and how this change occurred:
+Initial Maximum Sequence Length (512 Tokens):
+At the beginning, the maximum sequence length was set to 512 tokens. This was because the models, based on DebertaV3, RetroMAE and Browczech was pre-trained with a context window of 512 tokens. This length was chosen to align with the model’s original configuration, ensuring compatibility and computational efficiency. For articles longer than 512 tokens, the excess was truncated at the end.
+Change to 1024 Tokens:
+Later, the sequence length was extended to 1024 tokens. This adjustment was made possible by DebertaV3’s use of relative position embeddings, which differ from traditional absolute position embeddings. 
+relative position embeddings = …
+While absolute embeddings fix positional information to the pre-trained length (512 tokens), relative embeddings allow the model to generalize to longer sequences by focusing on the relationships between tokens rather than their exact positions. This flexibility enabled the model to process up to 1024 tokens effectively.
+
+Increasing the sequence length to 1024 tokens improved the model’s performance. This improvement occurred because longer sequences allowed the model to capture more contextual information, especially in high-quality articles (e.g., class 3 articles with an average word count of 1542.5). These articles often contain detailed narratives or extended analysis, where key quality signals might appear later in the text. The longer context thus enhanced the model’s ability to classify such articles accurately.
+Token count per article: The red line represents 512 tokens, while the black line represents 1024 tokens.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fig/plots/num_of_tokens_plot.png}
+    \caption{Token count per article}
+    \label{fig:token_count}
+\end{figure}
+
+\section{Training Stages}
+Training proceeded in three distinct approaches, with performance evaluated via weighted F1 score:
+Classification Head Only: The pre-trained DebertaV3 encoder was frozen, and only the classification head (dropout, dense, GELU, and linear layers) was trained for 6 epochs. This yielded an F1 score of 0.51, leveraging pre-trained embeddings but limiting adaptation to the task.
+Full Model End-to-End: The entire model, including the encoder, was trained for 5 epochs, achieving an F1 score of 0.71. This allowed task-specific fine-tuning but risked overfitting or forgetting pre-trained knowledge, especially given the model’s rapid overfitting tendency.
+Sequential Training: The optimal approach combined the two: the classification head was trained for 6 epochs with a higher learning rate (6e-04), followed by 5 epochs of full model training at a lower rate (1e-05). This achieved the highest F1 score of 0.723, balancing initial pattern learning with comprehensive adaptation while mitigating overfitting through staged learning.
+The sequential strategy was critical, as early experiments showed that full model training without this staging led to sharp drops in validation performance within 2-3 epochs due to overfitting on the majority class (class 1).
+
+\subsection{Hyperparameter Configuration}
+Hyperparameters were tuned to counteract the model’s rapid overfitting, observed as a divergence between training and validation loss after just one epoch without regularization. The final configuration was:
+Key settings and their roles in addressing overfitting:
+Learning Rates: 6e-04 for the classification head, 1e-05 for the full model. Lower rates were essential for the encoder to preserve pre-trained weights, as higher rates (e.g., 3e-05) caused immediate overfitting, with training F1 soaring to 0.9 while validation F1 plateaued at 0.6.
+Batch Size: Initially 8 per device, increased to 32 after optimization, balancing memory and gradient stability. Smaller batches exacerbated overfitting by amplifying noise in gradient updates.
+Epochs: 6 for the head, 5 for the full model, chosen based on validation convergence; additional epochs led to overfitting, with validation loss rising after epoch 5.
+Learning Rate Scheduler (Cosine): A cosine scheduler was selected over linear or constant schedules because it gradually reduced the learning rate following a smooth curve, preventing abrupt updates that fueled overfitting. 
+
+Warmup Ratio: Set to 0.05 (5\% of training steps), this linearly increased the learning rate from 0 to the target value over the first 5\% of steps. This was crucial to stabilize early training, as the model otherwise overfitted to initial batches, skewing toward class 1 (54\% of data) and yielding a validation F1 of ~0.55 without warmup.
+Weight Decay: Applied at 1e-3, this L2 regularization penalized large weights, reducing the model’s tendency to memorize training data. Experiments without weight decay saw training loss drop to ~0.2 while validation loss spiked to ~1.0 after 2 epochs, confirming its necessity.
+MSE Weight: 1.0 in the hybrid CE + MSE loss, supporting ordinal learning without amplifying overfitting risks.
+The combination of warmup, weight decay, and cosine scheduling was pivotal. Early runs without these showed training accuracy nearing 95\% by epoch 3, while validation accuracy stagnated at 70\%, highlighting the model’s sensitivity to overfitting on the imbalanced dataset.
+
+\subsection{Validation and Early Stopping}
+% The validation set (12,170 articles) was evaluated 3 times every epoch, computing the weighted F1 score. Checkpoints were saved at these intervals, and load_best_model_at_end=True ensured the final model reflected peak validation performance. Early stopping with a patience of 2 steps was implemented to halt training if F1 didn’t improve, triggered frequently in initial runs without regularization but rarely with the final setup due to the cosine scheduler’s gradual decay, which extended effective training duration.
+
+\section{Addressing Class Imbalance}
+This skew biases the model toward predicting the majority class (class 1), risking poor generalization to minority classes, especially the critical high-quality category, which is of particular interest for editorial applications at Seznam.cz. Left unaddressed, this imbalance led to initial models achieving near-perfect recall for class 1 (e.g., 0.99) but dismal recall for class 3 (e.g., 0.0), with a F1 score barely exceeding the most-frequent-class baseline (0.49).
+
+\subsection{Impact of Imbalance on Training}
+The imbalance amplifies overfitting risks, as the model quickly memorizes patterns in the abundant class 1 articles—typically shorter, simpler texts—while underfitting the rare, complex class 3 articles, which often feature longer, nuanced narratives (mean word count: 1542.5 vs. 486.5 for class 1). Early experiments without imbalance correction showed training loss dropping to ~0.2 within two epochs, while validation loss rose to ~1.0, reflecting overfitting to the majority class. This skewed learning undermined the goal of replicating human editorial quality assessments, necessitating targeted strategies to ensure balanced performance across all categories.
+
+\subsection{Class Weighting Strategy}
+\subsection{}
+\subsection{}
+
+\subsection{}
+
+\section{}
+
+\subsection{}
 
 \section{Feature Engineering}
 

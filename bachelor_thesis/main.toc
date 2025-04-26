@@ -1,0 +1,93 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Formulation}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Structure of the Thesis}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Related Work}{3}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Quality Assessment Frameworks in Journalism}{3}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Computational Approaches to Text Quality Assessment}{3}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Machine Learning for Classification of Media Content}{3}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Multi-class Classification in Natural Language Processing}{3}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Linguistic Features for Quality Assessment}{4}{subsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.4.6}Research Gaps}{4}{subsection.1.4.6}%
+\contentsline {section}{\numberline {1.5}Contributions}{4}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Development of a Robust Classification System:}{4}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Innovative Handling of Class Imbalance and Overfitting:}{5}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Comprehensive Feature Engineering for Journalistic Quality:}{5}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Comparative Analysis of Pre-trained Language Models:}{5}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Advanced Model Testing and Superior Performance:}{5}{subsection.1.5.5}%
+\contentsline {subsection}{\numberline {1.5.6}Innovations in Data Collection and Preprocessing:}{5}{subsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.5.7}Establishment of a Human Editor Benchmark:}{5}{subsection.1.5.7}%
+\contentsline {chapter}{\numberline {2}Data Collection and Analysis}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Data Source}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Data Collection Timeline and Challenges}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Data Cleaning and Filtering}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Annotation Process}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Dataset Statistics}{8}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Dataset Size and Splits}{8}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.6}Data Analysis}{9}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Article length}{9}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Length by label}{9}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Unique-token probability density}{10}{subsection.2.6.3}%
+\contentsline {chapter}{\numberline {3}Evaluation Metrics}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Limitations of Accuracy}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Precision}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Recall}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}F1 Score}{12}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Weighted F1 Score}{13}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Why use weighted F1?}{13}{subsection.3.5.1}%
+\contentsline {section}{\numberline {3.6}Confusion Matrix}{13}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Business Relevance}{14}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Cost of Classification Errors}{15}{subsection.3.7.1}%
+\contentsline {chapter}{\numberline {4}Methodology}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Editor Analysis and Upper Bound}{16}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Why Human Editors Are Important}{16}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}How We Studied Editor Agreement}{16}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}What We Learned About Editor Agreement}{16}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Setting the Upper Bound}{16}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}Baseline Model Performance}{17}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Random Classifier}{17}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Most Frequent Class Classifier}{17}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Discussion}{17}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Performance of Pre-trained Language Models}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Theoretical Foundations}{18}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Evaluation of Multiple Pre-trained Models}{18}{subsection.4.3.2}%
+\contentsline {subsubsection}{\ac {BROWCzech}}{18}{subsection.4.3.2}%
+\contentsline {subsubsection}{\ac {RetroMAE}}{19}{subsection.4.3.2}%
+\contentsline {subsubsection}{\ac {DeBERTaV3} Base}{20}{subsection.4.3.2}%
+\contentsline {subsubsection}{\ac {DeBERTaV3} Large}{22}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Model Selection}{22}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Classifier Architecture Design}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Loss Function Engineering}{23}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss}{23}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Adding Mean Squared Error Loss}{25}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance with Focal Loss}{25}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Final Loss Function}{25}{subsection.4.5.4}%
+\contentsline {section}{\numberline {4.6}Training Methodology}{25}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Tokenization and Sequence Handling}{25}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Training Stages}{26}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Hyperparameter Configuration}{26}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Validation and Early Stopping}{27}{subsection.4.8.2}%
+\contentsline {section}{\numberline {4.9}Addressing Class Imbalance}{27}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Impact of Imbalance on Training}{27}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Class Weighting Strategy}{27}{subsection.4.9.2}%
+\contentsline {subsection}{\numberline {4.9.3}}{27}{subsection.4.9.3}%
+\contentsline {subsection}{\numberline {4.9.4}}{27}{subsection.4.9.4}%
+\contentsline {subsection}{\numberline {4.9.5}}{27}{subsection.4.9.5}%
+\contentsline {section}{\numberline {4.10}}{27}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}}{27}{subsection.4.10.1}%
+\contentsline {section}{\numberline {4.11}Feature Engineering}{27}{section.4.11}%
+\contentsline {section}{\numberline {4.12}CatBoost}{27}{section.4.12}%
+\contentsline {section}{\numberline {4.13}Per-Class Performance Analysis}{27}{section.4.13}%
+\contentsline {section}{\numberline {4.14}Error Analysis}{27}{section.4.14}%
+\contentsline {chapter}{\numberline {5}Experiments and Results}{28}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimental Setup}{28}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Model Comparison}{28}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{28}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{29}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Discussion}{29}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Conclusion}{29}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Future Work}{29}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Conclusion}{30}{chapter.7}%
+\contentsline {chapter}{\numberline {8}References}{31}{chapter.8}%
+\contentsline {chapter}{\numberline {A}Appendix A}{32}{appendix.A}%
