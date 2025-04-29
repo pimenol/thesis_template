@@ -161,7 +161,7 @@ Separately, additional features and metadata were extracted for possible use in 
 \section{Loss Function Engineering}
 Designing an effective loss function was critical due to the ordinal nature of the quality labels and the severe class imbalance in the dataset. The development of the loss function progressed through several stages, from a baseline categorical \ac{CE} to a final hybrid loss with an ordinal component and class weighting. Each refinement aimed to address specific shortcomings observed in earlier trials.
 
-\subsection{Initial Approach: Cross-Entropy Loss (\ac{CE})}
+\subsection{Initial Approach: Cross-Entropy Loss}
 
 The initial model training used the standard categorical \ac{CE} loss, given its widespread success in multi-class classification. For a training sample $i$ with true class label $y_i$ and predicted probability $\hat{p}_{i,c}$ for each class $c$, the cross-entropy loss is defined as:
 \begin{equation}
@@ -206,7 +206,7 @@ These values mean, for example, that misclassifying a \ac{Class 3} incurs $20\ti
   L_{CE}^{*} = -\frac{1}{N}\sum_i w_{y_i}\log \hat{p}_{i,y_i}.
 \end{equation}
 
-\subsection{Incorporating an Ordinal Component: \ac{CE} + \ac{MSE}}\label{sec:ordinal_mse}
+\subsection{Incorporating an Ordinal Component: CE + MSE}\label{sec:ordinal_mse}
 
 To address the \textbf{equal-penalty problem for ordinal errors}, the loss function was augmented with a \ac{MSE} term on the class predictions. The idea was to introduce a penalty based on the distance between the predicted class and true class, treating the class labels as numerical values on an ordinal scale. In effect, this gives a harsher penalty to predictions that are far from the true label. Such a strategy aligns with approaches in other ordinal classification domains, where a class distance penalty is added to the loss to handle ordered labels. Formally, let the classes be encoded as ordinal values $\{0,1,2,3\}$ for (Insufficient, Short, Standard, High-Quality). For a given sample $i$, define the predicted expected class (a single continuous value) as:
 \begin{equation}

@@ -59,12 +59,12 @@
 \contentsline {subsection}{\numberline {4.3.3}Model Selection}{24}{subsection.4.3.3}%
 \contentsline {section}{\numberline {4.4}Classifier Architecture Design}{25}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Loss Function Engineering}{26}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss (\ac {CE})}{26}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss}{26}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Shortcomings of Using CE Alone}{26}{subsection.4.5.2}%
 \contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance: Focal Loss vs. Class Weighting}{27}{subsection.4.5.3}%
 \contentsline {subsubsection}{Focal Loss Attempt}{27}{subsection.4.5.3}%
 \contentsline {subsubsection}{Class Weighting:}{27}{equation.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.4}Incorporating an Ordinal Component: \ac {CE} + \ac {MSE}}{28}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.4}Incorporating an Ordinal Component: CE + MSE}{28}{subsection.4.5.4}%
 \contentsline {subsubsection}{Balancing the Loss Terms (Choosing $\lambda $)}{29}{equation.4.5.6}%
 \contentsline {subsection}{\numberline {4.5.5}Final Results and Advantages of the Hybrid Loss}{30}{subsection.4.5.5}%
 \contentsline {section}{\numberline {4.6}Training Methodology}{30}{section.4.6}%
