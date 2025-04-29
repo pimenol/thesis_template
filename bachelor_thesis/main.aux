@@ -25,16 +25,18 @@
 \newacro{BERT}[\AC@hyperlink{BERT}{BERT}]{Bidirectional Encoder Representations from Transformers}
 \newacro{XGBoost}[\AC@hyperlink{XGBoost}{XGBoost}]{Extreme Gradient Boosting}
 \newacro{CatBoost}[\AC@hyperlink{CatBoost}{CatBoost}]{Categorical Boosting}
-\newacro{Class 0}[\AC@hyperlink{Class 0}{Class 0}]{Insufficient Article}
-\newacro{Class 1}[\AC@hyperlink{Class 1}{Class 1}]{Short but Sufficient Article}
-\newacro{Class 2}[\AC@hyperlink{Class 2}{Class 2}]{Standard Article}
-\newacro{Class 3}[\AC@hyperlink{Class 3}{Class 3}]{High-Quality Article}
+\newacro{Class 0}[\AC@hyperlink{Class 0}{Insufficient Articles}]{Class 0}
+\newacro{Class 1}[\AC@hyperlink{Class 1}{Short but Sufficient Articles}]{Class 1}
+\newacro{Class 2}[\AC@hyperlink{Class 2}{Standard Articles}]{Class 2}
+\newacro{Class 3}[\AC@hyperlink{Class 3}{High-Quality Articles}]{Class 3}
 \newacro{BROWCzech}[\AC@hyperlink{BROWCzech}{BROWCzech}]{Base-sized Roberta using Wordpiece tokenization for Czech}
 \newacro{RetroMAE}[\AC@hyperlink{RetroMAE}{RetroMAE}]{Retrieval-Oriented Masked Autoencoder}
 \newacro{DeBERTaV3}[\AC@hyperlink{DeBERTaV3}{DeBERTaV3}]{Decoding-enhanced BERT with Disentangled Attention}
 \newacro{ELECTRA}[\AC@hyperlink{ELECTRA}{ELECTRA}]{Efficiently Learning an Encoder that Classifies Token Replacements Accurately}
 \newacro{RTD}[\AC@hyperlink{RTD}{RTD}]{Replaced Token Detection}
 \newacro{MLM}[\AC@hyperlink{MLM}{MLM}]{Masked Language Modeling}
+\newacro{CE}[\AC@hyperlink{CE}{CE}]{Cross-Entropy Loss}
+\newacro{MSE}[\AC@hyperlink{MSE}{MSE}]{Mean Squared Error}
 \newacro{DOF}[\AC@hyperlink{DOF}{DOF}]{degree-of-freedom}
 \newacro{FOV}[\AC@hyperlink{FOV}{FOV}]{Field of View}
 \newacro{GNSS}[\AC@hyperlink{GNSS}{GNSS}]{Global Navigation Satellite System}
@@ -52,16 +54,23 @@
 \newacro{UAV}[\AC@hyperlink{UAV}{UAV}]{Unmanned Aerial Vehicle}
 \newacro{UGV}[\AC@hyperlink{UGV}{UGV}]{Unmanned Ground Vehicle}
 \newacro{UKF}[\AC@hyperlink{UKF}{UKF}]{Unscented Kalman Filter}
+\AC@undonewlabel{acro:CE}
+\newlabel{acro:CE}{{}{ix}{}{section*.1}{}}
+\acronymused{CE}
+\acronymused{CE}
+\AC@undonewlabel{acro:MSE}
+\newlabel{acro:MSE}{{}{ix}{}{section*.2}{}}
+\acronymused{MSE}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chap:introduction}{{1}{1}{Introduction}{chapter.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Main page Seznam.cz}}{1}{figure.caption.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Main page Seznam.cz}}{1}{figure.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:main_page}{{1.1}{1}{Main page Seznam.cz}{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Current Editorial Workflow}}{2}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:editor_workflow}{{1.2}{2}{Current Editorial Workflow}{figure.caption.2}{}}
+\newlabel{fig:main_page}{{1.1}{1}{Main page Seznam.cz}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Current Editorial Workflow}}{2}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:editor_workflow}{{1.2}{2}{Current Editorial Workflow}{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Problem Formulation}{2}{section.1.2}\protected@file@percent }
 \newlabel{sec:problem_formulation}{{1.2}{2}{Problem Formulation}{section.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Structure of the Thesis}{2}{section.1.3}\protected@file@percent }
@@ -114,46 +123,46 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Data Source}{7}{section.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Data Collection Timeline and Challenges}{7}{section.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Data Cleaning and Filtering}{7}{section.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Number of labeled articles.}}{8}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:num_labeled_articles}{{2.1}{8}{Number of labeled articles}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Number of labeled articles.}}{8}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:num_labeled_articles}{{2.1}{8}{Number of labeled articles}{figure.caption.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Annotation Process}{8}{section.2.4}\protected@file@percent }
 \AC@undonewlabel{acro:Class 0}
-\newlabel{acro:Class 0}{{2.4}{8}{Annotation Process}{section*.4}{}}
+\newlabel{acro:Class 0}{{2.4}{8}{Annotation Process}{section*.6}{}}
 \acronymused{Class 0}
 \AC@undonewlabel{acro:Class 1}
-\newlabel{acro:Class 1}{{2.4}{8}{Annotation Process}{section*.5}{}}
+\newlabel{acro:Class 1}{{2.4}{8}{Annotation Process}{section*.7}{}}
 \acronymused{Class 1}
 \AC@undonewlabel{acro:Class 2}
-\newlabel{acro:Class 2}{{2.4}{8}{Annotation Process}{section*.6}{}}
+\newlabel{acro:Class 2}{{2.4}{8}{Annotation Process}{section*.8}{}}
 \acronymused{Class 2}
 \AC@undonewlabel{acro:Class 3}
-\newlabel{acro:Class 3}{{2.4}{8}{Annotation Process}{section*.7}{}}
+\newlabel{acro:Class 3}{{2.4}{8}{Annotation Process}{section*.9}{}}
 \acronymused{Class 3}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Dataset Statistics}{8}{section.2.5}\protected@file@percent }
 \newlabel{sec:dataset_statistics}{{2.5}{8}{Dataset Statistics}{section.2.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Dataset Size and Splits}{8}{subsection.2.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Class Distribution Across Dataset Splits}}{8}{table.caption.8}\protected@file@percent }
-\newlabel{tab:class_distribution}{{2.1}{8}{Class Distribution Across Dataset Splits}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Class Distribution Across Dataset Splits}}{8}{table.caption.10}\protected@file@percent }
+\newlabel{tab:class_distribution}{{2.1}{8}{Class Distribution Across Dataset Splits}{table.caption.10}{}}
 \acronymused{Class 1}
 \acronymused{Class 3}
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Data Analysis}{9}{section.2.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Article length}{9}{subsection.2.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Distribution of article length in words.}}{9}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:num_words}{{2.2}{9}{Distribution of article length in words}{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Distribution of article length in words.}}{9}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:num_words}{{2.2}{9}{Distribution of article length in words}{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Length by label}{9}{subsection.2.6.2}\protected@file@percent }
 \acronymused{Class 0}
 \acronymused{Class 1}
 \acronymused{Class 2}
 \acronymused{Class 3}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Distribution of article length in words by label}}{10}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:num_words_per_label}{{2.3}{10}{Distribution of article length in words by label}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Distribution of article length in words by label}}{10}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:num_words_per_label}{{2.3}{10}{Distribution of article length in words by label}{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}Unique-token probability density}{10}{subsection.2.6.3}\protected@file@percent }
 \acronymused{Class 0}
 \acronymused{Class 1}
 \acronymused{Class 2}
 \acronymused{Class 3}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of unique tokens in articles.}}{10}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:num_unique_tokens}{{2.4}{10}{Distribution of unique tokens in articles}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of unique tokens in articles.}}{10}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:num_unique_tokens}{{2.4}{10}{Distribution of unique tokens in articles}{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Evaluation Metrics}{11}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -162,22 +171,22 @@
 \acronymused{Class 1}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Precision}{11}{section.3.2}\protected@file@percent }
 \AC@undonewlabel{acro:TP}
-\newlabel{acro:TP}{{3.2}{11}{Precision}{section*.12}{}}
+\newlabel{acro:TP}{{3.2}{11}{Precision}{section*.14}{}}
 \acronymused{TP}
 \AC@undonewlabel{acro:FP}
-\newlabel{acro:FP}{{3.2}{11}{Precision}{section*.13}{}}
+\newlabel{acro:FP}{{3.2}{11}{Precision}{section*.15}{}}
 \acronymused{FP}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Recall}{12}{section.3.3}\protected@file@percent }
 \AC@undonewlabel{acro:FN}
-\newlabel{acro:FN}{{3.3}{12}{Recall}{section*.14}{}}
+\newlabel{acro:FN}{{3.3}{12}{Recall}{section*.16}{}}
 \acronymused{FN}
 \acronymused{Class 3}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}F1 Score}{12}{section.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Weighted F1 Score}{13}{section.3.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Why use weighted F1?}{13}{subsection.3.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.6}Confusion Matrix}{13}{section.3.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of Confusion Matrix. DebertaV3 Large.}}{14}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:confusion_example}{{3.1}{14}{Example of Confusion Matrix. DebertaV3 Large}{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of Confusion Matrix. DebertaV3 Large.}}{14}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:confusion_example}{{3.1}{14}{Example of Confusion Matrix. DebertaV3 Large}{figure.caption.17}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.7}Business Relevance}{14}{section.3.7}\protected@file@percent }
 \acronymused{Class 0}
 \acronymused{Class 3}
@@ -191,16 +200,16 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}How We Studied Editor Agreement}{16}{subsection.4.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}What We Learned About Editor Agreement}{16}{subsection.4.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Setting the Upper Bound}{16}{subsection.4.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Baseline Model Performance}{17}{section.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Random Classifier}{17}{subsection.4.2.1}\protected@file@percent }
-\newlabel{sec:random_classifier}{{4.2.1}{17}{Random Classifier}{subsection.4.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Baseline Model Performance}{18}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Random Classifier}{18}{subsection.4.2.1}\protected@file@percent }
+\newlabel{sec:random_classifier}{{4.2.1}{18}{Random Classifier}{subsection.4.2.1}{}}
 \acronymused{Class 1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Most Frequent Class Classifier}{17}{subsection.4.2.2}\protected@file@percent }
-\newlabel{sec:most_frequent_classifier}{{4.2.2}{17}{Most Frequent Class Classifier}{subsection.4.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Most Frequent Class Classifier}{18}{subsection.4.2.2}\protected@file@percent }
+\newlabel{sec:most_frequent_classifier}{{4.2.2}{18}{Most Frequent Class Classifier}{subsection.4.2.2}{}}
 \acronymused{Class 1}
 \acronymused{Class 1}
 \acronymused{Class 1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Discussion}{17}{subsection.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Discussion}{18}{subsection.4.2.3}\protected@file@percent }
 \citation{vaswani2017attention}
 \abx@aux@cite{0}{vaswani2017attention}
 \abx@aux@segm{0}{0}{vaswani2017attention}
@@ -210,38 +219,41 @@
 \citation{liu2019roberta}
 \abx@aux@cite{0}{liu2019roberta}
 \abx@aux@segm{0}{0}{liu2019roberta}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Performance of Pre-trained Language Models}{18}{section.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Theoretical Foundations}{18}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Evaluation of Multiple Pre-trained Models}{18}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Performance of Pre-trained Language Models}{20}{section.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Theoretical Foundations}{20}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Evaluation of Multiple Pre-trained Models}{20}{subsection.4.3.2}\protected@file@percent }
 \AC@undonewlabel{acro:BERT}
-\newlabel{acro:BERT}{{4.3.2}{18}{Evaluation of Multiple Pre-trained Models}{section*.16}{}}
+\newlabel{acro:BERT}{{4.3.2}{20}{Evaluation of Multiple Pre-trained Models}{section*.18}{}}
 \acronymused{BERT}
 \AC@undonewlabel{acro:BROWCzech}
-\newlabel{acro:BROWCzech}{{4.3.2}{18}{Evaluation of Multiple Pre-trained Models}{section*.17}{}}
+\newlabel{acro:BROWCzech}{{4.3.2}{20}{Evaluation of Multiple Pre-trained Models}{section*.19}{}}
 \acronymused{BROWCzech}
 \AC@undonewlabel{acro:RetroMAE}
-\newlabel{acro:RetroMAE}{{4.3.2}{18}{Evaluation of Multiple Pre-trained Models}{section*.18}{}}
+\newlabel{acro:RetroMAE}{{4.3.2}{20}{Evaluation of Multiple Pre-trained Models}{section*.20}{}}
 \acronymused{RetroMAE}
 \AC@undonewlabel{acro:DeBERTaV3}
-\newlabel{acro:DeBERTaV3}{{4.3.2}{18}{Evaluation of Multiple Pre-trained Models}{section*.19}{}}
+\newlabel{acro:DeBERTaV3}{{4.3.2}{20}{Evaluation of Multiple Pre-trained Models}{section*.21}{}}
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
 \acronymused{BROWCzech}
-\@writefile{toc}{\contentsline {subsubsection}{\ac {BROWCzech}}{18}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\ac {BROWCzech}}{20}{subsection.4.3.2}\protected@file@percent }
+\acronymused{BROWCzech}
+\AC@undonewlabel{acro:MLM}
+\newlabel{acro:MLM}{{4.3.2}{20}{\ac {BROWCzech}}{section*.22}{}}
+\acronymused{MLM}
 \acronymused{BROWCzech}
 \citation{xiao2022retromae}
 \abx@aux@cite{0}{xiao2022retromae}
 \abx@aux@segm{0}{0}{xiao2022retromae}
-\AC@undonewlabel{acro:MLM}
-\newlabel{acro:MLM}{{4.3.2}{19}{\ac {BROWCzech}}{section*.20}{}}
-\acronymused{MLM}
-\acronymused{BROWCzech}
 \acronymused{RetroMAE}
-\@writefile{toc}{\contentsline {subsubsection}{\ac {RetroMAE}}{19}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\ac {RetroMAE}}{21}{subsection.4.3.2}\protected@file@percent }
 \acronymused{RetroMAE}
 \acronymused{BERT}
 \acronymused{RetroMAE}
 \acronymused{BROWCzech}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
 \acronymused{RetroMAE}
 \acronymused{RetroMAE}
 \acronymused{RetroMAE}
@@ -249,37 +261,34 @@
 \citation{he2021debertav3}
 \abx@aux@cite{0}{he2021debertav3}
 \abx@aux@segm{0}{0}{he2021debertav3}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{BROWCzech}
-\acronymused{RetroMAE}
-\acronymused{RetroMAE}
-\acronymused{DeBERTaV3}
-\@writefile{toc}{\contentsline {subsubsection}{\ac {DeBERTaV3} Base}{20}{subsection.4.3.2}\protected@file@percent }
-\acronymused{DeBERTaV3}
-\acronymused{BERT}
-\acronymused{DeBERTaV3}
-\acronymused{DeBERTaV3}
-\acronymused{BROWCzech}
-\acronymused{RetroMAE}
 \citation{clark2020electra}
 \abx@aux@cite{0}{clark2020electra}
 \abx@aux@segm{0}{0}{clark2020electra}
 \citation{he2020deberta}
 \abx@aux@cite{0}{he2020deberta}
 \abx@aux@segm{0}{0}{he2020deberta}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
+\acronymused{BROWCzech}
+\acronymused{RetroMAE}
+\acronymused{RetroMAE}
+\acronymused{DeBERTaV3}
+\@writefile{toc}{\contentsline {subsubsection}{\ac {DeBERTaV3} Base}{22}{subsection.4.3.2}\protected@file@percent }
+\acronymused{DeBERTaV3}
+\acronymused{BERT}
+\acronymused{DeBERTaV3}
+\acronymused{DeBERTaV3}
+\acronymused{BROWCzech}
+\acronymused{RetroMAE}
 \acronymused{DeBERTaV3}
 \AC@undonewlabel{acro:ELECTRA}
-\newlabel{acro:ELECTRA}{{4.3.2}{21}{\ac {DeBERTaV3} Base}{section*.21}{}}
+\newlabel{acro:ELECTRA}{{4.3.2}{22}{\ac {DeBERTaV3} Base}{section*.23}{}}
 \acronymused{ELECTRA}
 \acronymused{MLM}
 \AC@undonewlabel{acro:RTD}
-\newlabel{acro:RTD}{{4.3.2}{21}{\ac {DeBERTaV3} Base}{section*.22}{}}
+\newlabel{acro:RTD}{{4.3.2}{22}{\ac {DeBERTaV3} Base}{section*.24}{}}
 \acronymused{RTD}
 \acronymused{DeBERTaV3}
 \acronymused{ELECTRA}
@@ -294,76 +303,118 @@
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
-\@writefile{toc}{\contentsline {subsubsection}{\ac {DeBERTaV3} Large}{22}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\ac {DeBERTaV3} Large}{23}{subsection.4.3.2}\protected@file@percent }
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
 \acronymused{ELECTRA}
 \acronymused{RTD}
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Model Selection}{22}{subsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Model Selection}{24}{subsection.4.3.3}\protected@file@percent }
 \acronymused{BROWCzech}
 \acronymused{RetroMAE}
 \acronymused{DeBERTaV3}
 \acronymused{DeBERTaV3}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Validation F1 scores for each model. F1\textsubscript  {1}--F1\textsubscript  {4} correspond to classification quality for each label class.}}{23}{table.caption.23}\protected@file@percent }
-\newlabel{tab:validation_scores}{{4.1}{23}{Validation F1 scores for each model. F1\textsubscript {1}--F1\textsubscript {4} correspond to classification quality for each label class}{table.caption.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Classifier Architecture Design}{23}{section.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Validation F1 scores for each model. F1\textsubscript  {1}--F1\textsubscript  {4} correspond to classification quality for each label class.}}{24}{table.caption.25}\protected@file@percent }
+\newlabel{tab:validation_scores}{{4.1}{24}{Validation F1 scores for each model. F1\textsubscript {1}--F1\textsubscript {4} correspond to classification quality for each label class}{table.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Model architecture overview for journalistic quality classification.}}{25}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:model_architecture}{{4.1}{25}{Model architecture overview for journalistic quality classification}{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Classifier Architecture Design}{25}{section.4.4}\protected@file@percent }
 \acronymused{BROWCzech}
 \acronymused{BROWCzech}
 \acronymused{DeBERTaV3}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Loss Function Engineering}{23}{section.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss}{23}{subsection.4.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Model architecture overview for journalistic quality classification.}}{24}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:model_architecture}{{4.1}{24}{Model architecture overview for journalistic quality classification}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Adding Mean Squared Error Loss}{25}{subsection.4.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance with Focal Loss}{25}{subsection.4.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.4}Final Loss Function}{25}{subsection.4.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Training Methodology}{25}{section.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Tokenization and Sequence Handling}{25}{section.4.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Token count per article}}{26}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:token_count}{{4.2}{26}{Token count per article}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}Training Stages}{26}{section.4.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.1}Hyperparameter Configuration}{26}{subsection.4.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.2}Validation and Early Stopping}{27}{subsection.4.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.9}Addressing Class Imbalance}{27}{section.4.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9.1}Impact of Imbalance on Training}{27}{subsection.4.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9.2}Class Weighting Strategy}{27}{subsection.4.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9.3}}{27}{subsection.4.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9.4}}{27}{subsection.4.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9.5}}{27}{subsection.4.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.10}}{27}{section.4.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.10.1}}{27}{subsection.4.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.11}Feature Engineering}{27}{section.4.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.12}CatBoost}{27}{section.4.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.13}Per-Class Performance Analysis}{27}{section.4.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.14}Error Analysis}{27}{section.4.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Experiments and Results}{28}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Loss Function Engineering}{26}{section.4.5}\protected@file@percent }
+\acronymused{CE}
+\acronymused{CE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss (\ac {CE})}{26}{subsection.4.5.1}\protected@file@percent }
+\acronymused{CE}
+\acronymused{CE}
+\acronymused{CE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Shortcomings of Using CE Alone}{26}{subsection.4.5.2}\protected@file@percent }
+\acronymused{Class 0}
+\acronymused{Class 3}
+\acronymused{CE}
+\acronymused{Class 3}
+\citation{lin2017focal}
+\abx@aux@cite{0}{lin2017focal}
+\abx@aux@segm{0}{0}{lin2017focal}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance: Focal Loss vs. Class Weighting}{27}{subsection.4.5.3}\protected@file@percent }
+\acronymused{CE}
+\acronymused{Class 3}
+\@writefile{toc}{\contentsline {subsubsection}{Focal Loss Attempt}{27}{subsection.4.5.3}\protected@file@percent }
+\acronymused{CE}
+\acronymused{Class 3}
+\@writefile{toc}{\contentsline {subsubsection}{Class Weighting:}{27}{equation.4.5.2}\protected@file@percent }
+\newlabel{sec:class_weighting}{{4.5.3}{27}{Class Weighting:}{equation.4.5.2}{}}
+\acronymused{Class 0}
+\acronymused{Class 1}
+\acronymused{Class 2}
+\acronymused{Class 3}
+\acronymused{Class 3}
+\acronymused{Class 2}
+\acronymused{Class 1}
+\acronymused{CE}
+\acronymused{MSE}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.4}Incorporating an Ordinal Component: \ac {CE} + \ac {MSE}}{28}{subsection.4.5.4}\protected@file@percent }
+\newlabel{sec:ordinal_mse}{{4.5.4}{28}{Incorporating an Ordinal Component: \ac {CE} + \ac {MSE}}{subsection.4.5.4}{}}
+\acronymused{MSE}
+\acronymused{Class 0}
+\acronymused{Class 3}
+\acronymused{Class 3}
+\acronymused{Class 0}
+\acronymused{Class 2}
+\acronymused{MSE}
+\acronymused{MSE}
+\@writefile{toc}{\contentsline {subsubsection}{Balancing the Loss Terms (Choosing $\lambda $)}{29}{equation.4.5.6}\protected@file@percent }
+\acronymused{MSE}
+\acronymused{MSE}
+\acronymused{MSE}
+\acronymused{MSE}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Performance for different MSE loss weightings.}}{29}{table.caption.27}\protected@file@percent }
+\newlabel{tab:mse_weight_results}{{4.2}{29}{Performance for different MSE loss weightings}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.5}Final Results and Advantages of the Hybrid Loss}{30}{subsection.4.5.5}\protected@file@percent }
+\acronymused{Class 3}
+\acronymused{Class 3}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Training Methodology}{30}{section.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Token count per article}}{30}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:token_count}{{4.2}{30}{Token count per article}{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Training Stages}{31}{section.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}Hyperparameter Configuration}{31}{subsection.4.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Validation and Early Stopping}{31}{subsection.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Addressing Class Imbalance}{31}{section.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.1}Impact of Imbalance on Training}{31}{subsection.4.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.2}Class Weighting Strategy}{31}{subsection.4.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.9}Feature Engineering}{31}{section.4.9}\protected@file@percent }
+\newlabel{sec:features_creating}{{4.9}{31}{Feature Engineering}{section.4.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.10}CatBoost}{31}{section.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.11}Per-Class Performance Analysis}{31}{section.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.12}Error Analysis}{31}{section.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Experiments and Results}{32}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:experiments}{{5}{28}{Experiments and Results}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experimental Setup}{28}{section.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Model Comparison}{28}{section.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{28}{section.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{29}{chapter.6}\protected@file@percent }
+\newlabel{chap:experiments}{{5}{32}{Experiments and Results}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experimental Setup}{32}{section.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Model Comparison}{32}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{32}{section.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{33}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:discussion}{{6}{29}{Discussion, Conclusion and Future Work}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Discussion}{29}{section.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Conclusion}{29}{section.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future Work}{29}{section.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{30}{chapter.7}\protected@file@percent }
+\newlabel{chap:discussion}{{6}{33}{Discussion, Conclusion and Future Work}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Discussion}{33}{section.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Conclusion}{33}{section.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future Work}{33}{section.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{34}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap:conclusion}{{7}{30}{Conclusion}{chapter.7}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}References}{31}{chapter.8}\protected@file@percent }
+\newlabel{chap:conclusion}{{7}{34}{Conclusion}{chapter.7}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}References}{35}{chapter.8}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix A}{32}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Appendix A}{36}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{LastPage}{{A}{32}{Appendix A}{page.32}{}}
-\gdef\lastpage@lastpage{32}
-\gdef\lastpage@lastpageHy{32}
+\newlabel{LastPage}{{A}{36}{Appendix A}{page.36}{}}
+\gdef\lastpage@lastpage{36}
+\gdef\lastpage@lastpageHy{36}
 \abx@aux@read@bbl@mdfivesum{nobblfile}
-\gdef \@abspage@last{42}
+\gdef \@abspage@last{46}

@@ -18,6 +18,7 @@ Interestingly, there was never a case where all three editors completely disagre
 \subsection{Setting the Upper Bound}
 The 70\% full agreement rate gives us a clear target, or “upper bound,” for our automatic classification model. This is the level where even human experts fully agree, so it's a realistic goal for the system to aim for. It's also important to note that disagreements between editors were never drastic—they typically differed by just one category. This means that a reliable model should also aim to stay within this range. In practice, it's acceptable if the model's predictions differ from human ratings by at most one category, since even experienced editors make mistakes of only ±1 level. Ensuring this small margin of error helps maintain the system's trustworthiness and mirrors real-world human judgment.
 
+\newpage
 \section{Baseline Model Performance}
 Before developing complex models, we established baseline classifiers to provide lower-bound reference points. Baseline models are simple heuristics that do not incorporate any deep linguistic understanding, but they set minimum performance thresholds that any useful model should exceed. We implemented two naive strategies - a Random Classifier (Sec.~\ref{sec:random_classifier}) and a Most Frequent Class Classifier (Sec.~\ref{sec:most_frequent_classifier}) - and measured their effectiveness on the dataset. We report primarily the weighted F1 score as our performance metric.
 
@@ -33,7 +34,7 @@ The second baseline always predicts the single most common class from the traini
 The results of these baseline models shed light on key aspects of our classification challenge. The Random Classifier’s minimal performance underscores the necessity of incorporating article-specific information to achieve meaningful outcomes, rather than depending on random predictions. In contrast, the Most Frequent Class Classifier’s score of 0.43 demonstrates the pronounced effect of class imbalance, as it achieves a respectable result solely by leveraging the majority class.
 These baselines set clear standards for evaluating future models. Any advanced classifier—whether employing intricate feature engineering or sophisticated machine learning techniques—must exceed these initial benchmarks. Beyond improving overall metrics, we seek models that excel at correctly classifying less frequent yet significant quality categories. This establishes a critical goal for further development: to create systems that capture the nuanced elements of journalistic quality and more closely align with human editorial assessments.
 
-
+\newpage
 \section{Performance of Pre-trained Language Models}
 Transformer-based language models have revolutionized natural language processing across multiple languages, including Czech. This chapter examines the theoretical foundations, architectures, and practical applications of pre-trained language models for Czech text classification tasks, with special attention to models specifically designed for the Czech language and their performance characteristics.
 
@@ -138,6 +139,7 @@ To compare the performance of the evaluated models, we trained them using the sa
 
 DeBERTaV3 Large achieved the best weighted F1 score on the validation set, indicating that it is better suited for the quality classification task compared to the other models. Despite all models being trained under the same conditions, the increased model capacity and architectural improvements of DeBERTaV3 Large allowed it to generalize more effectively on unseen data.
 
+\newpage
 \section{Classifier Architecture Design}
 The classification architecture implemented in this research was designed to efficiently leverage the semantic information extracted by large pre-trained language models while introducing minimal additional complexity to prevent overfitting, particularly given the class imbalance of the dataset.
 
@@ -146,70 +148,143 @@ Initially, during experiments with the \ac{BROWCzech} model, a simple classifica
 The overall data flow and model architecture are illustrated in Figure \ref{fig:model_architecture}
 As shown, the input text is first pre-processed and tokenized, then passed through the pre-trained transformer model to obtain contextual embeddings.
 The [CLS] token embedding is processed through a regularized fully connected classifier head, including dropout, dense projection, GELU activation, and another dropout, before producing the final logits for prediction.
-Separately, additional features and metadata were extracted for possible use in ensemble models (described later in Section X.X)
+Separately, additional features and metadata were extracted for possible use in ensemble models (described later in Section \ref{sec:features_creating}).
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{./fig/diagrams/model_architecture_llm.png}
+  \includegraphics[width=1.0\textwidth]{./fig/diagrams/model_architecture_llm.png}
   \caption{Model architecture overview for journalistic quality classification.}
   \label{fig:model_architecture}
 \end{figure}
 
-% This architecture first processes the input text through the language model, then extracts the representation of the [CLS] token, which serves as an aggregate representation of the entire document. This vector is then passed through a series of fully connected layers with dropout regularization and GELU activation, culminating in a final classification layer that outputs logits for each quality category.
-
+\newpage
 \section{Loss Function Engineering}
-A critical aspect of this research was designing a loss function to address the challenges of journalistic quality classification, particularly the significant errors in predicting extreme quality differences and the dataset's class imbalance. The process evolved through several stages, reflecting observations and experiments tailored to the task.
+Designing an effective loss function was critical due to the ordinal nature of the quality labels and the severe class imbalance in the dataset. The development of the loss function progressed through several stages, from a baseline categorical \ac{CE} to a final hybrid loss with an ordinal component and class weighting. Each refinement aimed to address specific shortcomings observed in earlier trials.
 
-\subsection{Initial Approach: Cross-Entropy Loss}
-The default loss function was Cross-Entropy (CE) Loss, a standard choice for classification tasks, defined as:
-CE = …
-Initially, CE was used alone, achieving an F1 score of 0.67. However, analysis revealed significant errors, such as predicting label 0 (Insufficient) for articles with true label 3 (High-Quality). These large mistakes indicated that CE alone was insufficient for penalizing such discrepancies appropriately, as it treats all misclassifications equally regardless of their magnitude relative to the ordinal scale of quality.
+\subsection{Initial Approach: Cross-Entropy Loss (\ac{CE})}
 
+The initial model training used the standard categorical \ac{CE} loss, given its widespread success in multi-class classification. For a training sample $i$ with true class label $y_i$ and predicted probability $\hat{p}_{i,c}$ for each class $c$, the cross-entropy loss is defined as:
+\begin{equation}
+    L_{\mathrm{CE}} = -\frac{1}{N} \sum_{i=1}^{N} \log(\hat{p}_{i,y_i}),
+\end{equation}
+where $N$ is the number of training samples. This loss encourages the model to assign high probability to the correct class. \ac{CE} was chosen as the starting point because it generally converges faster and more reliably than regression losses for classification problems (due to its strong gradients when the predicted probability is low for the true class).
+In early experiments, the \ac{CE} loss yielded reasonable overall accuracy; however, closer inspection revealed two major issues: it \textbf{treated all misclassifications equally}, and it \textbf{struggled with the extreme class imbalance in the data.}
 
-\subsection{Adding Mean Squared Error Loss}
-% To address these larger mistakes, Mean Squared Error (MSE) Loss was introduced alongside CE to penalize predictions based on their distance from the true label, reflecting the ordinal nature of the quality categories. MSE is defined as:
-% LMSE=…
-% MSE ensures that predicting label 0 for a true label 3 incurs a higher penalty (e.g., (3−0)^2=9) than a smaller error like predicting label 2 for label 3 ((3−2)^2=1). To balance CE and MSE, their expected values were calculated:
-% E[LCE​]=0.6830
-% E[LMSE]=0.4389
-% Ratio α=E[LCE]/E[LMSE]=1.556
-% Since CE was intended to remain the primary driver of classification accuracy, several experiments tested different mse_weight values in the combined loss:
-% % L=LCE+mseweight⋅LMSE
-% After multiple iterations, an mse_weight of 1.0 was selected as a pragmatic compromise, keeping CE dominant while still penalizing large ordinal errors effectively. This combination improved the F1 score to 0.70 when training the full model.
+\subsection{Shortcomings of Using CE Alone}
+\textbf{Ordinal Errors Treated Equally:} In our task, the four quality classes have an inherent order (from \ac{Class 0} up to \ac{Class 3}). A misclassification that is off by several levels (e.g. predicting class 0 for an article that is truly class 3) is far more severe than a misclassification to an adjacent class. Yet, standard cross-entropy provides no mechanism to differentiate these cases – it penalizes any incorrect prediction based only on the probability assigned to the true class, not how far off the predicted class is. In practice this meant the model might treat a confusion between class 3 vs 0 as no worse than between class 3 vs 2, despite the former being a much larger error in an ordinal sense. Such behavior is undesirable for quality assessment, where we want to strongly discourage large deviations in predicted quality. This limitation is well-recognized in ordinal classification literature: common classification losses “do not account for any distance information between prompting the introduction of specialized ordinal losses that penalize distant misclassifications more heavily. 
 
+\textbf{Class Imbalance:} Moreover, the dataset was highly imbalanced. Using plain cross-entropy, the model tended to optimize for the majority classes and could virtually ignore the minority class, since mis-predicting the rare class had minimal impact on the average loss. Indeed, an initial model with unweighted \ac{CE} practically never predicted the \ac{Class 3}, leading to an extremely low recall for that category (the model would default to predicting more frequent classes to minimize loss). This is a common outcome in imbalanced data settings, where the loss is dominated by the prevalent classes. Thus, additional measures were needed to ensure the model learned to recognize the minority class and to account for the ordinal scale of errors.
 
-\subsection{Addressing Class Imbalance with Focal Loss}
-The dataset’s imbalance—class 3 at 0.9\% versus class 1 at over 54\%—prompted exploration of Focal Loss to focus on hard-to-classify examples, particularly the rare high-quality articles. Focal Loss modifies CE as:
-FL=...
-% Focal Loss was originally designed for object detection and segmentation tasks, where it excels at handling foreground-background imbalances. In this multi-class classification context, however, it underperformed. With γ=2, it increased recall for class 3 but destabilized performance on majority classes, lowering overall precision. This was likely due to its segmentation-specific design, which didn’t translate effectively to the ordinal, multi-class nature of quality classification, where distinguishing between four nuanced categories required broader balance rather than extreme focus on rare instances.
+\subsection{Addressing Class Imbalance: Focal Loss vs. Class Weighting}
+While the \ac{CE} loss served as a strong initial baseline, we still needed to tackle the class imbalance so that minority classes (especially \ac{Class 3}) would be properly recognized. Two strategies were explored: \textbf{Focal Loss} and \textbf{class weighting} within the cross-entropy.
 
+\subsubsection{Focal Loss Attempt}
+Focal loss was considered because it is specifically designed by \cite{lin2017focal} to address class imbalance by down-weighting easy, majority-class examples. Focal loss adds a modulating factor $(1-p)^\gamma$ to the standard \ac{CE} loss, so that well-classified examples (with high $p$ for the true class) incur much smaller loss, focusing training on the hard, misclassified examples. For a given sample $i$, the focal loss (without class-specific weighting) is:
+\begin{equation}
+    L_{\mathrm{FL}} = -\frac{1}{N} \sum_{i=1}^{N} (1 - \hat{p}_{i,y_i})^\gamma \log(\hat{p}_{i,y_i}),
+\end{equation}
+where $\gamma\ge 0$ is the focusing parameter. In theory, this loss would make the model devote more attention to the \ac{Class 3}, since those examples were consistently mispredicted (i.e. $\hat{p}{i,y_i}$ for class 3 was often low, making $(1-\hat{p}{i,y_i})^\gamma$ large and thus boosting their loss contribution). Focal loss has seen success in extreme imbalance settings (e.g. one-stage object detectors where background examples vastly outnumber foreground objects).
 
-\subsection{Final Loss Function}
-The final choice reverted to the CE + MSE combination:
-% L=LCE+1.0⋅LMSE
-With class weights [1.0, 0.5, 1.0, 20.0] applied within CE to address imbalance. This hybrid approach:
-Maintains classification accuracy via CE
-Penalizes large ordinal errors via MSE (e.g., label 3 predicted as 0)
-Mitigates imbalance via class weighting, prioritizing class 3
-This configuration achieved the highest weighted F1 score of 0.723, outperforming CE alone (0.67) and Focal Loss + MSE variants, balancing the need to correct large mistakes and handle imbalanced data effectively.
+\textbf{Outcomes with Focal Loss:}
 
+In our setting, however, focal loss did not yield the desired improvements. The model trained with focal loss showed lower overall F1 than the simpler weighted loss approach (described in Section~\ref{sec:class_weighting}), and it especially underperformed on the minority class. Several factors may explain this result. 
+
+First, the imbalance in our data, while significant, is not as astronomical as in some detection problems – thus the benefit of focal modulation was less pronounced.
+Second, focal loss can implicitly down-weight not just easy majority-class examples but also easy examples of all classes; this means some well-classified minority instances might receive less focus than they deserve. 
+In practice, we found that the model still struggled to identify High-Quality articles with focal loss – presumably because those samples were extremely rare to begin with, and focal loss alone cannot increase their presence in the training signal enough. Tuning $\gamma$ did not reverse this trend, and the added complexity of focal loss did not justify itself for our problem. Similar observations have been noted in literature when using focal loss outside its original context – if the class imbalance is better handled by explicit re-weighting, focal loss can sometimes even degrade performance by over-focusing on a handful of difficult cases and under-training on the rest. Given these findings, we turned to a more direct approach: class-weighted loss, which ultimately proved more effective.
+
+\subsubsection{Class Weighting:}\label{sec:class_weighting}
+The final loss function incorporated class weights into the cross-entropy term to directly counteract the imbalance. We assigned a weight $w_c$ to each class $c$ in the cross-entropy calculation, so that errors on minority classes are amplified and errors on majority classes are down-weighted. The weights were set inversely proportional to class frequencies (with some manual tuning). In the end, the chosen weights were:
+\begin{itemize}
+  \item $w_{0}=1.0$ for class 0: \ac{Class 0}
+  \item $w_{1}=0.5$ for class 1: \ac{Class 1}
+  \item $w_{2}=1.0$ for class 2: \ac{Class 2}
+  \item $w_{3}=20.0$ for class 3: \ac{Class 3}
+\end{itemize}
+These values mean, for example, that misclassifying a \ac{Class 3} incurs $20\times$ the loss of misclassifying a \ac{Class 2}, reflecting the high importance and rarity of Class 3. The weight for Class 1 was set to 0.5 because \ac{Class 1} was the most over-represented category (so its loss is halved to prevent the model from over-focusing on it). The weighted cross-entropy loss thus became 
+\begin{equation}
+  L_{CE}^{*} = -\frac{1}{N}\sum_i w_{y_i}\log \hat{p}_{i,y_i}.
+\end{equation}
+
+\subsection{Incorporating an Ordinal Component: \ac{CE} + \ac{MSE}}\label{sec:ordinal_mse}
+
+To address the \textbf{equal-penalty problem for ordinal errors}, the loss function was augmented with a \ac{MSE} term on the class predictions. The idea was to introduce a penalty based on the distance between the predicted class and true class, treating the class labels as numerical values on an ordinal scale. In effect, this gives a harsher penalty to predictions that are far from the true label. Such a strategy aligns with approaches in other ordinal classification domains, where a class distance penalty is added to the loss to handle ordered labels. Formally, let the classes be encoded as ordinal values $\{0,1,2,3\}$ for (Insufficient, Short, Standard, High-Quality). For a given sample $i$, define the predicted expected class (a single continuous value) as:
+\begin{equation}
+    \hat{y}_i = \sum_{c=0}^{3} c \cdot \hat{p}_{i,c},
+\end{equation}
+which is the expectation of the class index under the model’s predicted distribution $\hat{p}_{i,c}$. Here $c=0$ corresponds to \ac{Class 0} and $c=3$ to \ac{Class 3}. The ground-truth label $y_i$ is likewise taken as an integer in $\{0,1,2,3\}$. The mean squared error for this sample is $(\tilde{y}_i - y_i)^2$, and the MSE loss over the dataset is:
+\begin{equation}
+    L_{\mathrm{MSE}} = \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i - y_i)^2.
+\end{equation}
+This term grows quadratically with the difference between predicted and true class indices. For instance, if an article of true class \ac{Class 3} is predicted as class \ac{Class 0}, the term $(\tilde{y}-y)^2$ will be much larger than if it were predicted as \ac{Class 2}. By summing an \ac{MSE} term with the cross-entropy, the hybrid loss function encourages correct classification and additionally encourages predictions to be closer to the true class when misclassifications occur. The combined loss was formulated as:
+\begin{equation}
+    L_{\mathrm{hybrid}} = L_{\mathrm{CE}}^{*} + \lambda L_{\mathrm{MSE}},
+\end{equation}
+where $\lambda$ controls the relative importance of the ordinal \ac{MSE} term. This approach effectively blends classification and regression objectives. The expectation was that the cross-entropy component would drive the model to predict the correct class, while the MSE component would make it more sensitive to the magnitude of errors, thereby penalizing wildly incorrect predictions disproportionately. Literature on ordinal classification supports this intuition: a loss that “penalizes misclassifications more severely when they diverge farther from the true class” can improve performance on ordered-label tasks.
+
+\subsubsection{Balancing the Loss Terms (Choosing $\lambda$)}
+
+A key step was determining an appropriate value for $\lambda$. If $\lambda$ is too low, the MSE term would be negligible and the loss reduces to standard CE (failing to use the ordinal information), if $\lambda$ is too high, the model might overly optimize the \ac{MSE} (treating the task like regression) at the expense of classification accuracy. To calibrate $\lambda$, the average magnitudes of the two loss components were analyzed. After an initial training epoch, the expected values of each loss were computed:
+\begin{equation}
+    \mathbb{E}[L_{\mathrm{CE}^{*}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{CE}}(i), \qquad
+    \mathbb{E}[L_{\mathrm{MSE}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{MSE}}(i).
+\end{equation}
+Their ratio 
+\begin{equation}
+\alpha ;=; \frac{\mathbb{E}[L_{\mathrm{CE}}]}{\mathbb{E}[L_{\mathrm{MSE}}]}
+\end{equation}
+provides a rough scaling factor to make the two loss terms contribute equally on average. In our case, this ratio $\alpha$ was used as an initial guess for $\lambda$. (Intuitively, if cross-entropy loss values were, say, ten times larger than \ac{MSE} values, one would set $\lambda \approx 10$ to balance them.) Starting from $\lambda \approx \alpha$, we then experimented with a range of $\lambda$ around this value to fine-tune performance.
+
+\textbf{Experiments with \ac{MSE} Weight} 
+Several models were trained with different \ac{MSE} weight values to evaluate their impact. Table \ref{tab:mse_weight_results} summarizes the weighted F1 results (the primary evaluation metric) for a range of $\lambda$ values on the validation set:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cc}
+\textbf{MSE Weight $\lambda$} & \textbf{Weighted F1 (Validation)} \\
+% \hline
+0 & 0.66 \\
+% \hline
+0.5 & 0.68 \\
+% \hline
+1.0 & 0.702 \\
+% \hline
+2.0 & 0.693 \\
+% \hline
+3.0 & 0.69 \\
+% \hline
+\end{tabular}
+\caption{Performance for different MSE loss weightings.}
+\label{tab:mse_weight_results}
+\end{table}
+As shown, the inclusion of the MSE term yielded a noticeable improvement over using pure cross-entropy ($\lambda=0$). Performance peaked around $\lambda \approx 1.0$, which indeed was close to the calculated $\alpha$ in our case, confirming that balancing the two objectives was beneficial. A small MSE contribution (0.5) already improved the model’s F1, and using equal weight ($\lambda=1.0$) for CE and MSE gave the highest F1. Increasing $\lambda$ beyond 1.0 did not help further; a very large MSE weight started to slightly degrade performance (likely because the model then over-emphasized predicting the exact ordinal value, at times sacrificing classification fidelity). The best model with $\lambda=1.0$ demonstrated that the ordinal loss component successfully reduced large misclassification errors – for example, the confusion matrix showed far fewer cases of confounding the lowest vs. highest quality classes once the MSE term was introduced, compared to the CE-only loss.
+Our final loss function combined this weighted CE with the MSE term:
+\begin{equation}
+  L_{\text{final}} = \frac{1}{N} \sum_{i=1}^{N}( w_{y_i}\big(-\log \hat{p}_{i,y_i}\big) + 1.0 \times (\tilde{y}_i - y_i)^2) .
+\end{equation}
+
+\subsection{Final Results and Advantages of the Hybrid Loss}
+The $CE + 1.0 \times MSE$ with class weighting configuration was selected as the final loss function. This engineered loss function substantially outperformed the initial approaches. It effectively balanced the model’s performance across all classes, yielding a weighted F1 score of 0.702 on the test set – a significant improvement over the CE-only baseline. Notably, the recall for the \ac{Class 3} class improved markedly; the model was able to identify a considerable portion of the \ac{Class 3} that were previously being missed. This can be attributed to the $20\times$ class weight forcing the model to pay attention to class 3, in combination with the ordinal MSE term which dissuaded the model from conflating class 3 with much lower classes.
+In other words, the final loss configuration addressed both major challenges: it distinguished large vs. small misclassification errors (due to the MSE term) and mitigated class imbalance (due to the class weights on the CE term). 
+
+In summary, through iterative loss function engineering, the thesis arrived at a hybrid loss that leverages the strength of cross-entropy for classification, infuses ordinal awareness via a regression term, and incorporates strategic weighting to handle class frequency skew. This nuanced loss function was pivotal in boosting the model’s ability to mimic human-like judgments of article quality.
 
 \section{Training Methodology}
 
-The training process for the DebertaV3-based classification system was meticulously designed to optimize performance on the journalistic quality classification task, with particular attention to the model’s tendency to overfit quickly. This rapid overfitting necessitated careful regularization and learning rate management, influencing the choice of warmup, weight decay, and scheduler strategies. The methodology spanned data preparation, model optimization, and evaluation, tailored to the dataset’s characteristics and computational constraints.
+% The training process for the DebertaV3-based classification system was meticulously designed to optimize performance on the journalistic quality classification task, with particular attention to the model’s tendency to overfit quickly. This rapid overfitting necessitated careful regularization and learning rate management, influencing the choice of warmup, weight decay, and scheduler strategies. The methodology spanned data preparation, model optimization, and evaluation, tailored to the dataset’s characteristics and computational constraints.
 
 
-\section{Tokenization and Sequence Handling}
-In the process of tokenizing and handling sequences for the model, the maximum sequence length started at 512 tokens and was later increased to 1024 tokens. Here’s why and how this change occurred:
-Initial Maximum Sequence Length (512 Tokens):
-At the beginning, the maximum sequence length was set to 512 tokens. This was because the models, based on DebertaV3, RetroMAE and Browczech was pre-trained with a context window of 512 tokens. This length was chosen to align with the model’s original configuration, ensuring compatibility and computational efficiency. For articles longer than 512 tokens, the excess was truncated at the end.
-Change to 1024 Tokens:
-Later, the sequence length was extended to 1024 tokens. This adjustment was made possible by DebertaV3’s use of relative position embeddings, which differ from traditional absolute position embeddings. 
-relative position embeddings = …
-While absolute embeddings fix positional information to the pre-trained length (512 tokens), relative embeddings allow the model to generalize to longer sequences by focusing on the relationships between tokens rather than their exact positions. This flexibility enabled the model to process up to 1024 tokens effectively.
+% \section{Tokenization and Sequence Handling}
+% In the process of tokenizing and handling sequences for the model, the maximum sequence length started at 512 tokens and was later increased to 1024 tokens. Here’s why and how this change occurred:
+% Initial Maximum Sequence Length (512 Tokens):
+% At the beginning, the maximum sequence length was set to 512 tokens. This was because the models, based on DebertaV3, RetroMAE and Browczech was pre-trained with a context window of 512 tokens. This length was chosen to align with the model’s original configuration, ensuring compatibility and computational efficiency. For articles longer than 512 tokens, the excess was truncated at the end.
+% Change to 1024 Tokens:
+% Later, the sequence length was extended to 1024 tokens. This adjustment was made possible by DebertaV3’s use of relative position embeddings, which differ from traditional absolute position embeddings. 
+% relative position embeddings = …
+% While absolute embeddings fix positional information to the pre-trained length (512 tokens), relative embeddings allow the model to generalize to longer sequences by focusing on the relationships between tokens rather than their exact positions. This flexibility enabled the model to process up to 1024 tokens effectively.
 
-Increasing the sequence length to 1024 tokens improved the model’s performance. This improvement occurred because longer sequences allowed the model to capture more contextual information, especially in high-quality articles (e.g., class 3 articles with an average word count of 1542.5). These articles often contain detailed narratives or extended analysis, where key quality signals might appear later in the text. The longer context thus enhanced the model’s ability to classify such articles accurately.
-Token count per article: The red line represents 512 tokens, while the black line represents 1024 tokens.
+% Increasing the sequence length to 1024 tokens improved the model’s performance. This improvement occurred because longer sequences allowed the model to capture more contextual information, especially in high-quality articles (e.g., class 3 articles with an average word count of 1542.5). These articles often contain detailed narratives or extended analysis, where key quality signals might appear later in the text. The longer context thus enhanced the model’s ability to classify such articles accurately.
+% Token count per article: The red line represents 512 tokens, while the black line represents 1024 tokens.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./fig/plots/num_of_tokens_plot.png}
@@ -218,45 +293,36 @@ Token count per article: The red line represents 512 tokens, while the black lin
 \end{figure}
 
 \section{Training Stages}
-Training proceeded in three distinct approaches, with performance evaluated via weighted F1 score:
-Classification Head Only: The pre-trained DebertaV3 encoder was frozen, and only the classification head (dropout, dense, GELU, and linear layers) was trained for 6 epochs. This yielded an F1 score of 0.51, leveraging pre-trained embeddings but limiting adaptation to the task.
-Full Model End-to-End: The entire model, including the encoder, was trained for 5 epochs, achieving an F1 score of 0.71. This allowed task-specific fine-tuning but risked overfitting or forgetting pre-trained knowledge, especially given the model’s rapid overfitting tendency.
-Sequential Training: The optimal approach combined the two: the classification head was trained for 6 epochs with a higher learning rate (6e-04), followed by 5 epochs of full model training at a lower rate (1e-05). This achieved the highest F1 score of 0.723, balancing initial pattern learning with comprehensive adaptation while mitigating overfitting through staged learning.
-The sequential strategy was critical, as early experiments showed that full model training without this staging led to sharp drops in validation performance within 2-3 epochs due to overfitting on the majority class (class 1).
+% Training proceeded in three distinct approaches, with performance evaluated via weighted F1 score:
+% Classification Head Only: The pre-trained DebertaV3 encoder was frozen, and only the classification head (dropout, dense, GELU, and linear layers) was trained for 6 epochs. This yielded an F1 score of 0.51, leveraging pre-trained embeddings but limiting adaptation to the task.
+% Full Model End-to-End: The entire model, including the encoder, was trained for 5 epochs, achieving an F1 score of 0.71. This allowed task-specific fine-tuning but risked overfitting or forgetting pre-trained knowledge, especially given the model’s rapid overfitting tendency.
+% Sequential Training: The optimal approach combined the two: the classification head was trained for 6 epochs with a higher learning rate (6e-04), followed by 5 epochs of full model training at a lower rate (1e-05). This achieved the highest F1 score of 0.723, balancing initial pattern learning with comprehensive adaptation while mitigating overfitting through staged learning.
+% The sequential strategy was critical, as early experiments showed that full model training without this staging led to sharp drops in validation performance within 2-3 epochs due to overfitting on the majority class (class 1).
 
 \subsection{Hyperparameter Configuration}
-Hyperparameters were tuned to counteract the model’s rapid overfitting, observed as a divergence between training and validation loss after just one epoch without regularization. The final configuration was:
-Key settings and their roles in addressing overfitting:
-Learning Rates: 6e-04 for the classification head, 1e-05 for the full model. Lower rates were essential for the encoder to preserve pre-trained weights, as higher rates (e.g., 3e-05) caused immediate overfitting, with training F1 soaring to 0.9 while validation F1 plateaued at 0.6.
-Batch Size: Initially 8 per device, increased to 32 after optimization, balancing memory and gradient stability. Smaller batches exacerbated overfitting by amplifying noise in gradient updates.
-Epochs: 6 for the head, 5 for the full model, chosen based on validation convergence; additional epochs led to overfitting, with validation loss rising after epoch 5.
-Learning Rate Scheduler (Cosine): A cosine scheduler was selected over linear or constant schedules because it gradually reduced the learning rate following a smooth curve, preventing abrupt updates that fueled overfitting. 
+% Hyperparameters were tuned to counteract the model’s rapid overfitting, observed as a divergence between training and validation loss after just one epoch without regularization. The final configuration was:
+% Key settings and their roles in addressing overfitting:
+% Learning Rates: 6e-04 for the classification head, 1e-05 for the full model. Lower rates were essential for the encoder to preserve pre-trained weights, as higher rates (e.g., 3e-05) caused immediate overfitting, with training F1 soaring to 0.9 while validation F1 plateaued at 0.6.
+% Batch Size: Initially 8 per device, increased to 32 after optimization, balancing memory and gradient stability. Smaller batches exacerbated overfitting by amplifying noise in gradient updates.
+% Epochs: 6 for the head, 5 for the full model, chosen based on validation convergence; additional epochs led to overfitting, with validation loss rising after epoch 5.
+% Learning Rate Scheduler (Cosine): A cosine scheduler was selected over linear or constant schedules because it gradually reduced the learning rate following a smooth curve, preventing abrupt updates that fueled overfitting. 
 
-Warmup Ratio: Set to 0.05 (5\% of training steps), this linearly increased the learning rate from 0 to the target value over the first 5\% of steps. This was crucial to stabilize early training, as the model otherwise overfitted to initial batches, skewing toward class 1 (54\% of data) and yielding a validation F1 of ~0.55 without warmup.
-Weight Decay: Applied at 1e-3, this L2 regularization penalized large weights, reducing the model’s tendency to memorize training data. Experiments without weight decay saw training loss drop to ~0.2 while validation loss spiked to ~1.0 after 2 epochs, confirming its necessity.
-MSE Weight: 1.0 in the hybrid CE + MSE loss, supporting ordinal learning without amplifying overfitting risks.
-The combination of warmup, weight decay, and cosine scheduling was pivotal. Early runs without these showed training accuracy nearing 95\% by epoch 3, while validation accuracy stagnated at 70\%, highlighting the model’s sensitivity to overfitting on the imbalanced dataset.
+% Warmup Ratio: Set to 0.05 (5\% of training steps), this linearly increased the learning rate from 0 to the target value over the first 5\% of steps. This was crucial to stabilize early training, as the model otherwise overfitted to initial batches, skewing toward class 1 (54\% of data) and yielding a validation F1 of ~0.55 without warmup.
+% Weight Decay: Applied at 1e-3, this L2 regularization penalized large weights, reducing the model’s tendency to memorize training data. Experiments without weight decay saw training loss drop to ~0.2 while validation loss spiked to ~1.0 after 2 epochs, confirming its necessity.
+% MSE Weight: 1.0 in the hybrid CE + MSE loss, supporting ordinal learning without amplifying overfitting risks.
+% The combination of warmup, weight decay, and cosine scheduling was pivotal. Early runs without these showed training accuracy nearing 95\% by epoch 3, while validation accuracy stagnated at 70\%, highlighting the model’s sensitivity to overfitting on the imbalanced dataset.
 
 \subsection{Validation and Early Stopping}
 % The validation set (12,170 articles) was evaluated 3 times every epoch, computing the weighted F1 score. Checkpoints were saved at these intervals, and load_best_model_at_end=True ensured the final model reflected peak validation performance. Early stopping with a patience of 2 steps was implemented to halt training if F1 didn’t improve, triggered frequently in initial runs without regularization but rarely with the final setup due to the cosine scheduler’s gradual decay, which extended effective training duration.
 
 \section{Addressing Class Imbalance}
-This skew biases the model toward predicting the majority class (class 1), risking poor generalization to minority classes, especially the critical high-quality category, which is of particular interest for editorial applications at Seznam.cz. Left unaddressed, this imbalance led to initial models achieving near-perfect recall for class 1 (e.g., 0.99) but dismal recall for class 3 (e.g., 0.0), with a F1 score barely exceeding the most-frequent-class baseline (0.49).
+% This skew biases the model toward predicting the majority class (class 1), risking poor generalization to minority classes, especially the critical high-quality category, which is of particular interest for editorial applications at Seznam.cz. Left unaddressed, this imbalance led to initial models achieving near-perfect recall for class 1 (e.g., 0.99) but dismal recall for class 3 (e.g., 0.0), with a F1 score barely exceeding the most-frequent-class baseline (0.49).
 
 \subsection{Impact of Imbalance on Training}
-The imbalance amplifies overfitting risks, as the model quickly memorizes patterns in the abundant class 1 articles—typically shorter, simpler texts—while underfitting the rare, complex class 3 articles, which often feature longer, nuanced narratives (mean word count: 1542.5 vs. 486.5 for class 1). Early experiments without imbalance correction showed training loss dropping to ~0.2 within two epochs, while validation loss rose to ~1.0, reflecting overfitting to the majority class. This skewed learning undermined the goal of replicating human editorial quality assessments, necessitating targeted strategies to ensure balanced performance across all categories.
+% The imbalance amplifies overfitting risks, as the model quickly memorizes patterns in the abundant class 1 articles—typically shorter, simpler texts—while underfitting the rare, complex class 3 articles, which often feature longer, nuanced narratives (mean word count: 1542.5 vs. 486.5 for class 1). Early experiments without imbalance correction showed training loss dropping to ~0.2 within two epochs, while validation loss rose to ~1.0, reflecting overfitting to the majority class. This skewed learning undermined the goal of replicating human editorial quality assessments, necessitating targeted strategies to ensure balanced performance across all categories.
 
 \subsection{Class Weighting Strategy}
-\subsection{}
-\subsection{}
-
-\subsection{}
-
-\section{}
-
-\subsection{}
-
-\section{Feature Engineering}
+\section{Feature Engineering}\label{sec:features_creating}
 
 \section{CatBoost}
 
