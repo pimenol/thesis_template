@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  29 APR 2025 21:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  30 APR 2025 23:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1453,7 +1453,7 @@ Package biblatex Info: Reference segment=0 on input line 29.
 (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 ) (./src/title.tex
-<fig/ctu_lion.pdf, id=364, 561.09625pt x 440.64626pt>
+<fig/ctu_lion.pdf, id=348, 561.09625pt x 440.64626pt>
 File: fig/ctu_lion.pdf Graphic file (type pdf)
 <use fig/ctu_lion.pdf>
 Package pdftex.def Info: fig/ctu_lion.pdf  used on input line 10.
@@ -1469,7 +1469,7 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
 {/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map} <./fig/ctu_lion.pdf>]) (./src/acknowledgments.tex) [2
 
 ]
-<src/assignment.pdf, id=380, 614.295pt x 794.97pt>
+<src/assignment.pdf, id=364, 614.295pt x 794.97pt>
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf>
 Package pdftex.def Info: src/assignment.pdf  used on input line 60.
@@ -1478,7 +1478,7 @@ File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf>
 Package pdftex.def Info: src/assignment.pdf  used on input line 60.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<src/assignment.pdf, id=383, page=1, 614.295pt x 794.97pt>
+<src/assignment.pdf, id=367, page=1, 614.295pt x 794.97pt>
 File: src/assignment.pdf Graphic file (type pdf)
 <use src/assignment.pdf, page 1>
 Package pdftex.def Info: src/assignment.pdf , page1 used on input line 60.
@@ -1529,18 +1529,18 @@ LaTeX Font Info:    Trying to load font information for U+lasy on input line 2.
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [8
 
-] [9])
+])
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [10] (./src/introduction.tex
+ [9] (./src/introduction.tex
 Chapter 1.
-<./fig/photos/Seznam_main_page.png, id=574, 829.0975pt x 825.0825pt>
+<./fig/photos/Seznam_main_page.png, id=550, 829.0975pt x 825.0825pt>
 File: ./fig/photos/Seznam_main_page.png Graphic file (type png)
 <use ./fig/photos/Seznam_main_page.png>
 Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 31.
 (pdftex.def)             Requested size: 199.73708pt x 198.76663pt.
-<./fig/photos/Current_Editorial_Workflow.png, id=576, 366.36874pt x 374.39874pt>
+<./fig/photos/Current_Editorial_Workflow.png, id=552, 366.36874pt x 374.39874pt>
 File: ./fig/photos/Current_Editorial_Workflow.png Graphic file (type png)
 <use ./fig/photos/Current_Editorial_Workflow.png>
 Package pdftex.def Info: ./fig/photos/Current_Editorial_Workflow.png  used on input line 38.
@@ -1581,7 +1581,7 @@ LaTeX Warning: Citation 'schmidt2019' on page 4 undefined on input line 125.
 
 [4] [5]) (./src/data_collection.tex [6]
 Chapter 2.
-<./fig/plots/num_editor_articles.png, id=614, 1115.16624pt x 451.6875pt>
+<./fig/plots/num_editor_articles.png, id=590, 1115.16624pt x 451.6875pt>
 File: ./fig/plots/num_editor_articles.png Graphic file (type png)
 <use ./fig/plots/num_editor_articles.png>
 Package pdftex.def Info: ./fig/plots/num_editor_articles.png  used on input line 31.
@@ -1598,18 +1598,18 @@ although it is yet undefined on input line 56.
 Package acronym Info: Label `acro:Class 3' newly defined as it shall be overridden
 although it is yet undefined on input line 58.
  [8 <./fig/plots/num_editor_articles.png>]
-<./fig/plots/num_words_plot.png, id=645, 1040.88875pt x 451.6875pt>
+<./fig/plots/num_words_plot.png, id=618, 1040.88875pt x 451.6875pt>
 File: ./fig/plots/num_words_plot.png Graphic file (type png)
 <use ./fig/plots/num_words_plot.png>
 Package pdftex.def Info: ./fig/plots/num_words_plot.png  used on input line 91.
 (pdftex.def)             Requested size: 443.86319pt x 192.60905pt.
  [9 <./fig/plots/num_words_plot.png>]
-<./fig/plots/num_words_per_labelplot.png, id=661, 2167.09625pt x 451.6875pt>
+<./fig/plots/num_words_per_labelplot.png, id=632, 2167.09625pt x 451.6875pt>
 File: ./fig/plots/num_words_per_labelplot.png Graphic file (type png)
 <use ./fig/plots/num_words_per_labelplot.png>
 Package pdftex.def Info: ./fig/plots/num_words_per_labelplot.png  used on input line 115.
 (pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
-<./fig/plots/num_unique_tokens_plot.png, id=667, 2167.09625pt x 451.6875pt>
+<./fig/plots/num_unique_tokens_plot.png, id=638, 2167.09625pt x 451.6875pt>
 File: ./fig/plots/num_unique_tokens_plot.png Graphic file (type png)
 <use ./fig/plots/num_unique_tokens_plot.png>
 Package pdftex.def Info: ./fig/plots/num_unique_tokens_plot.png  used on input line 130.
@@ -1629,7 +1629,7 @@ Underfull \vbox (badness 1460) has occurred while \output is active []
 Package acronym Info: Label `acro:FN' newly defined as it shall be overridden
 although it is yet undefined on input line 27.
  [12]
-<./fig/plots/confusion_matrix_Deberta_large.png, id=699, 462.528pt x 346.896pt>
+<./fig/plots/confusion_matrix_Deberta_large.png, id=670, 462.528pt x 346.896pt>
 File: ./fig/plots/confusion_matrix_Deberta_large.png Graphic file (type png)
 <use ./fig/plots/confusion_matrix_Deberta_large.png>
 Package pdftex.def Info: ./fig/plots/confusion_matrix_Deberta_large.png  used on input line 71.
@@ -1645,87 +1645,103 @@ Chapter 4.
 
 LaTeX Warning: Citation 'vaswani2017attention' on page 20 undefined on input line 42.
 
-Package acronym Info: Label `acro:BERT' newly defined as it shall be overridden
-although it is yet undefined on input line 45.
+<./fig/diagrams/transformer_architecture.png, id=726, 411.5375pt x 565.11125pt>
+File: ./fig/diagrams/transformer_architecture.png Graphic file (type png)
+<use ./fig/diagrams/transformer_architecture.png>
+Package pdftex.def Info: ./fig/diagrams/transformer_architecture.png  used on input line 46.
+(pdftex.def)             Requested size: 221.9316pt x 304.75024pt.
 
-LaTeX Warning: Citation 'devlin2019bert' on page 20 undefined on input line 45.
+LaTeX Warning: Citation 'vaswani2017attention' on page 20 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'vaswani2017attention' on page 20 undefined on input line 47.
+
+Package acronym Info: Label `acro:BERT' newly defined as it shall be overridden
+although it is yet undefined on input line 52.
+
+LaTeX Warning: Citation 'devlin2019bert' on page 20 undefined on input line 52.
 
 Package acronym Info: Label `acro:BROWCzech' newly defined as it shall be overridden
-although it is yet undefined on input line 45.
+although it is yet undefined on input line 52.
 Package acronym Info: Label `acro:RetroMAE' newly defined as it shall be overridden
-although it is yet undefined on input line 45.
+although it is yet undefined on input line 52.
 Package acronym Info: Label `acro:DeBERTaV3' newly defined as it shall be overridden
-although it is yet undefined on input line 45.
+although it is yet undefined on input line 52.
+[20 <./fig/diagrams/transformer_architecture.png>]
 
-LaTeX Warning: Citation 'liu2019roberta' on page 20 undefined on input line 49.
+LaTeX Warning: Citation 'liu2019roberta' on page 21 undefined on input line 56.
 
 Package acronym Info: Label `acro:MLM' newly defined as it shall be overridden
-although it is yet undefined on input line 60.
-[20]
+although it is yet undefined on input line 67.
 
-LaTeX Warning: Citation 'xiao2022retromae' on page 21 undefined on input line 69.
+LaTeX Warning: Citation 'xiao2022retromae' on page 21 undefined on input line 76.
 
 [21]
 
-LaTeX Warning: Citation 'he2021debertav3' on page 22 undefined on input line 88.
+LaTeX Warning: Citation 'he2021debertav3' on page 22 undefined on input line 95.
 
+[22]
 Package acronym Info: Label `acro:ELECTRA' newly defined as it shall be overridden
-although it is yet undefined on input line 99.
+although it is yet undefined on input line 106.
 Package acronym Info: Label `acro:RTD' newly defined as it shall be overridden
-although it is yet undefined on input line 99.
-
-LaTeX Warning: Citation 'clark2020electra' on page 22 undefined on input line 99.
+although it is yet undefined on input line 106.
 
 
-LaTeX Warning: Citation 'he2020deberta' on page 22 undefined on input line 99.
+LaTeX Warning: Citation 'clark2020electra' on page 23 undefined on input line 106.
 
-[22] [23] [24]
-<./fig/diagrams/model_architecture_llm.png, id=852, 904.37875pt x 573.14125pt>
+
+LaTeX Warning: Citation 'he2020deberta' on page 23 undefined on input line 106.
+
+[23] [24] [25]
+<./fig/diagrams/model_architecture_llm.png, id=831, 904.37875pt x 573.14125pt>
 File: ./fig/diagrams/model_architecture_llm.png Graphic file (type png)
 <use ./fig/diagrams/model_architecture_llm.png>
-Package pdftex.def Info: ./fig/diagrams/model_architecture_llm.png  used on input line 155.
+Package pdftex.def Info: ./fig/diagrams/model_architecture_llm.png  used on input line 161.
 (pdftex.def)             Requested size: 443.86319pt x 281.28769pt.
- [25 <./fig/diagrams/model_architecture_llm.png>]
+ [26 <./fig/diagrams/model_architecture_llm.png>]
 Package acronym Info: Label `acro:CE' newly defined as it shall be overridden
-although it is yet undefined on input line 162.
- [26]
+although it is yet undefined on input line 168.
+ [27]
 
-LaTeX Warning: Citation 'lin2017focal' on page 27 undefined on input line 182.
+LaTeX Warning: Citation 'lin2017focal' on page 28 undefined on input line 188.
 
-[27]
+[28]
 Package acronym Info: Label `acro:MSE' newly defined as it shall be overridden
-although it is yet undefined on input line 211.
- [28] [29]
-<./fig/plots/num_of_tokens_plot.png, id=931, 2167.09625pt x 451.6875pt>
+although it is yet undefined on input line 217.
+ [29] [30] [31]
+<./fig/plots/num_of_tokens_plot.png, id=915, 2167.09625pt x 451.6875pt>
 File: ./fig/plots/num_of_tokens_plot.png Graphic file (type png)
 <use ./fig/plots/num_of_tokens_plot.png>
-Package pdftex.def Info: ./fig/plots/num_of_tokens_plot.png  used on input line 290.
-(pdftex.def)             Requested size: 355.0919pt x 74.0083pt.
-) (./src/experiments.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30 <./fig/plots/num_of_tokens_plot.png>] [31]
+Package pdftex.def Info: ./fig/plots/num_of_tokens_plot.png  used on input line 284.
+(pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
+ [32 <./fig/plots/num_of_tokens_plot.png>] [33]
+<./fig/plots/loss_function.png, id=938, 1151.30125pt x 374.39874pt>
+File: ./fig/plots/loss_function.png Graphic file (type png)
+<use ./fig/plots/loss_function.png>
+Package pdftex.def Info: ./fig/plots/loss_function.png  used on input line 312.
+(pdftex.def)             Requested size: 443.86319pt x 144.34105pt.
+ [34] [35 <./fig/plots/loss_function.png>] [36] [37]) (./src/experiments.tex
 Chapter 5.
-) (./src/discussion.tex [32
+) (./src/discussion.tex [38
 
 ]
 Chapter 6.
-) (./src/conclusion.tex [33
+) (./src/conclusion.tex [39
 
 ]
 Chapter 7.
-) [34
+) [40
 
 ]
 Chapter 8.
 
 LaTeX Warning: Empty bibliography on input line 144.
 
-[35
+[41
 
 ]
 Appendix A.
-[36
+[42
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
@@ -1741,11 +1757,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F9255F9F88598AFA8C4AD42B2C101568;16154.
+(rerunfilecheck)             Checksum: 336838140D31018702452579F8296A45;15758.
 
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                main
@@ -1756,45 +1769,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57359 strings out of 474116
- 1327694 string characters out of 5732613
- 2250407 words of memory out of 5000000
- 78575 multiletter control sequences out of 15000+600000
+ 57367 strings out of 474116
+ 1328221 string characters out of 5732613
+ 2249939 words of memory out of 5000000
+ 78589 multiletter control sequences out of 15000+600000
  569871 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,17n,96p,2365b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{figure.caption.25} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.caption.16} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.caption.12} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{table.caption.9} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.caption.4} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.1} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.23} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.8} has been referenced but does not exist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.15} has been referenced but does not exist, replaced by a fixed one
-
+ 88i,17n,96p,2881b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (46 pages, 1561238 bytes).
+Output written on main.pdf (51 pages, 1655364 bytes).
 PDF statistics:
- 1085 PDF objects out of 1200 (max. 8388607)
- 955 compressed objects within 10 object streams
- 199 named destinations out of 1000 (max. 500000)
- 843 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1103 PDF objects out of 1200 (max. 8388607)
+ 964 compressed objects within 10 object streams
+ 193 named destinations out of 1000 (max. 500000)
+ 821 words of extra memory for PDF output out of 10000 (max. 10000000)
 

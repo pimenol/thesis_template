@@ -52,40 +52,36 @@
 \contentsline {section}{\numberline {4.3}Performance of Pre-trained Language Models}{20}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Theoretical Foundations}{20}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Evaluation of Multiple Pre-trained Models}{20}{subsection.4.3.2}%
-\contentsline {subsubsection}{\ac {BROWCzech}}{20}{subsection.4.3.2}%
+\contentsline {subsubsection}{\ac {BROWCzech}}{21}{subsection.4.3.2}%
 \contentsline {subsubsection}{\ac {RetroMAE}}{21}{subsection.4.3.2}%
 \contentsline {subsubsection}{\ac {DeBERTaV3} Base}{22}{subsection.4.3.2}%
-\contentsline {subsubsection}{\ac {DeBERTaV3} Large}{23}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Model Selection}{24}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Classifier Architecture Design}{25}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Loss Function Engineering}{26}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss}{26}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Shortcomings of Using CE Alone}{26}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance: Focal Loss vs. Class Weighting}{27}{subsection.4.5.3}%
-\contentsline {subsubsection}{Focal Loss Attempt}{27}{subsection.4.5.3}%
-\contentsline {subsubsection}{Class Weighting:}{27}{equation.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.4}Incorporating an Ordinal Component: CE + MSE}{28}{subsection.4.5.4}%
-\contentsline {subsubsection}{Balancing the Loss Terms (Choosing $\lambda $)}{29}{equation.4.5.6}%
-\contentsline {subsection}{\numberline {4.5.5}Final Results and Advantages of the Hybrid Loss}{30}{subsection.4.5.5}%
-\contentsline {section}{\numberline {4.6}Training Methodology}{30}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Training Stages}{31}{section.4.7}%
-\contentsline {subsection}{\numberline {4.7.1}Hyperparameter Configuration}{31}{subsection.4.7.1}%
-\contentsline {subsection}{\numberline {4.7.2}Validation and Early Stopping}{31}{subsection.4.7.2}%
-\contentsline {section}{\numberline {4.8}Addressing Class Imbalance}{31}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}Impact of Imbalance on Training}{31}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}Class Weighting Strategy}{31}{subsection.4.8.2}%
-\contentsline {section}{\numberline {4.9}Feature Engineering}{31}{section.4.9}%
-\contentsline {section}{\numberline {4.10}CatBoost}{31}{section.4.10}%
-\contentsline {section}{\numberline {4.11}Per-Class Performance Analysis}{31}{section.4.11}%
-\contentsline {section}{\numberline {4.12}Error Analysis}{31}{section.4.12}%
-\contentsline {chapter}{\numberline {5}Experiments and Results}{32}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Experimental Setup}{32}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Model Comparison}{32}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{32}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{33}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Discussion}{33}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Conclusion}{33}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Future Work}{33}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Conclusion}{34}{chapter.7}%
-\contentsline {chapter}{\numberline {8}References}{35}{chapter.8}%
-\contentsline {chapter}{\numberline {A}Appendix A}{36}{appendix.A}%
+\contentsline {subsubsection}{\ac {DeBERTaV3} Large}{24}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Model Selection}{25}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Classifier Architecture Design}{26}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Loss Function Engineering}{27}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Initial Approach: Cross-Entropy Loss}{27}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Shortcomings of Using CE Alone}{27}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Addressing Class Imbalance: Focal Loss vs. Class Weighting}{28}{subsection.4.5.3}%
+\contentsline {subsubsection}{Focal Loss Attempt}{28}{subsection.4.5.3}%
+\contentsline {subsubsection}{Class Weighting:}{28}{equation.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.4}Incorporating an Ordinal Component: CE + MSE}{29}{subsection.4.5.4}%
+\contentsline {subsubsection}{Balancing the Loss Terms (Choosing $\lambda $)}{30}{equation.4.5.6}%
+\contentsline {subsection}{\numberline {4.5.5}Final Results and Advantages of the Hybrid Loss}{31}{subsection.4.5.5}%
+\contentsline {section}{\numberline {4.6}Tokenization and Sequence Handling}{32}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Training Methodology}{33}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Two-Stage Fine-Tuning}{33}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Learning Rate Warmup and Scheduling}{33}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Regularization and Hyperparameters}{34}{subsection.4.7.3}%
+\contentsline {section}{\numberline {4.8}Feature Engineering}{36}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Linguistic Complexity Features (Attractiveness)}{36}{subsection.4.8.1}%
+\contentsline {chapter}{\numberline {5}Experiments and Results}{38}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimental Setup}{38}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Model Comparison}{38}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{38}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Discussion}{39}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Conclusion}{39}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Future Work}{39}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Conclusion}{40}{chapter.7}%
+\contentsline {chapter}{\numberline {8}References}{41}{chapter.8}%
+\contentsline {chapter}{\numberline {A}Appendix A}{42}{appendix.A}%
