@@ -29,6 +29,7 @@
 \contentsline {subsection}{\numberline {2.6.1}Article length}{9}{subsection.2.6.1}%
 \contentsline {subsection}{\numberline {2.6.2}Length by label}{9}{subsection.2.6.2}%
 \contentsline {subsection}{\numberline {2.6.3}Unique-token probability density}{10}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}\@expl@@@filehook@file@pop@assign@@nnnn }{10}{section.2.7}%
 \contentsline {chapter}{\numberline {3}Evaluation Metrics}{11}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Limitations of Accuracy}{11}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Precision}{11}{section.3.2}%
@@ -84,14 +85,15 @@
 \contentsline {subsection}{\numberline {4.10.3}Architecture and Feature Processing}{41}{subsection.4.10.3}%
 \contentsline {subsection}{\numberline {4.10.4}Feature‑Group Importance}{41}{subsection.4.10.4}%
 \contentsline {subsection}{\numberline {4.10.5}Performance and Practical Considerations}{42}{subsection.4.10.5}%
-\contentsline {chapter}{\numberline {5}Experiments and Results}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Experimental Setup}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Model Comparison}{43}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{43}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{44}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Discussion}{44}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Conclusion}{44}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Future Work}{44}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Conclusion}{45}{chapter.7}%
-\contentsline {chapter}{\numberline {8}References}{46}{chapter.8}%
-\contentsline {chapter}{\numberline {A}Appendix A}{47}{appendix.A}%
+\contentsline {section}{\numberline {4.11}Hybrid Model: CatBoost with Language Model Features}{42}{section.4.11}%
+\contentsline {chapter}{\numberline {5}Experiments and Results}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimental Setup}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Model Comparison}{45}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Feature Importance Analysis}{45}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Discussion, Conclusion and Future Work}{46}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Discussion}{46}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Conclusion}{46}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Future Work}{46}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Conclusion}{47}{chapter.7}%
+\contentsline {chapter}{\numberline {8}References}{48}{chapter.8}%
+\contentsline {chapter}{\numberline {A}Appendix A}{49}{appendix.A}%

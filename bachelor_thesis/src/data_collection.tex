@@ -131,3 +131,16 @@ This means that better articles tend to use a wider vocabulary. However, there i
   \caption{Distribution of unique tokens in articles.}
   \label{fig:num_unique_tokens}
 \end{figure}
+
+\section{Dataset Balancing Strategies}
+\subsection{Data Augmentation}
+
+To increase the representation of Class 3 (the minority class), an attempt was made to augment the training data by including all available Class 3 articles from the full dataset, even those outside the original training period. This added approximately 2000 older articles to the training set. However, these older articles exhibited an outdated journalistic style that differed significantly from more recent content. Empirically, adding this data reduced the model’s generalization ability: the validation F1 score dropped from 0.75 to 0.70. Due to this degradation in performance, the data augmentation approach was ultimately not used in the final model.
+
+\subsection{Oversampling}
+
+Another strategy was random oversampling of Class 3 instances. In this approach, existing Class 3 articles were duplicated until their total count matched the number of Class 2 articles (around 11,000). Oversampling did improve the model’s recall on Class 3 examples (approximately 0.30). However, it had significant drawbacks. Training time increased by roughly 20\%, and the model began to overfit the training data. As a result, the validation F1 score fell to 0.68. Given these trade-offs, oversampling was not incorporated into the final training procedure.
+
+\subsection{Synthetic Data Generation}
+
+A third approach involved generating new Class 3 samples using a text-generation technique. In practice, Class 1 articles were rewritten into \ac{Class 3} in an attempt to synthesize additional Class 3 data. Unfortunately, the generated texts were not realistic and lacked the expected journalistic quality. The synthetic samples failed to resemble true Class 3 articles, and this approach did not improve model performance. Consequently, the synthetic data generation method was abandoned.
