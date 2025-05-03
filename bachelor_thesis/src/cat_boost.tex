@@ -1,0 +1,91 @@
+%!TEX root = ../main.tex
+
+\newpage
+\section{CatBoost}\label{sec:catboost}
+We employed CatBoost inrtodused by \cite{prokhorenkova2018catboost}, a gradient boosting classifier, to predict article quality using the engineered feature set. CatBoost was chosen for its ability to handle categorical data natively and its robustness on imbalanced datasets.
+In our case, this meant we could include metadata and content-based attributes together without extensive preprocessing. For example, CatBoost can directly ingest a categorical feature like channel ID (the article’s source channel) by using an ordered encoding scheme that computes target statistics from prior data points, thereby avoiding target leakage.
+
+Another architectural advantage of CatBoost is its use of symmetric (oblivious) decision trees, where all splits at a given tree level use the same condition.
+This yields consistent, fast models and, coupled with the ordered boosting algorithm, helps reduce overfitting. These properties made CatBoost well-suited to our feature-based approach.
+
+\subsection{Motivation and Suitability} 
+The motivation for using CatBoost was twofold. 
+
+First, it seamlessly handles the mix of linguistic complexity metrics, structural composition indicators, readability scores, and metadata features from Section~\ref{sec:features_creating}. Unlike some algorithms, it does not require one-hot encoding or manual scaling of categorical inputs, preserving useful information encoded in features like genre or source. 
+
+Second, CatBoost’s robustness to class imbalance was critical: our dataset’s quality classes were highly skewed. CatBoost provides built-in options for balancing classes (e.g. an auto\_class\_weights="SqrtBalanced" setting) to ensure minority classes are not ignored. This capability, combined with the algorithm’s general resilience to overfitting, made it a strong candidate for our task.
+
+% \subsection{Handling Class Imbalance:}
+% Given the uneven class distribution, we explicitly applied class weights during training to make the model pay more attention to minority classes. Misclassifying the highest quality class (Class 3) was made 20 times more costly than the majority classes (we set class weights to [1.0, 0.5, 1.0, 20.0] for classes 0–3 respectively). This weighting amplified the loss contribution of High-Quality articles and significantly improved the model’s sensitivity to them. In addition, we experimented with balanced subsampling: at each boosting iteration, CatBoost was fed a stratified subsample of the training data so that all classes were represented more evenly. This prevents the trees from always seeing overwhelming numbers of the majority class. Together, these techniques mitigated the class imbalance problem, allowing the classifier to learn useful patterns for even the rarest category.
+
+\subsection{Hyperparameter Tuning} 
+
+We conducted a thorough search over CatBoost’s hyperparameters to achieve optimal multi-class performance. This included comparing different loss functions (evaluating CatBoost’s standard multi-class loss vs. one-vs-all objective), adjusting the number of boosting iterations, tuning tree depth, L2 regularization (via the l2\_leaf\_reg parameter), and modifying random\_strength to manage overfitting.
+
+After evaluating various configurations, we found that the best results were achieved using CatBoost’s built-in MultiClass loss function with 1500 boosting iterations. Tree depth was kept moderate, generally in the range of 6 to 8, to strike a balance between model complexity and generalization. A small L2 regularization value helped prevent the model from fitting overly specific leaf values. Additionally, a non-zero random\_strength value was selected to introduce beneficial randomness into the tree-splitting process, which smoothed the decision boundaries.
+
+We also enabled early stopping with a patience of 200 rounds, halting training if the model’s validation performance stopped improving for 200 consecutive iterations. This not only helped avoid overfitting but also supported our choice of 1500 trees, as the validation score typically plateaued around that point. All hyperparameters were jointly fine-tuned to maximize the weighted F1 score on the validation set, ensuring balanced performance across all classes.
+ 
+Figure~\ref{fig:catboost_loss} plots the training and validation log‑loss. The curves flatten well before the stopping point, justifying the chosen iteration count.
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./fig/cat_boost/cat_boost_training_loss.png}
+    \caption{CatBoost training and validation loss over iterations.}
+    \label{fig:catboost_loss}
+\end{figure}
+
+\subsection{Architecture and Feature Processing} 
+
+We configured CatBoost to utilize all four feature groups described earlier. Internally, the model builds symmetric decision trees that split on the most informative features at each depth. The ordered boosting procedure meant that categorical features were transformed on the fly using only preceding training examples, which prevented the model from learning spurious correlations. One categorical feature, channel ID, was initially included among the inputs and, as expected, CatBoost identified it as extremely predictive of quality (in fact, in preliminary runs channel ID alone accounted for roughly 70\% of total feature importance). This indicated that the source/publisher was a dominant signal for quality in our data. However, relying on this metadata goes against the goal of assessing content intrinsic quality. We therefore removed channel ID in the final model. After this adjustment, CatBoost focused on the content-based features (linguistic, structural, readability, etc.), and no single feature dominated the importance. The model could thus base its predictions on a combination of stylistic and structural characteristics of the text rather than a possibly biasing identifier.
+
+\subsection{Feature‑Group Importance} 
+Table~\ref{tab:feature_importance} summarises mean importance aggregated over the four feature groups:
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{lc}
+  \textbf{Group} & \textbf{Share of Total Importance} \\
+  Structural composition & $\approx$29\,\% \\
+  Readability metrics    & $\approx$ 26\,\% \\
+  Linguistic complexity  & $\approx$ 21\,\% \\
+  Metadata \& tags       & $\approx$ 24\,\% \\
+  \end{tabular}
+  \caption{Feature Group Importance Breakdown}
+  \label{tab:feature_importance}
+  \end{table}
+
+The relatively even distribution indicates that, once channel ID was discarded, no single aspect dominated predictions.
+
+% \subsection{Deployment and Integration}
+
+% An additional advantage of the CatBoost model is the interpretability and ease of integration it offers in the overall pipeline. Unlike a large neural network, CatBoost runs efficiently on CPU and can output interpretable insights such as feature importance rankings and even per-instance explanations if needed. This made it straightforward to incorporate into our journalism quality assessment system: the trained CatBoost model simply takes the engineered feature vector for each new article and produces a quality class prediction along with a confidence score. The inference is fast (on the order of milliseconds per article), which is suitable for real-time or batch evaluation in a newsroom setting. Moreover, the model’s outputs can be more easily explained to editors or stakeholders – for instance, one can highlight which aspects of an article (e.g. complexity of language or presence of sources) contributed most to its quality rating.
+
+\subsection{Performance and Practical Considerations}
+With weighted F1~=~0.68 the final CatBoost model lags the neural network yet surpasses simpler baselines and remains attractive for two reasons:
+
+1. Speed – CPU inference takes $< 3$ ms per article, enabling real-time scoring.
+
+2. Interpretability – per‑instance SHAP values help editors understand which textual properties influenced a given prediction.
+
+Consequently, CatBoost serves as a complementary component in the ensemble pipeline, offering a lightweight, transparent alternative to transformer‑based models.
+
+\section{Hybrid Model: CatBoost with Language Model Features}
+
+Based on the promising results from the standalone CatBoost model, we next experimented with a hybrid approach that combines CatBoost with outputs from BERT-like models. The motivation was to leverage the model’s understanding of text to improve classification performance, particularly to better recognize the minority \ac{Class 3}. Initial CatBoost experiments showed potential but struggled with \ac{Class 3} due to its rarity, so we explored whether integrating features derived from an LLM could boost the model’s sensitivity to these high-quality articles. 
+
+In the first integration attempt, we incorporated learned \ac{DeBERTaV3} embeddings as additional features for the CatBoost classifier. In this setup, each article’s text was encoded into a dense vector representation by the \ac{DeBERTaV3}, and this vector was appended to the existing feature set before training CatBoost. The intuition was that the embedding might capture complex semantic attributes of the text beyond our manually engineered features. However, this approach did not yield any improvement – the CatBoost model’s validation metrics remained essentially unchanged when the embedding features were added. The lack of uplift suggested that either the embedding information was redundant with our current features or CatBoost could not effectively leverage the high-dimensional embedding in this configuration. 
+
+Next, we tried a different strategy: using the \ac{DeBERTaV3}’s predicted class label as an input feature. In this second experiment, the \ac{DeBERTaV3} was used as a separate classifier to predict a quality class for each article (e.g. by analyzing the text and outputting a class 0–3 label). We then fed that predicted label (as a categorical feature) into CatBoost along with all other features. The rationale was that the  \ac{DeBERTaV3}’s prediction, even if not perfect, might cue CatBoost to certain linguistic patterns or content signals that align with quality. This method produced a slight improvement in overall performance – the weighted F1 score on the validation set rose to about 0.756. This was a modest gain over the baseline and indicated that the  \ac{DeBERTaV3}’s judgment provided some useful signal. However, the improvement was not uniform across classes: \ac{Class 3} in particular remained difficult to detect, with its precision and recall still very low. In other words, giving CatBoost the single class prediction from the  \ac{DeBERTaV3} wasn’t enough to substantially help with the rare high-quality articles. 
+
+Finally, our third and most successful approach was to supply CatBoost with the full \ac{DeBERTaV3} output logits for each class, rather than just the single best label. In this setup, the  \ac{DeBERTaV3} produces a probability or confidence score for each class (0, 1, 2, 3) for a given article – essentially a vector of raw prediction scores across all classes, often referred to as logits. We included these four logit values as additional features alongside the existing engineered features and then trained the CatBoost classifier on this enriched feature set. This hybrid model formulation yielded the best results: the CatBoost +  \ac{DeBERTaV3}-logits model achieved a weighted F1 score of approximately 0.77 on the validation data, the highest of all tested configurations. The improvement suggests that providing the full distribution of the \ac{DeBERTaV3}’s predictions gave CatBoost more nuanced information. Instead of a single guess, CatBoost could learn from the  \ac{DeBERTaV3}’s confidence levels in each class, leveraging cases where the  \ac{DeBERTaV3} “hedged” between \ac{Class 2} and \ac{Class 3}, for example. This allowed the hybrid model to better differentiate articles, especially in borderline cases, and boosted overall classification performance.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./fig/cat_boost/conf_matrix_cat_logits.png}
+    \caption{Confusion matrix of the hybrid model’s predictions on the validation set.}
+    \label{fig:catboost_confusion_matrix}
+\end{figure}
+
+Figure~\ref{fig:catboost_confusion_matrix} show the matrix shows that Class 1 (the majority class) had the highest number of correct predictions (8,535), with most of its errors being confusion with Class 2. In fact, the two most frequent misclassifications occurred between Class 1 and Class 2, reflecting the challenge in distinguishing adjacent quality levels. Class 3 remained the hardest category to identify correctly – the model only achieved 58 true positives for Class 3, and the majority of articles that were actually Class 3 were misclassified as Class 2. Notably, the model almost never predicted Class 3 when the article was not truly Class 3 (there were very few false positives for Class 3, as seen by only 7 instances of predicting Class 3 for a non-Class-3 article), but it frequently failed to catch actual Class 3 articles, instead labeling them as medium-quality. Class 0 and Class 2 also saw some confusion between each other and with Class 1, though to a lesser extent than the Class1–Class2 overlap. These results are reflected in the per-class F1 scores: the final hybrid model attained an F1 of 0.747 for Class 0, 0.804 for Class 1, 0.679 for Class 2, and only 0.453 for Class 3. This breakdown confirms that while performance for the frequent classes (0, 1, 2) was moderate to high, the \ac{Class 3} category still suffered from low precision and recall due to its scarcity and the model’s difficulty in separating it from Class 2.
+
+In summary, our experiments with integrating \ac{DeBERTaV3}-derived features demonstrated that embeddings or single-label predictions alone did not significantly enhance the CatBoost model. In contrast, providing the \ac{DeBERTaV3} full logits as features led to a notable improvement in classification performance. This hybrid approach successfully combined the \ac{DeBERTaV3}’s language understanding with CatBoost’s structured learning, yielding the highest overall F1 score. Therefore, the CatBoost model enriched with \ac{DeBERTaV3} logits was selected as the final model configuration for the task, as it offered the best balance of improved accuracy (especially overall F1 $\approx0.77$) and the ability to handle all classes, including the challenging Class 3, better than previous attempts.
