@@ -2,10 +2,10 @@
 
 \newpage
 \section{Performance of Pre-trained Language Models}
-Transformer-based language models have revolutionized natural language processing across multiple languages, including Czech. This chapter examines the theoretical foundations, architectures, and practical applications of pre-trained language models for Czech text classification tasks, with special attention to models specifically designed for the Czech language and their performance characteristics.
+Transformer-based language models have revolutionized \ac{NLP} across multiple languages, including Czech. This chapter examines the theoretical foundations, architectures, and practical applications of pre-trained language models for Czech text classification tasks, with special attention to models specifically designed for the Czech language and their performance characteristics.
 
 \subsection{Theoretical Foundations}
-Pre-trained language models mark a significant advancement in natural language processing by shifting from traditional word-level representations to models capable of capturing nuanced contextual information. These models are built upon the transformer architecture, first introduced by \cite{vaswani2017attention}, which relies on self-attention mechanisms to model relationships across entire sequences. The architecture, illustrated in Figure~\ref{fig:transformer_architecture}, enables highly parallelizable computation and has become foundational for state-of-the-art models in tasks such as classification, information retrieval, and text generation.
+Pre-trained language models mark a significant advancement in \ac{NLP} by shifting from traditional word-level representations to models capable of capturing nuanced contextual information. These models are built upon the transformer architecture, first introduced by \cite{vaswani2017attention}, which relies on self-attention mechanisms to model relationships across entire sequences. The architecture, illustrated in Figure~\ref{fig:transformer_architecture}, enables highly parallelizable computation and has become foundational for state-of-the-art models in tasks such as classification, information retrieval, and text generation.
 
 \begin{figure}[H]
   \centering
@@ -301,7 +301,7 @@ The confusion matrix in Figure~\ref{fig:confusion_matrix_llm} shows that the mod
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.7\textwidth]{./fig/plots/conf_matrix_llm.png}
+  \includegraphics[width=0.7\textwidth]{./fig/conf_matrix/conf_matrix_llm.png}
   \caption{Confusion matrix of the final model’s predictions on the validation set, highlighting the remaining misclassifications between classes.}
   \label{fig:confusion_matrix_llm}
 \end{figure}
