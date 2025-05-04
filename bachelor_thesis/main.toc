@@ -72,7 +72,7 @@
 \contentsline {subsection}{\numberline {4.6.2}Shortcomings of Using CE Alone}{32}{subsection.4.6.2}%
 \contentsline {subsection}{\numberline {4.6.3}Addressing Class Imbalance: Focal Loss vs. Class Weighting}{33}{subsection.4.6.3}%
 \contentsline {subsubsection}{Focal Loss Attempt}{33}{subsection.4.6.3}%
-\contentsline {subsubsection}{Class Weighting:}{33}{equation.4.6.2}%
+\contentsline {subsubsection}{Class Weighting}{33}{equation.4.6.2}%
 \contentsline {subsection}{\numberline {4.6.4}Incorporating an Ordinal Component: CE + MSE}{34}{subsection.4.6.4}%
 \contentsline {subsubsection}{Balancing the Loss Terms (Choosing $\lambda $)}{35}{equation.4.6.6}%
 \contentsline {subsection}{\numberline {4.6.5}Final Results and Advantages of the Hybrid Loss}{36}{subsection.4.6.5}%

@@ -54,16 +54,16 @@ In summary, the performance ranking of the models shown in the Table~\ref{tab:va
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{|l|l|l|l|}
-    \hline
-    Model & Weighted F1 & Accuracy \\ \hline
-    BROWCzech & 0.71 & 0.70 \\ \hline
-    RetroMAE & 0.72 & 0.72 \\ \hline
-    DeBERTaV3 base & 0.724 & 0.73 \\ \hline
-    DeBERTaV3 large & 0.74 & 0.738 \\ \hline
-    DeBERTaV3 large (features) & 0.766 & 0.77 \\ \hline
-    \ac{CatBoost} (features) & 0.716 & 0.728 \\ \hline
-    Hybrid (DeBERTaV3 large + \ac{CatBoost}) & \textbf{0.779} & \textbf{0.781} \\ \hline
+  \begin{tabular}{lcc}
+
+    \textbf{Model} & \textbf{Weighted F1} & \textbf{Accuracy} \\ 
+    BROWCzech & 0.71 & 0.70 \\ 
+    RetroMAE & 0.72 & 0.72 \\ 
+    DeBERTaV3 base & 0.724 & 0.73 \\ 
+    DeBERTaV3 large & 0.74 & 0.738 \\ 
+    DeBERTaV3 large (features) & 0.766 & 0.77 \\ 
+    \ac{CatBoost} (features) & 0.716 & 0.728 \\ 
+    Hybrid (DeBERTaV3 large + \ac{CatBoost}) & \textbf{0.779} & \textbf{0.781} \\ 
   \end{tabular}
   \caption{Test performance of the models on the validation set}
   \label{tab:validation_scores}
