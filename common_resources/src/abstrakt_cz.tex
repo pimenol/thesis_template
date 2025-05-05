@@ -9,7 +9,7 @@
 
 \sloppy
 
-TODO:
+Bakalářská práce představuje metodu pro klasifikaci českých článků podle jejich žurnalistické kvality. Použili jsme zpracování přirozeného jazyka (\ac{NLP}) a strojové učení k vytvoření systému vícetřídové klasifikace. Systém byl natrénován na datech ze Seznam.cz, která obsahují texty článků a štítky kvality udělené redaktory. Články byly rozděleny do čtyř úrovní kvality (Nedostatečná, Krátká ale dostačující, Standardní, Vysoce kvalitní) podle redakčních standardů. Otestovali jsme několik modelů, včetně modelu \ac{DeBERTaV3} doladěného na tento úkol a klasifikátoru \ac{CatBoost} založeného na vlastnostech textu. Vyvinuli jsme také hybridní model, který kombinuje výstupy z \ac{DeBERTaV3} a \ac{CatBoost} a využívá jak textová data, tak další informace (např. metadata). Hybridní model dosáhl nejlepšího výsledku. Na testovací sadě dosáhl vážené F1 skóre 0,78. Tento výsledek je blízko úrovni shody lidských redaktorů a ukazuje účinnost našeho přístupu. Výsledky ukazují, že pokročilé jazykové modely spolu s jazykovými a strukturálními vlastnostmi dokážou spolehlivě odhadnout kvalitu článků v českých médiích. Práce tak poskytuje pevný základ pro budoucí nástroje pro automatické hodnocení kvality a zlepšení správy zpravodajského obsahu. Nástroje by mohly pomoci redaktorům filtrovat a prioritizovat obsah podle kvality.
 
 \vskip 1em
 
