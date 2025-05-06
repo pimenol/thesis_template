@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  4 MAY 2025 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  6 MAY 2025 11:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1513,7 +1513,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
 [4
 
-]) (./src/abstract_en.tex) [5
+]) (./src/abstract_en.tex
+Package acronym Info: Label `acro:NLP' newly defined as it shall be overridden
+although it is yet undefined on input line 10.
+Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
+although it is yet undefined on input line 10.
+Package acronym Info: Label `acro:DeBERTaV3' newly defined as it shall be overridden
+although it is yet undefined on input line 10.
+Package acronym Info: Label `acro:CatBoost' newly defined as it shall be overridden
+although it is yet undefined on input line 10.
+) [5
 
 ] (./src/abstrakt_cz.tex) [6
 
@@ -1552,315 +1561,214 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
  [11] (./src/introduction.tex
 Chapter 1.
-<./fig/photos/Seznam_main_page.png, id=654, 829.0975pt x 825.0825pt>
+
+LaTeX Warning: Citation 'seznam2025' on page 1 undefined on input line 7.
+
+<./fig/photos/Seznam_main_page.png, id=672, 829.0975pt x 825.0825pt>
 File: ./fig/photos/Seznam_main_page.png Graphic file (type png)
 <use ./fig/photos/Seznam_main_page.png>
-Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 31.
+Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 28.
 (pdftex.def)             Requested size: 199.73708pt x 198.76663pt.
-<./fig/photos/Current_Editorial_Workflow.png, id=656, 366.36874pt x 374.39874pt>
+<./fig/photos/Current_Editorial_Workflow.png, id=674, 366.36874pt x 374.39874pt>
 File: ./fig/photos/Current_Editorial_Workflow.png Graphic file (type png)
 <use ./fig/photos/Current_Editorial_Workflow.png>
-Package pdftex.def Info: ./fig/photos/Current_Editorial_Workflow.png  used on input line 38.
+Package pdftex.def Info: ./fig/photos/Current_Editorial_Workflow.png  used on input line 35.
 (pdftex.def)             Requested size: 221.9316pt x 226.80043pt.
 [1
 
 
- <./fig/photos/Seznam_main_page.png>] [2 <./fig/photos/Current_Editorial_Workflow.png>]
+ <./fig/photos/Seznam_main_page.png>]
+Package acronym Info: Label `acro:Class 0' newly defined as it shall be overridden
+although it is yet undefined on input line 45.
+Package acronym Info: Label `acro:Class 1' newly defined as it shall be overridden
+although it is yet undefined on input line 46.
+Package acronym Info: Label `acro:Class 2' newly defined as it shall be overridden
+although it is yet undefined on input line 48.
+Package acronym Info: Label `acro:Class 3' newly defined as it shall be overridden
+although it is yet undefined on input line 50.
+ [2 <./fig/photos/Current_Editorial_Workflow.png>] [3]
 
-LaTeX Warning: Citation 'lacy2015' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Citation 'calvo2024' on page 3 undefined on input line 79.
-
-
-LaTeX Warning: Citation 'pitler2008' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'quantum2024' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'potthast2018' on page 3 undefined on input line 102.
+LaTeX Warning: Citation 'lacy2015' on page 4 undefined on input line 79.
 
 
-LaTeX Warning: Citation 'gonzalez2021' on page 3 undefined on input line 102.
+LaTeX Warning: Citation 'calvo2024' on page 4 undefined on input line 79.
 
 
-LaTeX Warning: Citation 'minaee2020' on page 3 undefined on input line 115.
+LaTeX Warning: Citation 'pitler2008' on page 4 undefined on input line 94.
 
-[3
+
+LaTeX Warning: Citation 'quantum2024' on page 4 undefined on input line 94.
+
+
+LaTeX Warning: Citation 'potthast2018' on page 4 undefined on input line 102.
+
+
+LaTeX Warning: Citation 'gonzalez2021' on page 4 undefined on input line 102.
+
+
+LaTeX Warning: Citation 'minaee2020' on page 4 undefined on input line 115.
+
+[4
 
 ]
 
-LaTeX Warning: Citation 'schmidt2019' on page 4 undefined on input line 117.
+LaTeX Warning: Citation 'schmidt2019' on page 5 undefined on input line 117.
 
 
-LaTeX Warning: Citation 'schmidt2019' on page 4 undefined on input line 125.
+LaTeX Warning: Citation 'schmidt2019' on page 5 undefined on input line 125.
 
-[4] [5]) (./src/data_collection.tex [6]
+[5]) [6] (./src/data_collection.tex [7]
 Chapter 2.
-<./fig/plots/num_editor_articles.png, id=695, 1115.16624pt x 451.6875pt>
+<./fig/plots/num_editor_articles.png, id=731, 1115.16624pt x 451.6875pt>
 File: ./fig/plots/num_editor_articles.png Graphic file (type png)
 <use ./fig/plots/num_editor_articles.png>
 Package pdftex.def Info: ./fig/plots/num_editor_articles.png  used on input line 31.
 (pdftex.def)             Requested size: 443.86319pt x 179.7827pt.
-[7
+[8
 
 ]
-Package acronym Info: Label `acro:Class 0' newly defined as it shall be overridden
-although it is yet undefined on input line 52.
-Package acronym Info: Label `acro:Class 1' newly defined as it shall be overridden
-although it is yet undefined on input line 54.
-Package acronym Info: Label `acro:Class 2' newly defined as it shall be overridden
-although it is yet undefined on input line 56.
-Package acronym Info: Label `acro:Class 3' newly defined as it shall be overridden
-although it is yet undefined on input line 58.
- [8 <./fig/plots/num_editor_articles.png>]
-<./fig/plots/num_words_plot.png, id=723, 1040.88875pt x 451.6875pt>
-File: ./fig/plots/num_words_plot.png Graphic file (type png)
-<use ./fig/plots/num_words_plot.png>
-Package pdftex.def Info: ./fig/plots/num_words_plot.png  used on input line 91.
-(pdftex.def)             Requested size: 443.86319pt x 192.60905pt.
- [9 <./fig/plots/num_words_plot.png>]
-<./fig/plots/num_words_per_labelplot.png, id=737, 2167.09625pt x 451.6875pt>
-File: ./fig/plots/num_words_per_labelplot.png Graphic file (type png)
-<use ./fig/plots/num_words_per_labelplot.png>
-Package pdftex.def Info: ./fig/plots/num_words_per_labelplot.png  used on input line 115.
-(pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
-<./fig/plots/num_unique_tokens_plot.png, id=743, 2167.09625pt x 451.6875pt>
-File: ./fig/plots/num_unique_tokens_plot.png Graphic file (type png)
-<use ./fig/plots/num_unique_tokens_plot.png>
-Package pdftex.def Info: ./fig/plots/num_unique_tokens_plot.png  used on input line 130.
-(pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
- [10 <./fig/plots/num_words_per_labelplot.png> <./fig/plots/num_unique_tokens_plot.png>]) (./src/evaluation_metrics.tex [11]
-Chapter 3.
-Package acronym Info: Label `acro:TP' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
-Package acronym Info: Label `acro:FP' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
+./src/data_collection.tex:70: Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.70 ...1} & \textbf{Label 2} & \textbf{Label 3} &
+                                                   \textbf\\
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
 
-Underfull \vbox (badness 1460) has occurred while \output is active []
+./src/data_collection.tex:70: Missing } inserted.
+<inserted text> 
+                }
+l.70 ...bf{Label 2} & \textbf{Label 3} & \textbf\\
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
- [12
+./src/data_collection.tex:71: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.71   \hline
+             
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
 
-]
-Package acronym Info: Label `acro:FN' newly defined as it shall be overridden
-although it is yet undefined on input line 27.
- [13]
-<./fig/conf_matrix/confusion_matrix_Deberta_large.png, id=781, 462.528pt x 346.896pt>
-File: ./fig/conf_matrix/confusion_matrix_Deberta_large.png Graphic file (type png)
-<use ./fig/conf_matrix/confusion_matrix_Deberta_large.png>
-Package pdftex.def Info: ./fig/conf_matrix/confusion_matrix_Deberta_large.png  used on input line 71.
-(pdftex.def)             Requested size: 355.0919pt x 266.33263pt.
- [14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+./src/data_collection.tex:72: Misplaced alignment tab character &.
+l.72   Training &
+                  12,994 (22.9\%) & 32,086 (56.5\%) & 11,166 (19.7\%) & 542 ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
- [15 <./fig/conf_matrix/confusion_matrix_Deberta_large.png>]) (./src/methodology.tex [16]
-Chapter 4.
-[17
+./src/data_collection.tex:72: Misplaced alignment tab character &.
+l.72   Training & 12,994 (22.9\%) &
+                                    32,086 (56.5\%) & 11,166 (19.7\%) & 542 ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-] [18{/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [19]) (./src/feature_engineering.tex [20] [21] [22] [23]) (./src/llm.tex [24]
-Package acronym Info: Label `acro:NLP' newly defined as it shall be overridden
-although it is yet undefined on input line 5.
+./src/data_collection.tex:72: Misplaced alignment tab character &.
+l.72 ...ning & 12,994 (22.9\%) & 32,086 (56.5\%) &
+                                                   11,166 (19.7\%) & 542 (0....
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
+./src/data_collection.tex:72: Misplaced alignment tab character &.
+l.72 ...9\%) & 32,086 (56.5\%) & 11,166 (19.7\%) &
+                                                   542 (0.9\%) \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: Citation 'vaswani2017attention' on page 25 undefined on input line 8.
+./src/data_collection.tex:73: Misplaced \cr.
+\reserved@c ->\ifnum 0=`{}\fi \cr 
+                                  
+l.73   V
+        alidation & 2,785 & 6,876 & 2,393 & 116 \\
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-<./fig/diagrams/transformer_architecture.png, id=869, 411.5375pt x 565.11125pt>
-File: ./fig/diagrams/transformer_architecture.png Graphic file (type png)
-<use ./fig/diagrams/transformer_architecture.png>
-Package pdftex.def Info: ./fig/diagrams/transformer_architecture.png  used on input line 12.
-(pdftex.def)             Requested size: 221.9316pt x 304.75024pt.
+./src/data_collection.tex:73: Misplaced alignment tab character &.
+l.73   Validation &
+                    2,785 & 6,876 & 2,393 & 116 \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: Citation 'vaswani2017attention' on page 25 undefined on input line 13.
+./src/data_collection.tex:73: Misplaced alignment tab character &.
+l.73   Validation & 2,785 &
+                            6,876 & 2,393 & 116 \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
+./src/data_collection.tex:73: Misplaced alignment tab character &.
+l.73   Validation & 2,785 & 6,876 &
+                                    2,393 & 116 \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: Citation 'vaswani2017attention' on page 25 undefined on input line 13.
+./src/data_collection.tex:73: Misplaced alignment tab character &.
+l.73   Validation & 2,785 & 6,876 & 2,393 &
+                                            116 \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-Package acronym Info: Label `acro:BERT' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
+./src/data_collection.tex:74: Misplaced \cr.
+\reserved@c ->\ifnum 0=`{}\fi \cr 
+                                  
+l.74   T
+        est & 2,795 & 6,863 & 2,404 & 118 \\
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-LaTeX Warning: Citation 'devlin2019bert' on page 25 undefined on input line 18.
+./src/data_collection.tex:74: Misplaced alignment tab character &.
+l.74   Test &
+              2,795 & 6,863 & 2,404 & 118 \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-Package acronym Info: Label `acro:BROWCzech' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
-Package acronym Info: Label `acro:RetroMAE' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
-Package acronym Info: Label `acro:DeBERTaV3' newly defined as it shall be overridden
-although it is yet undefined on input line 18.
-[25 <./fig/diagrams/transformer_architecture.png>]
-
-LaTeX Warning: Citation 'liu2019roberta' on page 26 undefined on input line 22.
-
-Package acronym Info: Label `acro:MLM' newly defined as it shall be overridden
-although it is yet undefined on input line 33.
-
-LaTeX Warning: Citation 'xiao2022retromae' on page 26 undefined on input line 42.
-
-[26]
-
-LaTeX Warning: Citation 'he2021debertav3' on page 27 undefined on input line 61.
-
-[27]
-Package acronym Info: Label `acro:ELECTRA' newly defined as it shall be overridden
-although it is yet undefined on input line 72.
-Package acronym Info: Label `acro:RTD' newly defined as it shall be overridden
-although it is yet undefined on input line 72.
-
-
-LaTeX Warning: Citation 'clark2020electra' on page 28 undefined on input line 72.
-
-
-LaTeX Warning: Citation 'he2020deberta' on page 28 undefined on input line 72.
-
-[28] [29] [30]
-Package acronym Info: Label `acro:GELU' newly defined as it shall be overridden
-although it is yet undefined on input line 121.
-
-
-LaTeX Warning: Citation 'hendrycks2016gaussian' on page 31 undefined on input line 121.
-
-<./fig/diagrams/model_architecture_llm.png, id=978, 904.37875pt x 573.14125pt>
-File: ./fig/diagrams/model_architecture_llm.png Graphic file (type png)
-<use ./fig/diagrams/model_architecture_llm.png>
-Package pdftex.def Info: ./fig/diagrams/model_architecture_llm.png  used on input line 126.
-(pdftex.def)             Requested size: 443.86319pt x 281.28769pt.
-[31 <./fig/diagrams/model_architecture_llm.png>]
-Package acronym Info: Label `acro:CE' newly defined as it shall be overridden
-although it is yet undefined on input line 134.
- [32]
-
-LaTeX Warning: Citation 'lin2017focal' on page 33 undefined on input line 154.
-
-[33]
-Package acronym Info: Label `acro:MSE' newly defined as it shall be overridden
-although it is yet undefined on input line 183.
- [34] [35] [36]
-<./fig/plots/num_of_tokens_plot.png, id=1079, 2167.09625pt x 451.6875pt>
-File: ./fig/plots/num_of_tokens_plot.png Graphic file (type png)
-<use ./fig/plots/num_of_tokens_plot.png>
-Package pdftex.def Info: ./fig/plots/num_of_tokens_plot.png  used on input line 252.
-(pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
- [37 <./fig/plots/num_of_tokens_plot.png>] [38]
-<./fig/plots/loss_function.png, id=1103, 1151.30125pt x 374.39874pt>
-File: ./fig/plots/loss_function.png Graphic file (type png)
-<use ./fig/plots/loss_function.png>
-Package pdftex.def Info: ./fig/plots/loss_function.png  used on input line 280.
-(pdftex.def)             Requested size: 443.86319pt x 144.34105pt.
- [39] [40 <./fig/plots/loss_function.png>]
-<./fig/conf_matrix/llm_valid.png, id=1121, 396.0396pt x 312.2064pt>
-File: ./fig/conf_matrix/llm_valid.png Graphic file (type png)
-<use ./fig/conf_matrix/llm_valid.png>
-Package pdftex.def Info: ./fig/conf_matrix/llm_valid.png  used on input line 305.
-(pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
-) (./src/cat_boost.tex [41 <./fig/conf_matrix/llm_valid.png>]
-Package acronym Info: Label `acro:CatBoost' newly defined as it shall be overridden
-although it is yet undefined on input line 5.
-
-
-LaTeX Warning: Citation 'prokhorenkova2018catboost' on page 42 undefined on input line 5.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\OT1/cmr/m/n/10.95 We em-ployed [][][]Categorical Boost-ing ([])[] in-r-to-dused by
- []
-
-<./fig/cat_boost/cat_boost_training_loss.png, id=1142, 827.09pt x 451.6875pt>
-File: ./fig/cat_boost/cat_boost_training_loss.png Graphic file (type png)
-<use ./fig/cat_boost/cat_boost_training_loss.png>
-Package pdftex.def Info: ./fig/cat_boost/cat_boost_training_loss.png  used on input line 32.
-(pdftex.def)             Requested size: 443.86319pt x 242.4051pt.
-[42] [43 <./fig/cat_boost/cat_boost_training_loss.png>] [44]
-<./fig/conf_matrix/hybrid_valid.png, id=1209, 396.0396pt x 312.2064pt>
-File: ./fig/conf_matrix/hybrid_valid.png Graphic file (type png)
-<use ./fig/conf_matrix/hybrid_valid.png>
-Package pdftex.def Info: ./fig/conf_matrix/hybrid_valid.png  used on input line 97.
-(pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
- [45]) (./src/experiments.tex [46 <./fig/conf_matrix/hybrid_valid.png>]
-Chapter 5.
-
-LaTeX Warning: Citation 'paszke2019pytorch' on page 47 undefined on input line 7.
-
-
-LaTeX Warning: Citation 'wolf2020transformers' on page 47 undefined on input line 7.
-
-<./fig/conf_matrix/llm_test.png, id=1252, 396.0396pt x 312.2064pt>
-File: ./fig/conf_matrix/llm_test.png Graphic file (type png)
-<use ./fig/conf_matrix/llm_test.png>
-Package pdftex.def Info: ./fig/conf_matrix/llm_test.png  used on input line 23.
-(pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
-[47
-
-]
-<./fig/conf_matrix/catboost_test.png, id=1270, 396.0396pt x 312.2064pt>
-File: ./fig/conf_matrix/catboost_test.png Graphic file (type png)
-<use ./fig/conf_matrix/catboost_test.png>
-Package pdftex.def Info: ./fig/conf_matrix/catboost_test.png  used on input line 35.
-(pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
-<./fig/conf_matrix/hybrid_test.png, id=1282, 396.0396pt x 312.2064pt>
-File: ./fig/conf_matrix/hybrid_test.png Graphic file (type png)
-<use ./fig/conf_matrix/hybrid_test.png>
-Package pdftex.def Info: ./fig/conf_matrix/hybrid_test.png  used on input line 46.
-(pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
- [48 <./fig/conf_matrix/llm_test.png>] [49 <./fig/conf_matrix/catboost_test.png> <./fig/conf_matrix/hybrid_test.png>]) (./src/discussion.tex [50]
-Chapter 6.
-[51
-
-]) (./src/conclusion.tex [52]
-Chapter 7.
-) [53
-
-]
-Chapter 8.
-
-LaTeX Warning: Empty bibliography on input line 148.
-
-[54
-
-]
-Appendix A.
-[55
-
-] 
-enddocument/afterlastpage: lastpage setting LastPage.
-(./main.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-02-20>
- ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5843F7BB708AFE4F970D9BCFF055B9B7;18855.
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
-Package logreq Info: Writing requests to 'main.run.xml'.
-\openout1 = `main.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 57517 strings out of 474116
- 1331700 string characters out of 5732613
- 2254364 words of memory out of 5000000
- 78684 multiletter control sequences out of 15000+600000
- 569871 words of font info for 79 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 88i,17n,96p,2873b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (66 pages, 1793764 bytes).
-PDF statistics:
- 1460 PDF objects out of 1728 (max. 8388607)
- 1286 compressed objects within 13 object streams
- 239 named destinations out of 1000 (max. 500000)
- 979 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+./src/data_collection.tex:74: Misplaced alignment tab character &.
+l.74   Test & 2,795 &
+                      6,863 & 2,404 & 118 \\
+I can't figure out why you would want to use a tab mark
+here. If you
