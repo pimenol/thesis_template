@@ -15,4 +15,4 @@ manual:
 	pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex
 	bibtex $(BUILDDIR)/$(PROJNAME)
 	pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex
-pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex
+	pdflatex -output-directory=$(BUILDDIR) $(PROJNAME).tex

@@ -65,7 +65,7 @@ After cleaning and filtering, the data was split into three sets: Training Set, 
   \centering
   \caption{Class Distribution Across Dataset Splits}
   \label{tab:class_distribution}
-  \begin{tabular}{|l|c|c|c|c|c|}
+  \begin{tabular}{l|c|c|c|c|c}
   \hline
   \textbf{Set} & \textbf{Label 0} & \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} & \textbf{All} \\
   \hline
@@ -75,6 +75,7 @@ After cleaning and filtering, the data was split into three sets: Training Set, 
   \hline
   \end{tabular}
 \end{table}
+
 
 As clearly visible from Tab.~\ref{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
 
