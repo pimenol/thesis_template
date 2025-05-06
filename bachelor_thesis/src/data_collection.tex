@@ -65,18 +65,18 @@ After cleaning and filtering, the data was split into three sets: Training Set, 
   \centering
   \caption{Class Distribution Across Dataset Splits}
   \label{tab:class_distribution}
-  \begin{tabular}{|l|c|c|c|c|}
+  \begin{tabular}{|l|c|c|c|c|c|}
   \hline
-  \textbf{Set} & \textbf{Label 0} & \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} \\
+  \textbf{Set} & \textbf{Label 0} & \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} & \textbf{All} \\
   \hline
-  Training & 12,994 (22.9\%) & 32,086 (56.5\%) & 11,166 (19.7\%) & 542 (0.9\%) \\
-  Validation & 2,785 & 6,876 & 2,393 & 116 \\
-  Test & 2,795 & 6,863 & 2,404 & 118 \\
+  Training & 9,216 (19.8\%) & 27,030 (58\%) & 9,901 (21.2\%) & 461 (0.9\%) & 46,608 \\
+  Validation & 2,000 & 5,817 & 2,125 & 109 & 10,051 \\
+  Test & 1,939 & 5,901 & 2,169 & 76 & 10,085 \\
   \hline
   \end{tabular}
 \end{table}
 
-As clearly visible from Tab.~\ref{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 56\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
+As clearly visible from Tab.~\ref{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
 
 
 \section{Data Analysis}\label{sec:data_analysis}
@@ -139,7 +139,7 @@ To increase the representation of Class 3 (the minority class), an attempt was m
 
 \subsection{Oversampling}
 
-Another strategy was random oversampling of Class 3 instances. In this approach, existing Class 3 articles were duplicated until their total count matched the number of Class 2 articles (around 11,000). Oversampling did improve the model’s recall on Class 3 examples (approximately 0.30). However, it had significant drawbacks. Training time increased by roughly 20\%, and the model began to overfit the training data. As a result, the validation F1 score fell to 0.68. Given these trade-offs, oversampling was not incorporated into the final training procedure.
+Another strategy was random oversampling of Class 3 instances. In this approach, existing Class 3 articles were duplicated until their total count matched the number of Class 2 articles (around 10,000). Oversampling did improve the model’s recall on Class 3 examples (approximately 0.30). However, it had significant drawbacks. Training time increased by roughly 20\%, and the model began to overfit the training data. As a result, the validation F1 score fell to 0.68. Given these trade-offs, oversampling was not incorporated into the final training procedure.
 
 \subsection{Synthetic Data Generation}
 
