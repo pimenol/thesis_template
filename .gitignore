@@ -1,5 +1,5 @@
-*.swp
-*.swo
+# *.swp
+# *.swo
 
-output
-master_output
+# output
+# master_output
