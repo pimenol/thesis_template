@@ -29,9 +29,10 @@ As a result, the dataset used in this study benefits from a refined evaluation p
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\textwidth]{./fig/plots/num_editor_articles.png}
-  \caption{Number of labeled articles.}
+  \caption{Number of labeled articles}
   \label{fig:num_labeled_articles}
 \end{figure}
+
 
 \section{Data Cleaning and Filtering}
 To prepare the dataset, the following steps were taken:
@@ -47,36 +48,28 @@ These measures ensured a clean and relevant dataset for journalistic quality cla
 \section{Annotation Process}
 The quality labels used as the ground truth in this supervised learning task were assigned by experienced human editors at Seznam.cz. This annotation process is a routine part of content management on the platform, aimed at maintaining consistent editorial standards.
 
-Editors evaluate articles based on a set of internal guidelines, but also rely significantly on their professional judgment and experience. They assess various aspects, including depth of content, writing quality, factual accuracy, structure, sourcing, and overall adherence to journalistic principles. Based on this assessment, each article is assigned one of the four quality labels defined in Section \ref{sec:problem_formulation}:
-
-\ac{Class 0}
-
-\ac{Class 1}
-
-\ac{Class 2}
-
-\ac{Class 3}
+Editors evaluate articles based on a set of internal guidelines, but also rely significantly on their professional judgment and experience. They assess various aspects, including depth of content, writing quality, factual accuracy, structure, sourcing, and overall adherence to journalistic principles. Based on this assessment, each article is assigned one of the four quality labels defined in Section \ref{sec:problem_formulation} (\ac{Class 0}, \ac{Class 1}, \ac{Class 2}, and \ac{Class 3}).
 
 \section{Dataset Statistics}\label{sec:dataset_statistics}
 \subsection{Dataset Size and Splits}
-After cleaning and filtering, the data was split into three sets: Training Set, Validation Set and Test set. The distribution of articles across the four quality labels within each dataset split is presented in Tab.~\ref{tab:class_distribution}
+After cleaning and filtering, the data was split into three sets: Training Set, Validation Set and Test set. The distribution of articles across the four quality labels within each dataset split is presented in ~\reftab{tab:class_distribution}
 
 \begin{table}[h]
   \centering
   \caption{Class Distribution Across Dataset Splits}
   \label{tab:class_distribution}
-  \begin{tabular}{|l|c|c|c|c|c|}
-  \hline
+  \begin{tabular}{lccccc}
+  % \hline
   \textbf{Set} & \textbf{Label 0} & \textbf{Label 1} & \textbf{Label 2} & \textbf{Label 3} & \textbf{All} \\
-  \hline
+  % \hline
   Training & 9,216 (19.8\%) & 27,030 (58\%) & 9,901 (21.2\%) & 461 (0.9\%) & 46,608 \\
   Validation & 2,000 & 5,817 & 2,125 & 109 & 10,051 \\
   Test & 1,939 & 5,901 & 2,169 & 76 & 10,085 \\
-  \hline
+  % \hline
   \end{tabular}
 \end{table}
 
-As clearly visible from Tab.~\ref{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
+As clearly visible from ~\reftab{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
 
 
 \section{Data Analysis}\label{sec:data_analysis}
@@ -89,7 +82,7 @@ This long tail already hints at a qualitative difference between routine news br
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\textwidth]{./fig/plots/num_words_plot.png}
-  \caption{Distribution of article length in words.}
+  \caption{Distribution of article length in words}
   \label{fig:num_words}
 \end{figure}
 
@@ -128,7 +121,7 @@ This means that better articles tend to use a wider vocabulary. However, there i
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\textwidth]{./fig/plots/num_unique_tokens_plot.png}
-  \caption{Distribution of unique tokens in articles.}
+  \caption{Distribution of unique tokens in articles}
   \label{fig:num_unique_tokens}
 \end{figure}
 

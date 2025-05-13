@@ -4,7 +4,7 @@
 
 \section{Motivation}
 
-The digital content revolution has transformed journalism into a high-velocity industry where platforms must simultaneously manage exponential content growth and maintain rigorous quality standards. \cite{seznam2025} (Figure~\ref{fig:main_page}), serving over 5 million daily users, currently relies on human editors to manually assess only 20\% of submitted articles - an unsustainable practice given the platform's 50\% annual content growth rate. This manual process introduces significant challenges:
+The digital content revolution has transformed journalism into a high-velocity industry where platforms must simultaneously manage exponential content growth and maintain rigorous quality standards. \cite{seznam2025} (~\reffig{fig:main_page}), serving over 5 million daily users, currently relies on human editors to manually assess only 20\% of submitted articles - an unsustainable practice given the platform's 50\% annual content growth rate. This manual process introduces significant challenges:
 \begin{itemize}
   \item \textbf{Scalability limitations:} With article submissions increasing by 50\% annually, human editors cannot maintain pace without compromising review depth
   \item \textbf{Consistency issues:} Inter-editor agreement analysis reveals 20\% variance in quality ratings for identical content
@@ -26,7 +26,7 @@ Therefore, the primary motivation for this research is to develop an automated s
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.45\textwidth]{./fig/photos/Seznam_main_page.png}
-  \caption{Main page Seznam.cz}
+  \caption{Example of Seznam.cz Homepage Displaying News Content}
   \label{fig:main_page}
 \end{figure}
 
@@ -91,15 +91,11 @@ Traditional journalistic quality assessment relies on human evaluation guided by
 
 \subsection{Computational Approaches to Text Quality Assessment}
 
-Automated text quality assessment provides foundational insights for journalistic applications. \cite{pitler2008} demonstrated correlations between syntactic features and human perceptions of writing quality, using metrics like sentence complexity and coherence. However, their approach was general and did not address the specific stylistic and ethical requirements of journalistic texts. More recent advancements, as noted in a 2024 article by \cite{quantum2024}, leverage NLP techniques such as grammar analysis, sentiment analysis, and text cohesion metrics to evaluate content quality automatically. These methods offer promising tools for journalism but require adaptation to domain-specific standards.
-% https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=a80837b2bbe847aa9ce82ea9a14d23d82b4e4119
-% Дискурсивные отношения — главный фактор
-% Исследование показало, что именно дискурсивные отношения (например, логические или причинно-следственные связи между предложениями) наиболее устойчиво коррелируют с оценками читаемости и качества текста у реальных читателей. Поверхностные метрики, такие как длина предложения или слова, оказались слабыми предикторами
-% Исследование впервые на большом корпусе (Wall Street Journal) и с помощью аннотированных дискурсивных связей доказало, что именно структура текста и его логическая связанность важнее простых количественных метрик для восприятия качества читателями
+Automated text quality assessment provides foundational insights for journalistic applications. \cite{pitler2008} demonstrated correlations between syntactic features and human perceptions of writing quality, using metrics like sentence complexity and coherence. However, their approach was general and did not address the specific stylistic and ethical requirements of journalistic texts. More recent advancements, as noted in a 2024 article by \cite{quantum2024}, leverage \ac{NLP} techniques such as grammar analysis, sentiment analysis, and text cohesion metrics to evaluate content quality automatically. These methods offer promising tools for journalism but require adaptation to domain-specific standards.
 
 \subsection{Machine Learning for Classification of Media Content}
 
-Machine learning has significantly advanced media content classification. \cite{potthast2018} developed methods to detect style-based bias in news articles, focusing on political orientation. Their work illustrates the potential of ML to identify subtle textual patterns but does not directly address overall quality. Similarly, \cite{gonzalez2021} applied BERT-based architectures to classify news articles by credibility, achieving accuracy rates above 85\%. However, their binary classification approach (credible vs. non-credible) does not capture the nuanced spectrum of journalistic quality, which often requires multi-class models.
+Machine learning has significantly advanced media content classification. \cite{potthast2018} developed methods to detect style-based bias in news articles, focusing on political orientation. Their work illustrates the potential of \ac{ML} to identify subtle textual patterns but does not directly address overall quality. Similarly, \cite{gonzalez2021} applied BERT-based architectures to classify news articles by credibility, achieving accuracy rates above 85\%. However, their binary classification approach (credible vs. non-credible) does not capture the nuanced spectrum of journalistic quality, which often requires multi-class models.
 
 % https://ojs.aaai.org/index.php/AAAI/article/view/5386/5242
 % Выводы
@@ -112,7 +108,7 @@ Machine learning has significantly advanced media content classification. \cite{
 
 \subsection{Multi-class Classification in Natural Language Processing}
 
-Multi-class classification in natural language processing (NLP) is a critical technique for categorizing text into multiple predefined classes, making it highly relevant for assessing the quality of journalistic content across various dimensions, such as accuracy, depth, and balance. A comprehensive review by \cite{minaee2020} examines over 150 deep learning models applied to text classification tasks, including sentiment analysis, news categorization, and question answering. The authors highlight the effectiveness of transformer-based architectures, such as BERT and its variants, which leverage large-scale pretraining and fine-tuning to achieve state-of-the-art performance in complex multi-class classification problems. These models are particularly promising for evaluating journalistic quality, as they can capture semantic nuances and contextual relationships within news articles. The review also summarizes over 40 popular datasets, some of which focus on news categorization, providing valuable benchmarks for developing quality assessment systems.
+Multi-class classification in \ac{NLP} is a critical technique for categorizing text into multiple predefined classes, making it highly relevant for assessing the quality of journalistic content across various dimensions, such as accuracy, depth, and balance. A comprehensive review by \cite{minaee2020} examines over 150 deep learning models applied to text classification tasks, including sentiment analysis, news categorization, and question answering. The authors highlight the effectiveness of transformer-based architectures, such as BERT and its variants, which leverage large-scale pretraining and fine-tuning to achieve state-of-the-art performance in complex multi-class classification problems. These models are particularly promising for evaluating journalistic quality, as they can capture semantic nuances and contextual relationships within news articles. The review also summarizes over 40 popular datasets, some of which focus on news categorization, providing valuable benchmarks for developing quality assessment systems.
 
 Similarly, \cite{schmidt2019} introduced a multi-class approach for classifying Wikipedia article quality using document embeddings and content features. Their method, which achieved high accuracy in distinguishing quality levels, demonstrates the potential of semantic representations for quality assessment, adaptable to journalistic contexts.
 
@@ -122,65 +118,21 @@ Similarly, \cite{schmidt2019} introduced a multi-class approach for classifying 
 
 \subsection{Linguistic Features for Quality Assessment}
 
-Identifying linguistic features that correlate with quality is a key research area. \cite{schmidt2019} utilized document embeddings to capture semantic content, combined with features like section length and readability scores, to assess article quality. In journalism, similar features—such as Flesch-Kincaid readability, lexical diversity, and syntactic complexity—can indicate quality but must be tailored to journalistic standards. The Czech language, with its rich morphology and inflectional system, presents unique challenges for NLP tools, as standard models designed for English may underperform.
+Identifying linguistic features that correlate with quality is a key research area. \cite{schmidt2019} utilized document embeddings to capture semantic content, combined with features like section length and readability scores, to assess article quality. In journalism, similar features—such as Flesch-Kincaid readability, lexical diversity, and syntactic complexity—can indicate quality but must be tailored to journalistic standards. The Czech language, with its rich morphology and inflectional system, presents unique challenges for \ac{NLP} tools, as standard models designed for English may underperform.
 
 \subsection{Research Gaps}
-Despite progress, several gaps persist in the literature. First, most studies focus on English-language content, with limited exploration of languages like Czech, where morphological complexity affects NLP performance. Second, many approaches rely on binary classification, which oversimplifies the multi-dimensional nature of journalistic quality. Third, few studies address the specific needs of news aggregation platforms like Seznam.cz, where high content volume and diversity demand scalable, language-specific solutions. Finally, ethical concerns, such as bias in AI models and the loss of human judgment, remain underexplored in automated quality assessment.
+Despite progress, several gaps persist in the literature. First, most studies focus on English-language content, with limited exploration of languages like Czech, where morphological complexity affects \ac{NLP} performance. Second, many approaches rely on binary classification, which oversimplifies the multi-dimensional nature of journalistic quality. Third, few studies address the specific needs of news aggregation platforms like Seznam.cz, where high content volume and diversity demand scalable, language-specific solutions. Finally, ethical concerns, such as bias in AI models and the loss of human judgment, remain underexplored in automated quality assessment.
 
 This thesis aims to address these gaps by developing a multi-class classification model tailored for the Czech language media environment. By integrating textual analysis, metadata, and Czech-specific linguistic features, this work builds on existing research while tackling its limitations, particularly for news aggregation platforms.
 
 \section{Contributions}
 
-This thesis makes several significant contributions to the field of automated journalistic quality assessment, particularly in the context of the Czech language and platforms like Seznam.cz. These contributions are outlined below:
-
-\subsection{Development of a Robust Classification System:}
 \begin{itemize}
-  \item Introduced a DebertaV3-based classification system for categorizing journalistic articles into four quality levels: Insufficient, Short but Sufficient, Standard, and High-Quality.
-  \item Achieved a weighted F1 score of 0.77, closely approaching the human editor agreement upper bound of 80\%, demonstrating the system's effectiveness in mimicking human editorial judgments.
+  \item A dataset of Czech articles annotated with four quality levels was prepared for multi-class classification. Texts were cleaned and filtered to ensure high-quality input data.
+  \item Class imbalance in the dataset was mitigated by applying balancing techniques. Resampling of minority classes and class-weighting were used to improve model learning on underrepresented categories.
+  \item Transformer-based language models, especially \ac{DeBERTaV3}, were fine-tuned to capture semantic and contextual cues relevant to article quality.
+  \item A \ac{CatBoost} model was trained using a variety of linguistic and structural features, offering a non-transformer baseline for comparison.
+  \item A hybrid classification model was developed by combining outputs from the transformer and \ac{CatBoost} models, improving predictive performance through model fusion.
+  \item Evaluation was based on the weighted F1 score to fairly account for class imbalance, with the hybrid model achieving the best performance among all tested approaches.
+  \item The thesis demonstrates that automated classification of article quality is feasible and can effectively support content assessment systems in high-volume environments.
 \end{itemize}
-
-\subsection{Innovative Handling of Class Imbalance and Overfitting:}
-
-\begin{itemize}
-  \item Addressed the challenge of class imbalance (e.g., only 0.9\% of articles are High-Quality) through sequential training, a hybrid loss function combining Cross-Entropy and Mean Squared Error, and class weighting ([1.0, 0.5, 1.0, 20.0]).
-  \item These strategies effectively balanced model performance across all classes, particularly improving recall for the minority High-Quality class.
-\end{itemize}
-
-\subsection{Comprehensive Feature Engineering for Journalistic Quality:}
-
-\begin{itemize}
-  \item Developed a feature set grounded in journalistic quality dimensions (Diversity, Transparency, Attractiveness, and Independence).
-  \item Incorporated linguistic complexity features (e.g., syntactic complexity, lexical diversity), structural composition features (e.g., section organization, citation quality), readability metrics adapted for Czech, and metadata features (e.g., channel\_id, publication timing).
-  \item Utilized Latent Semantic Analysis (LSA) to reduce text embeddings to a single dimension, streamlining quality assessment.
-  \item Introduced new features such as readability, manipulativity, and formality, addressing gaps in previous research.
-\end{itemize}
-
-\subsection{Comparative Analysis of Pre-trained Language Models:}
-
-\begin{itemize}
-  \item Evaluated three pre-trained language models (BrowCzech, RetroMAE, DebertaV3 base and DebertaV3 large) for Czech journalistic content.
-  \item Identified DebertaV3 large as the superior model due to its relative position embeddings and bilingual capabilities, providing insights for model selection in similar tasks, especially in low-resource languages.
-\end{itemize}
-
-\subsection{Advanced Model Testing and Superior Performance:}
-
-\begin{itemize}
-  \item Tested multiple models, including a neural network with Bert-like models embeddings and a CatBoost classifier.
-  \item Achieved the highest F1 score of 0.77 with the DebertaV3 large + CatBoost model.
-\end{itemize}
-
-\subsection{Innovations in Data Collection and Preprocessing:}
-
-\begin{itemize}
-  \item Created refined datasets (e.g., editor-reviewed, unchecked) and cleaned text data by removing emojis and HTML tags.
-  \item Highlighted the importance of article length as a quality indicator, with High-Quality articles averaging 1542.5 words compared to 486.5 for the majority class.
-\end{itemize}
-
-\subsection{Establishment of a Human Editor Benchmark:}
-
-\begin{itemize}
-  \item Conducted a detailed editor agreement study, setting a realistic upper bound of 80\% for automated systems.
-  \item This benchmark provides a target for model performance and validates the complexity of journalistic quality assessment, ensuring that automated systems are evaluated against a feasible standard.
-\end{itemize}
-
-These contributions collectively advance the state-of-the-art in automated journalistic quality assessment, offering a scalable and effective solution for platforms like Seznam.cz while addressing technical challenges such as class imbalance, overfitting, and language-specific nuances. The thesis also lays a foundation for future research by documenting extensive experiments, baseline comparisons, and error analyses.

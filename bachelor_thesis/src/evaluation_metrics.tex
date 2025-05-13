@@ -43,8 +43,7 @@ To evaluate model performance holistically, we employ the \textbf{F1 score}, whi
 
 This formulation accounts for the trade-off between false positives (FP) and false negatives (FN): a model cannot maximize F1 by excelling in only one of precision or recall at the expense of the other. 
 
-Unlike accuracy—which, as noted, treats all errors the same and can be dominated by the majority class—the F1 score ensures that performance on minority classes is not masked. A high F1 indicates the model is catching most of the high-quality articles (high recall) and not mislabeling too many low-quality articles as high-quality (high precision). In practical terms, F1 was used as the primary metric during model development: for example, the training procedure monitored the F1 score on the validation set and employed early stopping when it ceased improving %TODO(see Methodology chapter)
-, ensuring the final model is the one that best balances precision and recall.
+Unlike accuracy—which, as noted, treats all errors the same and can be dominated by the majority class—the F1 score ensures that performance on minority classes is not masked. A high F1 indicates the model is catching most of the high-quality articles (high recall) and not mislabeling too many low-quality articles as high-quality (high precision). In practical terms, F1 was used as the primary metric during model development.
 
 \section{Weighted F1 Score}
 When extending precision/recall/F1 to a multi-class setting, one must decide how to aggregate performance across classes. In this project we report the weighted F1 score as the primary evaluation metric, given the differing frequencies of each quality class. The weighted F1 is computed by calculating the F1 for each class separately, then taking a weighted average of these F1 scores using the class’s support (proportion of samples) as weights. Formally:
@@ -57,10 +56,9 @@ where $i \in \{0,1,2,3\}$, \(w_i = \frac{N_i}{N}\) is the fraction of samples be
 \subsection{Why use weighted F1?}
 In an imbalanced multi-class scenario like ours, weighted F1 offers several advantages over other averaging schemes (such as macro or micro averaging):
 \begin{itemize}
-  \item Balances Class Influence: Macro-averaged F1 treats all classes equally, which can over-emphasize performance on very rare classes, while micro-averaging is dominated by the majority class (since it effectively counts every instance equally, making the aggregate metric similar to accuracy in a single-label setting). The weighted F1 is a compromise that considers each class’s importance proportional to its frequency, preventing both the over-domination of majority classes and the over-sensitivity to tiny classes.
-  \item Comprehensive Single Metric: The weighted F1 provides a single summary statistic that still reflects precision-recall balance across all categories. This is convenient for model selection and comparison. During development, we used the weighted F1 on the validation set to pick the best model and tune hyperparameters (see Methodology chapter on training procedure)% TODO:
-  , since it ensured we were improving performance in an overall sense, not just for one favored class.
-  \item Reflects Real Data: Weighted F1 aligns evaluation with the actual class distribution, ensuring that minority classes are considered without letting rare classes overly affect the result.
+  \item \textbf{Balances Class Influence:} Macro-averaged F1 treats all classes equally, which can over-emphasize performance on very rare classes, while micro-averaging is dominated by the majority class (since it effectively counts every instance equally, making the aggregate metric similar to accuracy in a single-label setting). The weighted F1 is a compromise that considers each class’s importance proportional to its frequency, preventing both the over-domination of majority classes and the over-sensitivity to tiny classes.
+  \item \textbf{Comprehensive Single Metric:} The weighted F1 provides a single summary statistic that still reflects precision-recall balance across all categories. This is convenient for model selection and comparison. During development, we used the weighted F1 on the validation set to pick the best model and tune hyperparameters (~\ref{sec:training_methodology}), since it ensured we were improving performance in an overall sense, not just for one favored class.
+  \item \textbf{Reflects Real Data:} Weighted F1 aligns evaluation with the actual class distribution, ensuring that minority classes are considered without letting rare classes overly affect the result.
 \end{itemize}
 
 \section{Confusion Matrix}
@@ -69,7 +67,7 @@ The confusion matrix is a powerful tool for visualizing the performance of a mul
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{./fig/conf_matrix/confusion_matrix_Deberta_large.png}
-  \caption{Example of Confusion Matrix. DebertaV3 Large.}
+  \caption{Example of Confusion Matrix. DebertaV3 Large}
   \label{fig:confusion_example}
 \end{figure}
 

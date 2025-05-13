@@ -141,6 +141,39 @@
     \field{year}{2022}
   \endentry
 
+  \entry{inbook}{inbook}{}{}
+    \name{author}{2}{}{%
+      {{hash=BK}{%
+         family={Bendová},
+         familyi={B\bibinitperiod},
+         given={Klára},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Cinková},
+         familyi={C\bibinitperiod},
+         given={Silvie},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BKCS1}
+    \strng{fullhash}{BKCS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2021}
+    \field{labeldatesource}{}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \verb{doi}
+    \verb 10.1007/978-3-030-83527-9_14
+    \endverb
+    \field{isbn}{978-3-030-83526-2}
+    \field{pages}{159\bibrangedash 171}
+    \field{title}{Adaptation of Classic Readability Metrics to Czech}
+    \field{month}{08}
+    \field{year}{2021}
+  \endentry
+
   \entry{gonzalez2021}{article}{}{}
     \name{author}{4}{}{%
       {{hash=GGC}{%
@@ -263,46 +296,6 @@
     \field{title}{Electra: Pre-training text encoders as discriminators rather
   than generators}
     \field{journaltitle}{arXiv preprint arXiv:2003.10555}
-    \field{year}{2020}
-  \endentry
-
-  \entry{he2020deberta}{article}{}{}
-    \name{author}{4}{}{%
-      {{hash=HP}{%
-         family={He},
-         familyi={H\bibinitperiod},
-         given={Pengcheng},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=LX}{%
-         family={Liu},
-         familyi={L\bibinitperiod},
-         given={Xiaodong},
-         giveni={X\bibinitperiod},
-      }}%
-      {{hash=GJ}{%
-         family={Gao},
-         familyi={G\bibinitperiod},
-         given={Jianfeng},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=CW}{%
-         family={Chen},
-         familyi={C\bibinitperiod},
-         given={Weizhu},
-         giveni={W\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{HP+1}
-    \strng{fullhash}{HPLXGJCW1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
-    \field{sortinit}{7}
-    \field{sortinithash}{7}
-    \field{title}{Deberta: Decoding-enhanced bert with disentangled attention}
-    \field{journaltitle}{arXiv preprint arXiv:2006.03654}
     \field{year}{2020}
   \endentry
 
@@ -771,6 +764,38 @@
     \field{year}{2017}
   \endentry
 
+  \entry{loshchilov2017fixing}{article}{}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{2}{}{%
+      {{hash=LI}{%
+         family={Loshchilov},
+         familyi={L\bibinitperiod},
+         given={Ilya},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=HF}{%
+         family={Hutter},
+         familyi={H\bibinitperiod},
+         given={Frank},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LIHF+1}
+    \strng{fullhash}{LIHF+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{5}
+    \field{title}{Fixing weight decay regularization in adam}
+    \field{volume}{5}
+    \field{journaltitle}{arXiv preprint arXiv:1711.05101}
+    \field{year}{2017}
+  \endentry
+
   \entry{vaswani2017attention}{article}{}{}
     \name{author}{8}{}{%
       {{hash=VA}{%
@@ -926,6 +951,59 @@
     \verb b2bbe847aa9ce82ea9a14d23d82b4e4119
     \endverb
     \field{year}{2008}
+  \endentry
+
+  \entry{flesch2007flesch}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=FR}{%
+         family={Flesch},
+         familyi={F\bibinitperiod},
+         given={Rudolf},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FR1}
+    \strng{fullhash}{FR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{3}
+    \field{pages}{2007}
+    \field{title}{Flesch-Kincaid readability test}
+    \field{volume}{26}
+    \field{journaltitle}{Retrieved October}
+    \field{year}{2007}
+  \endentry
+
+  \entry{gunning1969fog}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=GR}{%
+         family={Gunning},
+         familyi={G\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Sage Publications Sage CA: Thousand Oaks, CA}%
+    }
+    \strng{namehash}{GR1}
+    \strng{fullhash}{GR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1969}
+    \field{labeldatesource}{}
+    \field{sortinit}{8}
+    \field{sortinithash}{8}
+    \field{number}{2}
+    \field{pages}{3\bibrangedash 13}
+    \field{title}{The fog index after twenty years}
+    \field{volume}{6}
+    \field{journaltitle}{Journal of Business Communication}
+    \field{year}{1969}
   \endentry
 \enddatalist
 \endinput

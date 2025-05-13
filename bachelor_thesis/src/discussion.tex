@@ -17,14 +17,20 @@ In summary, the discussion highlights that the system achieves a high level of a
 % Summarize key findings
 % Revisit research questions and contributions
 % Assess overall success of the approach
+
 \section{Future Work}
 Several directions can be pursued to enhance and extend this research:
 \begin{itemize}
-  \item Improve annotation quality. Refine the labeling guidelines and re-examine the dataset to correct inconsistent labels. Clearer instructions for annotators and a review process (for example, multiple editors checking each article) will reduce noise in the data. Higher-quality annotations will help the model learn more accurate distinctions.
-  \item Integrate into the editorial workflow. Deploy the model in the Seznam.cz production environment so that it provides real-time quality ratings for new articles. This could involve building an automated pipeline or dashboard where editors see the model’s predictions. In practice, the system’s output could guide editors to focus on borderline cases or flag problems early. Gathering feedback from actual editors using the tool will help improve the system.
-  \item Enhance explainability. Incorporate techniques to make the model’s decisions more transparent. For example, use feature-attribution methods (such as SHAP or LIME) to highlight which parts of an article influenced its quality score. Such explainability tools would allow users to understand why the model made a certain prediction, increasing trust and enabling further refinement of features.
-  \item Expand data and features. Collect more data to cover a broader range of content, possibly including articles from different time periods or additional sources. Additional features could be explored, such as social engagement metrics or multi-modal signals if images are present. More data and richer inputs can improve model robustness.
-  \item User studies and iterative refinement. Conduct user studies with human editors interacting with the system to identify usability issues and desired improvements. Based on this feedback, refine the model, features, and interface. This iterative development will ensure the tool meets practical editorial needs.
+  \item \textbf{Improve annotation quality.} Refine the labeling guidelines and re-examine the dataset to correct inconsistent labels. Clearer instructions for annotators and a review process (for example, multiple editors checking each article) will reduce noise in the data. Higher-quality annotations will help the model learn more accurate distinctions.
+  \item \textbf{Integrate into the editorial workflow.} Deploy the model in the Seznam.cz production environment so that it provides real-time quality ratings for new articles. This could involve building an automated pipeline or dashboard where editors see the model’s predictions. In practice, the system’s output could guide editors to focus on borderline cases or flag problems early. Gathering feedback from actual editors using the tool will help improve the system.
+  
+  \item \textbf{Enhance explainability.} Incorporate techniques to make the model’s decisions more transparent. For example, use feature-attribution methods (such as SHAP or LIME) to highlight which parts of an article influenced its quality score. Such explainability tools would allow users to understand why the model made a certain prediction, increasing trust and enabling further refinement of features.
+  
+  \item \textbf{Expand data and features.} Collect more data to cover a broader range of content, possibly including articles from different time periods or additional sources. Additional features could be explored, such as social engagement metrics or multi-modal signals if images are present. More data and richer inputs can improve model robustness.
+  
+  \item \textbf{User studies and iterative refinement.} Conduct user studies with human editors interacting with the system to identify usability issues and desired improvements. Based on this feedback, refine the model, features, and interface. This iterative development will ensure the tool meets practical editorial needs.
 \end{itemize}
 
 By pursuing these future tasks, the automated quality classification system can become more accurate, reliable, and useful. Improved data quality, seamless integration, and better interpretability will all help bridge the gap between the model and real-world editorial use, making it a valuable assistant for maintaining high journalistic standards.
+
+A key direction is the integration of the model into Seznam.cz’s article recommendation pipeline. Incorporating the classifier’s output will allow low-quality articles to be down-ranked or filtered out, directly enhancing content relevance and improving the user experience. Given that the proposed hybrid model significantly outperformed the existing channel-based heuristic it represents a strong candidate for production deployment. Its superior ability to detect low-quality articles not only improves editorial efficiency but also contributes to maintaining the platform’s credibility and user trust.

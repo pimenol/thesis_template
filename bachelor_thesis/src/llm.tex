@@ -5,12 +5,12 @@
 Transformer-based language models have revolutionized \ac{NLP} across multiple languages, including Czech. This chapter examines the theoretical foundations, architectures, and practical applications of pre-trained language models for Czech text classification tasks, with special attention to models specifically designed for the Czech language and their performance characteristics.
 
 \subsection{Theoretical Foundations}
-Pre-trained language models mark a significant advancement in \ac{NLP} by shifting from traditional word-level representations to models capable of capturing nuanced contextual information. These models are built upon the transformer architecture, first introduced by \cite{vaswani2017attention}, which relies on self-attention mechanisms to model relationships across entire sequences. The architecture, illustrated in Figure~\ref{fig:transformer_architecture}, enables highly parallelizable computation and has become foundational for state-of-the-art models in tasks such as classification, information retrieval, and text generation.
+Pre-trained language models mark a significant advancement in \ac{NLP} by shifting from traditional word-level representations to models capable of capturing nuanced contextual information. These models are built upon the transformer architecture, first introduced by \cite{vaswani2017attention}, which relies on self-attention mechanisms to model relationships across entire sequences. The architecture, illustrated in ~\reffig{fig:transformer_architecture}, enables highly parallelizable computation and has become foundational for state-of-the-art models in tasks such as classification, information retrieval, and text generation.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{./fig/diagrams/transformer_architecture.png}
-  \caption{Overview of the Transformer architecture, as introduced in the paper *Attention is All You Need* \cite{vaswani2017attention}.}
+  \caption{Overview of the Transformer architecture, as introduced in the paper *Attention is All You Need* \cite{vaswani2017attention}}
   \label{fig:transformer_architecture}
   \end{figure}
 
@@ -22,11 +22,11 @@ For this research, four pre-trained \ac{BERT}-like (\cite{devlin2019bert}) langu
 \ac{BROWCzech} is a monolingual Czech language model developed by Seznam.cz. It is based on the RoBERTa (\cite{liu2019roberta}) architecture and was pre-trained on an extensive internal corpus of Czech webpages, encompassing diverse topics and writing styles. This extensive pre-training enables the model to capture the nuances of the Czech language effectively.
 
 \begin{itemize}
-    \item Parameters: 109.5 million (23.4M in the embedding layer + 86.0M in the transformer layers)
-    \item Layers: 12 transformer layers
-    \item Hidden Dimensions: 768
-    \item Input Tokens: Maximum of 512
-    \item Tokenizer: Monolingual, supporting only Czech
+    \item \textbf{Parameters:} 109.5 million (23.4M in the embedding layer + 86.0M in the transformer layers)
+    \item \textbf{Layers:} 12 transformer layers
+    \item \textbf{Hidden Dimensions:} 768
+    \item \textbf{Input Tokens:} Maximum of 512
+    \item \textbf{Tokenizer:} Monolingual, supporting only Czech
 \end{itemize}
 
 \textbf{Pre-Training}
@@ -42,58 +42,72 @@ Due to its monolingual focus and extensive pre-training on Czech data, \ac{BROWC
 \ac{RetroMAE} (\cite{xiao2022retromae}) is a transformer encoder that integrates a specialized pre-training architecture for better document-level representations. It introduces an asymmetric encoder-decoder setup during pre-trainin. The encoder is a full-scale \ac{BERT}-like transformer which produces a condensed vector representation of the input text (for instance, the [CLS] token embedding). The decoder is a lightweight one-layer transformer that uses this representation to reconstruct the original text. This design does not change the model's structure at fine-tuning time - we still fine-tune the 12-layer encoder on the classification task - but the pre-training setup encourages the encoder to act as a powerful sentence/document encoder. \ac{RetroMAE} uses a Czech tokenizer, so in architecture it is comparable to \ac{BROWCzech} aside from the pre-training apparatus.
 
 \begin{itemize}
-  \item Parameters: 130.0 million (43.9M in the embedding layer + 86.0M in the transformer layers)
-  \item Layers: 12 transformer layers
-  \item Hidden Dimensions: 768
-  \item Input Tokens: Maximum of 512
-  \item Positional Embedding: absolute
-  \item Tokenizer: Monolingual, supporting only Czech
+  \item \textbf{Parameters:} 130.0 million (43.9M in the embedding layer + 86.0M in the transformer layers)
+  \item \textbf{Layers:} 12 transformer layers
+  \item \textbf{Hidden Dimensions:} 768
+  \item \textbf{Input Tokens:} Maximum of 512
+  \item \textbf{Positional Embedding:} absolute
+  \item \textbf{Tokenizer:} Monolingual, supporting only Czech
 \end{itemize}
 
 \textbf{Pre-Training}
-\ac{RetroMAE} was pre-trained on a massive Czech text corpus ($\approx$253 GB of news and web articles) with a novel masked autoencoding strategy geared towards retrieval. The key idea is to train the encoder to produce embeddings that capture the meaning of the entire text, which can be used to regenerate the text. To achieve this, \ac{RetroMAE} applies different masking ratios to the encoder and decoder inputs: for each input, the encoder sees a moderately masked version (20\% tokens removed) while the decoder sees a heavily masked version (50\% tokens masked out). The encoder must output a representation that, when fed into the decoder along with the decoder's masked input, allows the decoder to reconstruct the original sentence (recover the masked tokens). Additionally, \ac{RetroMAE} employs an asymmetric model structure, with the encoder being a full transformer (to encode rich features) and the decoder being minimal (to force the burden of representation onto the encoder). This pre-training approach effectively teaches the encoder to compress each document's essential content into its embedding. Beyond autoencoding, \ac{RetroMAE}'s training in this project also included retrieval-based contrastive learning: the model was periodically tasked to bring embeddings of similar documents closer and push dissimilar ones apar. This two-pronged pre-training (reconstruction + contrastive objectives) leads to embeddings that are not only information-rich but also arranged in a semantic space useful for comparing texts. Indeed, the creators of \ac{RetroMAE} report that it dramatically improves performance on retrieval benchmarks, confirming that the encoder learns powerful semantic representations.
+\ac{RetroMAE} was trained on a large Czech text collection ($\approx$253 GB) using masked autoencoding focused on retrieval. It masks 20\% of tokens for the encoder and 50\% for the decoder. The decoder must reconstruct the full text using the encoder output and its masked input. The encoder is large, the decoder small, forcing the encoder to learn strong semantic features. It also uses contrastive learning, bringing similar document embeddings closer and pushing different ones apart. This leads to embeddings that work well for comparing texts and help with retrieval tasks.
 
 \textbf{Special Capabilities}
-Thanks to its training, \ac{RetroMAE} excels at capturing document-level semantics and topical depth. It effectively encodes the “aboutness” of an article - the model was literally trained to compress an article's meaning into one vector. For journalistic quality, this means \ac{RetroMAE} can distinguish content-rich, in-depth articles from superficial ones. For example, an article with thorough coverage of a subject (lots of pertinent details, background context, and related information) will produce a dense embedding that \ac{RetroMAE} recognizes as distinct from that of a short news brief. This strength aligns with the “depth” dimension of quality: \ac{RetroMAE} should be adept at flagging articles that lack substance (likely classifying them as lower quality) versus those with comprehensive coverage (higher quality). Its retrieval objective may also enhance detection of factual consistency - articles that cover similar events should have similar embeddings, so if an article's content is anomalous or off-topic (potentially indicating lower factual accuracy or relevance), \ac{RetroMAE} might more readily identify it. On the other hand, \ac{RetroMAE} does not introduce special handling of language beyond Czech. It might not handle foreign names or code-switching as well as a bilingual model, and it relies on the same 512-token input limit as \ac{BROWCzech}. Also, because its focus is on what is said (semantic content) more than how it's structured, \ac{RetroMAE} might be less sensitive to certain stylistic or structural quality signals (e.g., subtle differences in tone or the presence of formatting elements like citations). In practice, however, document embeddings can encode some structural indicators if they correlate with content. Overall, \ac{RetroMAE}'s semantic prowess is expected to help on quality aspects like factual depth and topic relevance, complementing other models that emphasize linguistic or structural nuances.
+\ac{RetroMAE} captures document meaning well. It can tell if an article has deep content or is superficial. This makes it useful for judging article quality by depth and relevance. Its training also helps it detect off-topic or inconsistent content. However, it does not support other languages and may not handle foreign names well. It also shares the 512-token limit of \ac{BROWCzech}. While it focuses on meaning rather than style, its embeddings may still reflect structure if it's linked to content. In general, \ac{RetroMAE} is strong in identifying informative and relevant articles.
+
+% \textbf{Pre-Training}
+% \ac{RetroMAE} was pre-trained on a massive Czech text corpus ($\approx$253 GB of news and web articles) with a novel masked autoencoding strategy geared towards retrieval. The key idea is to train the encoder to produce embeddings that capture the meaning of the entire text, which can be used to regenerate the text. To achieve this, \ac{RetroMAE} applies different masking ratios to the encoder and decoder inputs: for each input, the encoder sees a moderately masked version (20\% tokens removed) while the decoder sees a heavily masked version (50\% tokens masked out). The encoder must output a representation that, when fed into the decoder along with the decoder's masked input, allows the decoder to reconstruct the original sentence (recover the masked tokens). Additionally, \ac{RetroMAE} employs an asymmetric model structure, with the encoder being a full transformer (to encode rich features) and the decoder being minimal (to force the burden of representation onto the encoder). This pre-training approach effectively teaches the encoder to compress each document's essential content into its embedding. Beyond autoencoding, \ac{RetroMAE}'s training in this project also included retrieval-based contrastive learning: the model was periodically tasked to bring embeddings of similar documents closer and push dissimilar ones apar. This two-pronged pre-training (reconstruction + contrastive objectives) leads to embeddings that are not only information-rich but also arranged in a semantic space useful for comparing texts. Indeed, the creators of \ac{RetroMAE} report that it dramatically improves performance on retrieval benchmarks, confirming that the encoder learns powerful semantic representations.
+
+% \textbf{Special Capabilities}
+% Thanks to its training, \ac{RetroMAE} excels at capturing document-level semantics and topical depth. It effectively encodes the “aboutness” of an article - the model was literally trained to compress an article's meaning into one vector. For journalistic quality, this means \ac{RetroMAE} can distinguish content-rich, in-depth articles from superficial ones. For example, an article with thorough coverage of a subject (lots of pertinent details, background context, and related information) will produce a dense embedding that \ac{RetroMAE} recognizes as distinct from that of a short news brief. This strength aligns with the “depth” dimension of quality: \ac{RetroMAE} should be adept at flagging articles that lack substance (likely classifying them as lower quality) versus those with comprehensive coverage (higher quality). Its retrieval objective may also enhance detection of factual consistency - articles that cover similar events should have similar embeddings, so if an article's content is anomalous or off-topic (potentially indicating lower factual accuracy or relevance), \ac{RetroMAE} might more readily identify it. On the other hand, \ac{RetroMAE} does not introduce special handling of language beyond Czech. It might not handle foreign names or code-switching as well as a bilingual model, and it relies on the same 512-token input limit as \ac{BROWCzech}. Also, because its focus is on what is said (semantic content) more than how it's structured, \ac{RetroMAE} might be less sensitive to certain stylistic or structural quality signals (e.g., subtle differences in tone or the presence of formatting elements like citations). In practice, however, document embeddings can encode some structural indicators if they correlate with content. Overall, \ac{RetroMAE}'s semantic prowess is expected to help on quality aspects like factual depth and topic relevance, complementing other models that emphasize linguistic or structural nuances.
 
 \subsubsection{\ac{DeBERTaV3} Base}
 \textbf{Architecture}
 \ac{DeBERTaV3} (\cite{he2021debertav3}) is a transformer encoder that builds on the \ac{BERT} family with two major innovations: disentangled attention and improved embeddings. In \ac{DeBERTaV3}, each token is characterized by two vectors - one for its content (token identity) and one for its position - instead of a single combined embeddin. During self-attention, the model can attend to content and position information separately, a mechanism known as \textbf{Disentangled Attention}. This enables a form of relative position encoding: the model doesn't just rely on fixed absolute positions, but learns relative positional biases so it can better handle long-range dependencies and varied word order. The Base model also employs an extended vocabulary (in our case, a bilingual Czech-English tokenizer) which increases the embedding layer parameters. The bilingual tokenizer and vocabulary allow it to natively process both Czech and English text. This is particularly useful for Czech news, which often contain English names, technical terms, or quotes. In summary, \ac{DeBERTaV3} Base's architecture offers a more expressive attention mechanism and cross-lingual lexical coverage, setting it apart from \ac{BROWCzech} and \ac{RetroMAE} which use standard attention and monolingual vocabularies.
 
 \begin{itemize}
-  \item Parameters: 129.4 million (43.9M in the embedding layer + 85.5M in the transformer layers)
-  \item Layers: 12 transformer layers
-  \item Hidden Dimensions: 768
-  \item Input Tokens: Pre-trained with sentences with max 512 tokens, generalizes up to 2048 due to relative position embeddings
-  \item Tokenizer: Bilingual, supporting both Czech and English
+  \item \textbf{Parameters:} 129.4 million (43.9M in the embedding layer + 85.5M in the transformer layers)
+  \item \textbf{Layers:} 12 transformer layers
+  \item \textbf{Hidden Dimensions:} 768
+  \item \textbf{Input Tokens:} Pre-trained with sentences with max 512 tokens, generalizes up to 2048 due to relative position embeddings
+  \item \textbf{Tokenizer:} Bilingual, supporting both Czech and English
 \end{itemize}
 
+% \textbf{Pre-Training}
+% \ac{DeBERTaV3} Base was pre-trained with a state-of-the-art strategy that combines ideas from \ac{ELECTRA} and DeBERTa. Instead of the traditional \ac{MLM} objective, it uses \ac{RTD} (\cite{clark2020electra}) - the model is trained to distinguish real tokens from plausible but fake tokens generated by a small generator network. This task is more sample-efficient than MLM, yielding better learning of token distinctions. Additionally, \ac{DeBERTaV3} introduced Gradient-Disentangled Embedding Sharing, a technique to allow the generator and discriminator (in the \ac{ELECTRA} setup) to share token embeddings without conflicting gradients (avoiding a “tug-of-war” in embedding updates). By applying \ac{RTD} with disentangled embeddings, \ac{DeBERTaV3} achieves faster and more effective pre-training than MLM-based model. The model was trained on a mixture of English and Czech text (a bilingual corpus), reflecting its dual-language design. This means it saw Czech news articles and possibly English texts during pre-training, enabling it to handle code-switching and borrowed foreign phrases. The disentangled attention from the original DeBERTa (\cite{he2020deberta}) is retained, meaning the model also learns relative position representations during pre-training. Overall, this advanced pre-training regimen endows \ac{DeBERTaV3} Base with both multilingual understanding and robust language modeling, which have been shown to boost performance on a wide range of \ac{NLP} tasks and even cross-lingual benchmark.
+
+% \textbf{Special Capabilities}
+% \ac{DeBERTaV3} Base brings together several capabilities that are particularly relevant for assessing journalistic quality. First, its bilingual nature ensures that the presence of English names or excerpts in a Czech article will not confuse the model - it recognizes those tokens and their meanings. This supports the transparency dimension, as articles often mention international organizations or use English technical terms; DeBERTa can comprehend these in context and contribute to a fair quality assessment. Second, the disentangled attention and relative positional encoding give DeBERTa an edge in understanding text structure and long-distance relationships. News articles have important structural elements (e.g., key facts at the beginning, quotes and references throughout). \ac{DeBERTaV3} can better model such patterns, for instance understanding that a statement followed by a dash and a name is likely a quote attribution - a subtle structural cue linked to transparency and credibility. It is also less likely to be thrown off by long sentences or paragraphs, since relative positioning helps it maintain coherence over longer spans. These abilities align with the structure and coherence aspect of quality: \ac{DeBERTaV3} might more accurately evaluate whether an article is well-organized and whether information is appropriately placed. Third, the model's \ac{ELECTRA}-style pre-training (\ac{RTD}) tends to sharpen its ability to catch anomalies or errors in text (since it learned to spot “implausible” tokens). This could translate into better detection of factual errors or inconsistent details, aiding the factual accuracy dimension. In essence, \ac{DeBERTaV3} Base is expected to perform strongly across multiple quality criteria - it handles language diversity, captures long-range context, and has a finely-tuned sense for language correctness. Its main limitation relative to its Large counterpart is capacity: as a base model, it may sometimes miss very subtle signals that a larger model could pick up, and it shares the same 512-token input limit (mitigated by relative encoding, but still in effect). Nonetheless, among base-sized models, \ac{DeBERTaV3} Base is the most advanced in this lineup.
+
 \textbf{Pre-Training}
-\ac{DeBERTaV3} Base was pre-trained with a state-of-the-art strategy that combines ideas from \ac{ELECTRA} and DeBERTa. Instead of the traditional \ac{MLM} objective, it uses \ac{RTD} (\cite{clark2020electra}) - the model is trained to distinguish real tokens from plausible but fake tokens generated by a small generator network. This task is more sample-efficient than MLM, yielding better learning of token distinctions. Additionally, \ac{DeBERTaV3} introduced Gradient-Disentangled Embedding Sharing, a technique to allow the generator and discriminator (in the \ac{ELECTRA} setup) to share token embeddings without conflicting gradients (avoiding a “tug-of-war” in embedding updates). By applying \ac{RTD} with disentangled embeddings, \ac{DeBERTaV3} achieves faster and more effective pre-training than MLM-based model. The model was trained on a mixture of English and Czech text (a bilingual corpus), reflecting its dual-language design. This means it saw Czech news articles and possibly English texts during pre-training, enabling it to handle code-switching and borrowed foreign phrases. The disentangled attention from the original DeBERTa (\cite{he2020deberta}) is retained, meaning the model also learns relative position representations during pre-training. Overall, this advanced pre-training regimen endows \ac{DeBERTaV3} Base with both multilingual understanding and robust language modeling, which have been shown to boost performance on a wide range of \ac{NLP} tasks and even cross-lingual benchmark.
+\ac{DeBERTaV3} Base is trained with a method from \ac{ELECTRA} using \ac{RTD} (\cite{clark2020electra}) instead of the usual MLM. This task teaches the model to tell real tokens from fake ones, which is more efficient and helps it learn better. It also uses Gradient-Disentangled Embedding Sharing, so embeddings can be shared without training conflicts. Pre-training was done on a Czech-English mix, helping the model understand code-switching and borrowed terms. Disentangled attention and relative position learning were also part of the training. Together, these make \ac{DeBERTaV3} Base strong in multilingual understanding and general language tasks.
 
 \textbf{Special Capabilities}
-\ac{DeBERTaV3} Base brings together several capabilities that are particularly relevant for assessing journalistic quality. First, its bilingual nature ensures that the presence of English names or excerpts in a Czech article will not confuse the model - it recognizes those tokens and their meanings. This supports the transparency dimension, as articles often mention international organizations or use English technical terms; DeBERTa can comprehend these in context and contribute to a fair quality assessment. Second, the disentangled attention and relative positional encoding give DeBERTa an edge in understanding text structure and long-distance relationships. News articles have important structural elements (e.g., key facts at the beginning, quotes and references throughout). \ac{DeBERTaV3} can better model such patterns, for instance understanding that a statement followed by a dash and a name is likely a quote attribution - a subtle structural cue linked to transparency and credibility. It is also less likely to be thrown off by long sentences or paragraphs, since relative positioning helps it maintain coherence over longer spans. These abilities align with the structure and coherence aspect of quality: \ac{DeBERTaV3} might more accurately evaluate whether an article is well-organized and whether information is appropriately placed. Third, the model's \ac{ELECTRA}-style pre-training (\ac{RTD}) tends to sharpen its ability to catch anomalies or errors in text (since it learned to spot “implausible” tokens). This could translate into better detection of factual errors or inconsistent details, aiding the factual accuracy dimension. In essence, \ac{DeBERTaV3} Base is expected to perform strongly across multiple quality criteria - it handles language diversity, captures long-range context, and has a finely-tuned sense for language correctness. Its main limitation relative to its Large counterpart is capacity: as a base model, it may sometimes miss very subtle signals that a larger model could pick up, and it shares the same 512-token input limit (mitigated by relative encoding, but still in effect). Nonetheless, among base-sized models, \ac{DeBERTaV3} Base is the most advanced in this lineup.
+\ac{DeBERTaV3} Base is useful for assessing news article quality. First, it understands both Czech and English, so English quotes or names do not confuse it. This helps with the transparency of the article. Second, it captures long-distance relationships and structure, such as identifying quotes or key information placement. This supports structure and coherence assessment. Third, its training helps it spot unusual or incorrect tokens, which can help find factual mistakes. Overall, it handles diverse language, long contexts, and subtle language issues well. Its main limit is its smaller size compared to the Large version, but among base models, it is the most advanced.
 
 \subsubsection{\ac{DeBERTaV3} Large}
 \textbf{Architecture}
 The Large variant of \ac{DeBERTaV3} significantly scales up the Base model, enhancing its capacity for handling nuanced and complex language tasks. It is specifically optimized for scenarios requiring deeper semantic understanding and improved performance in demanding classification and cross-encoder tasks.
 \begin{itemize}
-  \item Parameters: 361.4 million (58.6M in the embedding layer + 302.8M in the transformer layers)
-  \item Layers: 24
-  \item Hidden Dimensions: 1024
-  \item Input Tokens: pre-trained with 512 tokens, generalizes up to 2048 via relative position encoding
-  \item Vocabulary Size: bilingual Czech-English
+  \item \textbf{Parameters:} 361.4 million (58.6M in the embedding layer + 302.8M in the transformer layers)
+  \item \textbf{Layers:} 24
+  \item \textbf{Hidden Dimensions:} 1024
+  \item \textbf{Input Tokens:} pre-trained with 512 tokens, generalizes up to 2048 via relative position encoding
+  \item \textbf{Vocabulary Size:} bilingual Czech-English
 \end{itemize}
 
 \textbf{Pre-Training}
-Unlike the Base variant, \ac{DeBERTaV3} Large is trained with an increased model capacity, allowing it to capture subtler language nuances and richer contextual relationships. While maintaining the \ac{ELECTRA}-style \ac{RTD} objective, its larger model size provides more parameters to effectively differentiate authentic and artificially generated tokens, resulting in improved learning efficiency and deeper semantic representations. The training corpus remains bilingual, similar to the Base variant, but the enhanced parameter count enables superior assimilation of cross-lingual contextual clues and more robust modeling of long-form and nuanced texts.
+% Unlike the Base variant, \ac{DeBERTaV3} Large is trained with an increased model capacity, allowing it to capture subtler language nuances and richer contextual relationships. While maintaining the \ac{ELECTRA}-style \ac{RTD} objective, its larger model size provides more parameters to effectively differentiate authentic and artificially generated tokens, resulting in improved learning efficiency and deeper semantic representations. The training corpus remains bilingual, similar to the Base variant, but the enhanced parameter count enables superior assimilation of cross-lingual contextual clues and more robust modeling of long-form and nuanced texts.
+\ac{DeBERTaV3} Large also uses \ac{RTD}, but its bigger size lets it learn more details and deeper context. It was trained on a bilingual corpus like the Base version, but handles cross-lingual and complex texts better due to more parameters.
 
 \textbf{Special Capabilities}
-Compared to \ac{DeBERTaV3} Base, the Large model demonstrates markedly improved performance in tasks requiring detailed semantic comprehension and fine-grained textual distinctions. Its increased number of transformer layers and expanded hidden dimensions enhance its ability to resolve subtle language patterns, ambiguous contexts, and complex factual consistency scenarios. The larger model is better suited for detailed anomaly detection tasks, such as identifying intricate factual errors or subtle inconsistencies. Additionally, its superior long-range modeling capability due to enhanced relative positional encoding makes it particularly effective in evaluating coherence and structural quality of lengthy articles or documents. This positions \ac{DeBERTaV3} Large as the preferred choice for high-stakes journalistic quality assessments and intricate text classification tasks, surpassing the Base variant in overall accuracy and contextual sensitivity.
+% Compared to \ac{DeBERTaV3} Base, the Large model demonstrates markedly improved performance in tasks requiring detailed semantic comprehension and fine-grained textual distinctions. Its increased number of transformer layers and expanded hidden dimensions enhance its ability to resolve subtle language patterns, ambiguous contexts, and complex factual consistency scenarios. The larger model is better suited for detailed anomaly detection tasks, such as identifying intricate factual errors or subtle inconsistencies. Additionally, its superior long-range modeling capability due to enhanced relative positional encoding makes it particularly effective in evaluating coherence and structural quality of lengthy articles or documents. This positions \ac{DeBERTaV3} Large as the preferred choice for high-stakes journalistic quality assessments and intricate text classification tasks, surpassing the Base variant in overall accuracy and contextual sensitivity.
+Compared to the Base version, the Large model is better at tasks that need deep understanding, such as spotting small errors or complex facts. It models long texts more effectively and gives better results for article coherence and structure. This makes it ideal for high-level quality assessment and fine-grained classification tasks.
 
 \subsection{Model Selection}
 To compare the performance of the evaluated models, we trained them using the same loss function 
-(described in Section~\ref{sec:loss_function}), identical features, and the same context window size. Hyperparameters for each model were carefully tuned to achieve the best possible validation performance. In Table~\ref{tab:validation_scores}, we present the weighted F1 scores and the F1 scores for each quality class (F1\textsubscript{1}--F1\textsubscript{4}) on the test set.
+(described in Section~\ref{sec:loss_function}), identical features, and the same context window size. Hyperparameters for each model were carefully tuned to achieve the best possible validation performance. In ~\reftab{tab:validation_scores}, we present the weighted F1 scores and the F1 scores for each quality class (F1\textsubscript{1}--F1\textsubscript{4}) on the test set.
 
 \begin{table}[H]
 \centering
@@ -116,7 +130,7 @@ The classification architecture implemented in this research was designed to eff
 
 Initially, during experiments with the \ac{BROWCzech} model, a simple classification head was developed, consisting of a dropout layer, a dense projection layer, and a softmax output. However, through systematic experimentation, it became evident that a slightly deeper and regularized architecture led to improved performance without significant computational overhead. These improvements, although first tested with \ac{BROWCzech}, were later adapted and finalized in conjunction with the \ac{DeBERTaV3} model, which ultimately demonstrated superior performance and became the backbone of the final system.
 
-The overall data flow and model architecture are illustrated in Figure \ref{fig:model_architecture}
+The overall data flow and model architecture are illustrated in \reffig{fig:model_architecture}
 As shown, the input text is first pre-processed and tokenized, then passed through the pre-trained transformer model to obtain contextual embeddings.
 The [CLS] token embedding is processed through a regularized fully connected classifier head, including dropout, dense projection, \ac{GELU} (\cite{hendrycks2016gaussian}) activation, and another dropout, before producing the final logits for prediction.
 Separately, additional features and metadata were extracted for possible use in ensemble models (described in Section \ref{sec:features_creating}).
@@ -124,7 +138,7 @@ Separately, additional features and metadata were extracted for possible use in 
 \begin{figure}
   \centering
   \includegraphics[width=1.0\textwidth]{./fig/diagrams/model_architecture_llm.png}
-  \caption{Model architecture overview for journalistic quality classification.}
+  \caption{Model architecture overview for journalistic quality classification}
   \label{fig:model_architecture}
 \end{figure}
 
@@ -137,46 +151,66 @@ Designing an effective loss function was critical due to the ordinal nature of t
 
 The initial model training used the standard categorical \ac{CE} loss, given its widespread success in multi-class classification. The cross-entropy loss is defined as:
 \begin{equation}
-    L_{\mathrm{CE}} = -\frac{1}{N} \sum_{i=1}^{N} \log(\hat{p}_{i,y_i}),
+    L_{\mathrm{CE}} = -\frac{1}{N} \sum_{i=1}^{N} \log(p_t),
 \end{equation}
-where $N$ is the number of samples in batch, for training sample $i$, $y_i$ is true class label and $\hat{p}_{i,c}$ is predicted probability for each class $c$. This loss encourages the model to assign high probability to the correct class. \ac{CE} was chosen as the starting point because it generally converges faster and more reliably than regression losses for classification problems (due to its strong gradients when the predicted probability is low for the true class).
+where $N$ is the number of samples in batch, for training sample $i$ and $p_t$ is the predicted probability for the true class. This loss encourages the model to assign high probability to the correct class. \ac{CE} was chosen as the starting point because it generally converges faster and more reliably than regression losses for classification problems (due to its strong gradients when the predicted probability is low for the true class).
 In early experiments, the \ac{CE} loss yielded reasonable overall accuracy. However, closer inspection revealed two major issues: it \textbf{treated all misclassifications equally}, and it \textbf{struggled with the extreme class imbalance in the data.}
 
 \subsection{Shortcomings of Using CE Alone}
-\textbf{Ordinal Errors Treated Equally:} In our task, the four quality classes have an inherent order (from \ac{Class 0} up to \ac{Class 3}). A misclassification that is off by several levels (e.g. predicting class 0 for an article that is truly class 3) is far more severe than a misclassification to an adjacent class. Yet, standard cross-entropy provides no mechanism to differentiate these cases - it penalizes any incorrect prediction based only on the probability assigned to the true class, not how far off the predicted class is. In practice this meant the model might treat a confusion between class 3 vs 0 as no worse than between class 3 vs 2, despite the former being a much larger error in an ordinal sense. Such behavior is undesirable for quality assessment, where we want to strongly discourage large deviations in predicted quality. This limitation is well-recognized in ordinal classification literature: common classification losses “do not account for any distance information between prompting the introduction of specialized ordinal losses that penalize distant misclassifications more heavily. 
+In many classification settings, using only the \textbf{\ac{CE}} loss can be suboptimal. \ac{CE} treats all classes as independent categories and does not account for any natural ordering of classes. Therefore, it penalizes all misclassifications equally, which means that predicting a class far from the true label is penalized the same as predicting one that is nearby. This can lead to less informative learning, especially when classes have an ordinal relationship.
 
-\textbf{Class Imbalance:} Moreover, the dataset was highly imbalanced. Using plain cross-entropy, the model tended to optimize for the majority classes and could virtually ignore the minority class, since mis-predicting the rare class had minimal impact on the average loss. Indeed, an initial model with unweighted \ac{CE} practically never predicted the \ac{Class 3}, leading to an extremely low recall for that category (the model would default to predicting more frequent classes to minimize loss). This is a common outcome in imbalanced data settings, where the loss is dominated by the prevalent classes. Thus, additional measures were needed to ensure the model learned to recognize the minority class and to account for the ordinal scale of errors.
+\begin{itemize}
+    \item \textit{No ordinal awareness}: \ac{CE} treats all classes independently, ignoring any natural ordering or distance between classes.
+    \item \textit{Uniform penalty}: All errors contribute equally to the loss, regardless of how ``far off'' the prediction is from the true label.
+    \item \textit{Sensitivity to imbalance}: Without modification, \ac{CE} often biases learning toward majority classes, as they dominate the loss sum.
+\end{itemize}
 
 \subsection{Addressing Class Imbalance: Focal Loss vs. Class Weighting}
-While the \ac{CE} loss served as a strong initial baseline, we still needed to tackle the class imbalance so that minority classes (especially \ac{Class 3}) would be properly recognized. Two strategies were explored: \textbf{Focal Loss} and \textbf{class weighting} within the cross-entropy.
+Class imbalance is a common issue in classification tasks. Two typical strategies to mitigate imbalance are \textbf{Focal Loss} and \textbf{Class Weighting}. Focal loss dynamically scales the loss of well-classified examples, focusing training on harder, misclassified examples. In contrast, class weighting adjusts the standard \ac{CE} loss by assigning higher weights to minority classes (often inversely proportional to class frequency). Each method has its own trade-offs and hyperparameters.
 
-\subsubsection{Focal Loss Attempt}
-Focal loss was considered because it is specifically designed by \cite{lin2017focal} to address class imbalance by down-weighting easy, majority-class examples. Focal loss adds a modulating factor $(1-p)^\gamma$ to the standard \ac{CE} loss, so that well-classified examples (with high $p$ for the true class) incur much smaller loss, focusing training on the hard, misclassified examples. The focal loss (without class-specific weighting) is:
-\begin{equation}
-    L_{\mathrm{FL}} = -\frac{1}{N} \sum_{i=1}^{N} (1 - \hat{p}_{i,y_i})^\gamma \log(\hat{p}_{i,y_i}),
-\end{equation}
-where $\gamma\ge 0$ is the focusing parameter. In theory, this loss would make the model devote more attention to the \ac{Class 3}, since those examples were consistently mispredicted (i.e. $\hat{p}{i,y_i}$ for class 3 was often low, making $(1-\hat{p}{i,y_i})^\gamma$ large and thus boosting their loss contribution). Focal loss has seen success in extreme imbalance settings (e.g. one-stage object detectors where background examples vastly outnumber foreground objects).
+\subsubsection{Focal Loss}
+Focal loss (introduced by Lin et al. \cite{lin2017focal}) modifies the standard cross-entropy as:
+\[
+L_{\text{focal}} = - \alpha_t (1 - p_t)^\gamma \log(p_t),
+\]
+where $\gamma \ge 0$ is a focusing parameter, and $\alpha_t$ is a weighting factor for class $t$. The term $(1 - p_t)^\gamma$ down-weights easy examples and puts more emphasis on hard, misclassified ones. As a result, focal loss can help the model learn from rare or difficult examples by effectively reducing the loss contribution of well-classified, majority-class examples.
 
-\textbf{Outcomes with Focal Loss}
-
-In our setting, however, focal loss did not yield the desired improvements. The model trained with focal loss showed lower overall F1 than the simpler weighted loss approach (described in Section~\ref{sec:class_weighting}), and it especially underperformed on the minority class. Several factors may explain this result. 
-
-First, the imbalance in our data, while significant, is not as astronomical as in some detection problems - thus the benefit of focal modulation was less pronounced.
-Second, focal loss can implicitly down-weight not just easy majority-class examples but also easy examples of all classes; this means some well-classified minority instances might receive less focus than they deserve. 
-In practice, we found that the model still struggled to identify High-Quality articles with focal loss - presumably because those samples were extremely rare to begin with, and focal loss alone cannot increase their presence in the training signal enough. Tuning $\gamma$ did not reverse this trend, and the added complexity of focal loss did not justify itself for our problem. Similar observations have been noted in literature when using focal loss outside its original context - if the class imbalance is better handled by explicit re-weighting, focal loss can sometimes even degrade performance by over-focusing on a handful of difficult cases and under-training on the rest. Given these findings, we turned to a more direct approach: class-weighted loss, which ultimately proved more effective.
-
-\subsubsection{Class Weighting}\label{sec:class_weighting}
-The final loss function incorporated class weights into the cross-entropy term to directly counteract the imbalance. We assigned a weight $w_c$ to each class $c$ in the cross-entropy calculation, so that errors on minority classes are amplified and errors on majority classes are down-weighted. The weights were set inversely proportional to class frequencies (with some manual tuning). In the end, the chosen weights were:
 \begin{itemize}
-  \item $w_{0}=1.0$ for class 0: \ac{Class 0}
-  \item $w_{1}=0.5$ for class 1: \ac{Class 1}
-  \item $w_{2}=1.0$ for class 2: \ac{Class 2}
-  \item $w_{3}=20.0$ for class 3: \ac{Class 3}
+    \item \textit{Dynamic scaling}: The factor $(1-p_t)^\gamma$ reduces the loss from easy examples ($p_t \approx 1$) and emphasizes hard examples, with $\gamma$ controlling this effect.
+    \item \textit{Hyperparameters}: The focusing parameter $\gamma$ determines how much to down-weight easy samples, while $\alpha_t$ can be tuned or set to class frequencies to further balance classes.
+    \item \textit{Use case}: Focal loss is particularly helpful when dealing with extreme class imbalance or when many easy negatives dominate the loss.
 \end{itemize}
-These values mean, for example, that misclassifying a \ac{Class 3} incurs $20\times$ the loss of misclassifying a \ac{Class 2}, reflecting the high importance and rarity of Class 3. The weight for Class 1 was set to 0.5 because \ac{Class 1} was the most over-represented category (so its loss is halved to prevent the model from over-focusing on it). The weighted cross-entropy loss thus became 
+
+\subsubsection*{Outcomes with Focal Loss}
+
+In our setting, however, focal loss \textit{did not yield the desired improvements}. The model trained with focal loss showed lower overall F1 than the simpler weighted loss approach, and it especially underperformed on the minority class. Several factors may explain this result:
+\begin{itemize}
+  \item The imbalance in our data, while significant, is not as astronomical as in some detection problems - thus the benefit of focal modulation was less pronounced.
+  \item Focal loss can implicitly down-weight not just easy majority-class examples but also easy examples of all classes; this means some well-classified minority instances might receive less focus than they deserve.
+\end{itemize}  
+In practice, we found that the model still struggled to identify \ac{Class 3} with focal loss - presumably because those samples were extremely rare to begin with, and focal loss alone cannot increase their presence in the training signal enough. Tuning $\gamma$ did not reverse this trend, and the added complexity of focal loss did not justify itself for our problem. 
+Similar observations have been noted in literature when using focal loss outside its original context - if the class imbalance is better handled by explicit re-weighting, focal loss can sometimes even degrade performance by over-focusing on a handful of difficult cases and under-training on the rest. Given these findings, we turned to a more direct approach: class-weighted loss, which ultimately proved more effective.
+
+\subsubsection{Class Weighting}
+Class weighting is a simpler alternative: each class $k$ is assigned a weight $w_k$ (often $w_k \propto \frac{1}{\text{freq}(k)}$). In the end, the chosen weights were:
+\begin{itemize}
+  \item $w_{0}=1.0$ for \ac{Class 0}
+  \item $w_{1}=0.5$ for \ac{Class 1}
+  \item $w_{2}=1.0$ for \ac{Class 2}
+  \item $w_{3}=20.0$ for \ac{Class 3}
+\end{itemize}
+
+The weighted cross-entropy loss thus became 
 \begin{equation}
-  L_{CE}^{*} = -\frac{1}{N}\sum_i w_{y_i}\log \hat{p}_{i,y_i}.
+  L_{CE}^{*} = -\frac{1}{N}\sum_i w_{y_i}\log p_t,
 \end{equation}
+where $w_{y_i}$ is the weight for the true class $y_i$ of sample $i$. 
+
+\begin{itemize}
+    \item \textit{Fixed scaling}: Weights $w_k$ are predetermined (e.g., inversely proportional to class frequency) and remain constant during training.
+    \item \textit{Simplicity}: Class weighting is straightforward to implement and can often improve recall on minority classes.
+    \item \textit{Limitation}: If set improperly, weights can either overshoot (causing overfitting to minority classes) or undershoot (failing to mitigate imbalance effectively).
+\end{itemize}
 
 \subsection{Incorporating an Ordinal Component: CE + MSE}\label{sec:ordinal_mse}
 
@@ -184,32 +218,41 @@ To address the \textbf{equal-penalty problem for ordinal errors}, the loss funct
 \begin{equation}
     \hat{y}_i = \sum_{c=0}^{3} c \cdot \hat{p}_{i,c},
 \end{equation}
-which is the expectation of the class index under the model's predicted distribution $\hat{p}_{i,c}$. Here $c=0$ corresponds to \ac{Class 0} and $c=3$ to \ac{Class 3}. The ground-truth label $y_i$ is likewise taken as an integer in $\{0,1,2,3\}$. The mean squared error for this sample is $(\tilde{y}_i - y_i)^2$, and the MSE loss over the dataset is:
+which is the expectation of the class index under the model's predicted distribution $\hat{p}_{i,c}$. The ground-truth label $y_i$ is likewise taken as an integer in $\{0,1,2,3\}$. The \ac{MSE} loss is:
 \begin{equation}
     L_{\mathrm{MSE}} = \frac{1}{N} \sum_{i=1}^{N} (\hat{y}_i - y_i)^2.
 \end{equation}
-This term grows quadratically with the difference between predicted and true class indices. For instance, if an article of true class \ac{Class 3} is predicted as class \ac{Class 0}, the term $(\hat{y}_i-y)^2$ will be much larger than if it were predicted as \ac{Class 2}. By summing an \ac{MSE} term with the cross-entropy, the hybrid loss function encourages correct classification and additionally encourages predictions to be closer to the true class when misclassifications occur. The combined loss was formulated as:
+This term grows quadratically with the difference between predicted and true class indices. By summing an \ac{MSE} term with the \ac{CE}, the hybrid loss function encourages correct classification and additionally encourages predictions to be closer to the true class when misclassifications occur. The combined loss was formulated as:
 \begin{equation}
     L_{\mathrm{hybrid}} = L_{\mathrm{CE}}^{*} + \lambda L_{\mathrm{MSE}},
 \end{equation}
-where $\lambda$ controls the relative importance of the ordinal \ac{MSE} term. This approach effectively blends classification and regression objectives. The expectation was that the cross-entropy component would drive the model to predict the correct class, while the MSE component would make it more sensitive to the magnitude of errors, thereby penalizing wildly incorrect predictions disproportionately. Literature on ordinal classification supports this intuition: a loss that “penalizes misclassifications more severely when they diverge farther from the true class” can improve performance on ordered-label tasks.
+where $\lambda$ controls the relative importance of the ordinal \ac{MSE} term. This approach effectively blends classification and regression objectives. The expectation was that the \ac{CE} component would drive the model to predict the correct class, while the \ac{MSE} component would make it more sensitive to the magnitude of errors, thereby penalizing wildly incorrect predictions disproportionately.
 
 \subsubsection{Balancing the Loss Terms (Choosing $\lambda$)}
 
-A key step was determining an appropriate value for $\lambda$. If $\lambda$ is too low, the MSE term would be negligible and the loss reduces to standard CE (failing to use the ordinal information), if $\lambda$ is too high, the model might overly optimize the \ac{MSE} (treating the task like regression) at the expense of classification accuracy. To calibrate $\lambda$, the average magnitudes of the two loss components were analyzed. After an initial training epoch, the expected values of each loss were computed:
-\begin{equation}
-    \mathbb{E}[L_{\mathrm{CE}^{*}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{CE}}(i), \qquad
-    \mathbb{E}[L_{\mathrm{MSE}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{MSE}}(i).
-\end{equation}
-Their ratio 
-\begin{equation}
-\alpha = \frac{\mathbb{E}[L_{\mathrm{CE}}]}{\mathbb{E}[L_{\mathrm{MSE}}]}
-\end{equation}
-provides a rough scaling factor to make the two loss terms contribute equally on average. In our case, this ratio $\alpha$ was used as an initial guess for $\lambda$. (Intuitively, if cross-entropy loss values were, say, ten times larger than \ac{MSE} values, one would set $\lambda \approx 10$ to balance them.) Starting from $\lambda \approx \alpha$, we then experimented with a range of $\lambda$ around this value to fine-tune performance.
+A key step was determining an appropriate value for $\lambda$. If $\lambda$ is too low, the \ac{MSE} term would be negligible and the loss reduces to standard \ac{CE} (failing to use the ordinal information), if $\lambda$ is too high, the model might overly optimize the \ac{MSE} (treating the task like regression) at the expense of classification accuracy. 
+% To calibrate $\lambda$, the average magnitudes of the two loss components were analyzed. 
+% After an initial training epoch, the expected values of each loss were computed:
+% \begin{equation}
+%     \mathbb{E}[L_{\mathrm{CE}^{*}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{CE}}(i), \qquad
+%     \mathbb{E}[L_{\mathrm{MSE}}] = \frac{1}{N}\sum_{i=1}^N L_{\mathrm{MSE}}(i).
+% \end{equation}
+% Their ratio 
+% \begin{equation}
+% \alpha = \frac{\mathbb{E}[L_{\mathrm{CE}}]}{\mathbb{E}[L_{\mathrm{MSE}}]}
+% \end{equation}
+% where $\mathbb{E}[L_{\mathrm{CE}}]$ and $\mathbb{E}[L_{\mathrm{MSE}}]$ are the expected values of the two loss terms. 
+% provides a rough scaling factor to make the two loss terms contribute equally on average. In our case, this ratio $\alpha$ was used as an initial guess for $\lambda$. (Intuitively, if cross-entropy loss values were, say, ten times larger than \ac{MSE} values, one would set $\lambda \approx 10$ to balance them.) Starting from $\lambda \approx \alpha$, we then experimented with a range of $\lambda$ around this value to fine-tune performance.
 
-\textbf{Experiments with \ac{MSE} Weight} 
+To balance the contributions of the two loss components, we computed their expected values after an initial training epoch and used their ratio as a scaling factor:
+\begin{equation}
+\alpha = \frac{\mathbb{E}[L_{\mathrm{CE}}^{*}]}{\mathbb{E}[L_{\mathrm{MSE}}]},
+\end{equation}
+where $\mathbb{E}[L_{\mathrm{CE}}^{*}]$ and $\mathbb{E}[L_{\mathrm{MSE}}]$ denote the average \ac{CE} and \ac{MSE} losses, respectively. This ratio $\alpha$ serves as a rough estimate for selecting $\lambda$, ensuring that both terms contribute equally to the overall loss on average. We used this estimate as an initial value and then explored a range of $\lambda$ values around $\alpha$ to fine-tune model performance.
 
-Several models were trained with different \ac{MSE} weight values to evaluate their impact. Table \ref{tab:mse_weight_results} summarizes the weighted F1 results (the primary evaluation metric) for a range of $\lambda$ values on the validation set:
+\subsubsection*{Experiments with \ac{MSE} Weight} 
+
+Several models were trained with different \ac{MSE} weight values to evaluate their impact. \reftab{tab:mse_weight_results} summarizes the weighted F1 results for a range of $\lambda$ values on the validation set:
 
 \begin{table}[H]
 \centering
@@ -220,71 +263,273 @@ Several models were trained with different \ac{MSE} weight values to evaluate th
 % \hline
 0.5 & 0.70 \\
 % \hline
-1.0 & 0.721 \\
+1.0 & \textbf{0.721} \\
 % \hline
 2.0 & 0.705 \\
 % \hline
 3.0 & 0.693 \\
 % \hline
 \end{tabular}
-\caption{Performance for different \ac{MSE} loss weightings for \ac{RetroMAE} model.}
+\caption{Performance for different \ac{MSE} loss weightings for \ac{RetroMAE} model}
 \label{tab:mse_weight_results}
 \end{table}
-As shown, the inclusion of the \ac{MSE} term yielded a noticeable improvement over using pure cross-entropy ($\lambda=0$). Performance peaked around $\lambda \approx 1.0$, which indeed was close to the calculated $\alpha$ in our case, confirming that balancing the two objectives was beneficial. A small \ac{MSE} contribution (0.5) already improved the model's F1, and using equal weight ($\lambda=1.0$) for \ac{CE} and \ac{MSE} gave the highest F1. Increasing $\lambda$ beyond 1.0 did not help further; a very large \ac{MSE} weight started to slightly degrade performance (likely because the model then over-emphasized predicting the exact ordinal value, at times sacrificing classification fidelity). The best model with $\lambda=1.0$ demonstrated that the ordinal loss component successfully reduced large misclassification errors - for example, the confusion matrix showed far fewer cases of confounding the lowest vs. highest quality classes once the \ac{MSE} term was introduced, compared to the \ac{CE}-only loss.
+As shown, the inclusion of the \ac{MSE} term yielded a noticeable improvement over using pure \ac{CE} ($\lambda=0$). Performance peaked around $\lambda \approx 1.0$, which indeed was close to the calculated $\alpha$ in our case, confirming that balancing the two objectives was beneficial. A small \ac{MSE} contribution (0.5) already improved the model's F1, and using equal weight ($\lambda=1.0$) for \ac{CE} and \ac{MSE} gave the highest F1. Increasing $\lambda$ beyond 1.0 did not help further; a very large \ac{MSE} weight started to slightly degrade performance (likely because the model then over-emphasized predicting the exact ordinal value, at times sacrificing classification fidelity). The best model with $\lambda=1.0$ demonstrated that the ordinal loss component successfully reduced large misclassification errors - for example, the confusion matrix showed far fewer cases of confounding the lowest vs. highest quality classes once the \ac{MSE} term was introduced, compared to the \ac{CE}-only loss.
 Our final loss function combined this weighted \ac{CE} with the \ac{MSE} term:
 \begin{equation}
-  L_{\text{final}} = \frac{1}{N} \sum_{i=1}^{N}( w_{y_i}\big(-\log \hat{p}_{i,y_i}\big) + 1.0 \times (\tilde{y}_i - y_i)^2).
+  L_{\text{final}} = - \frac{1}{N} \sum_{i=1}^{N}( w_{y_i}\log p_t + 1.0 \times (\hat{y}_i - y_i)^2).
   \label{eq:final_loss}
 \end{equation}
 
-\subsection{Final Results and Advantages of the Hybrid Loss}
-The $\ac{CE} + 1.0 \times \ac{MSE}$ with class weighting configuration was selected as the final loss function. This engineered loss function substantially outperformed the initial approaches. It effectively balanced the model's performance across all classes. Notably, the recall for the \ac{Class 3} class improved markedly. The model was able to identify a considerable portion of the \ac{Class 3} that were previously being missed. This can be attributed to the $20\times$ class weight forcing the model to pay attention to class 3, in combination with the ordinal \ac{MSE} term which dissuaded the model from conflating class 3 with much lower classes.
+This engineered final loss function substantially outperformed the initial approaches. It effectively balanced the model's performance across all classes. Notably, the recall for the \ac{Class 3} class improved markedly. The model was able to identify a considerable portion of the \ac{Class 3} that were previously being missed. This can be attributed to the $20\times$ class weight forcing the model to pay attention to class 3, in combination with the ordinal \ac{MSE} term which dissuaded the model from conflating class 3 with much lower classes.
 
-In other words, the final loss configuration addressed both major challenges: it distinguished large vs. small misclassification errors (due to the \ac{MSE} term) and mitigated class imbalance (due to the class weights on the CE term). 
-
-In summary, through iterative loss function engineering, the thesis arrived at a hybrid loss that leverages the strength of cross-entropy for classification, infuses ordinal awareness via a regression term, and incorporates strategic weighting to handle class frequency skew. This nuanced loss function was pivotal in boosting the model's ability to mimic human-like judgments of article quality.
+In summary, through iterative loss function engineering, the thesis arrived at a hybrid loss that leverages the strength of \ac{CE} for classification, infuses ordinal awareness via a regression term, and incorporates strategic weighting to handle class frequency skew. This nuanced loss function was pivotal in boosting the model's ability to mimic human-like judgments of article quality.
 
 \newpage
+
 \section{Tokenization and Sequence Handling}
-Each article in the dataset is first tokenized using the chosen tokenizer, converting the text into a sequence of subword tokens. The lengths of tokenized articles vary widely, so deciding on an appropriate maximum sequence length is crucial. To inform this decision, we analyzed the distribution of article lengths (in tokens) in the dataset. Figure~\ref{fig:token_count} shows a histogram of token counts per article, which we use to guide our sequence handling strategy.
+Each article in the dataset is first tokenized using the chosen tokenizer, converting the text into a sequence of subword tokens. The lengths of tokenized articles vary widely, so deciding on an appropriate maximum sequence length is crucial. To inform this decision, we analyzed the distribution of article lengths (in tokens) in the dataset. \reffig{fig:token_count} shows a histogram of token counts per article, which we use to guide our sequence handling strategy.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.0\textwidth]{./fig/plots/num_of_tokens_plot.png}
-  \caption{Distribution of token counts per article in the dataset. The red vertical line marks the 512-token cutoff and the black vertical line marks the 1024-token cutoff.}
+  \includegraphics[width=1.0\textwidth]{./fig/plots/num_of_tokens_plot.jpg}
+  \caption{Distribution of token counts per article in the dataset. The red vertical line marks the 512-token cutoff and the black vertical line marks the 1024-token cutoff}
   \label{fig:token_count}
 \end{figure}
 
-As illustrated in Figure~\ref{fig:token_count}, the token count distribution is strongly right-skewed. A significant portion of the articles have fewer than 512 tokens, so a limit of 512 tokens would allow us to process most articles without truncation. A substantial portion of articles have lengths between 512 and 1024 tokens, and beyond 1024 tokens there is a long tail of increasingly lengthy articles that are progressively rarer. In the histogram, the red vertical line marks the 512-token point and the black vertical line marks 1024 tokens, corresponding to the two sequence length cutoffs we considered.
+As illustrated in \reffig{fig:token_count}, the token count distribution is strongly right-skewed. A significant portion of the articles have fewer than 512 tokens, so a \textit{limit of 512 tokens would allow us to process most articles without truncation}. A substantial portion of articles have lengths between 512 and 1024 tokens, and beyond 1024 tokens there is a long tail of increasingly lengthy articles that are progressively rarer. In the histogram, the red vertical line marks the \textit{512-token point} and the black vertical line \textit{marks 1024 tokens}, corresponding to the two sequence length cutoffs we considered.
 
-Based on this distribution, we chose an initial maximum sequence length of 512 tokens and an extended sequence length of 1024 tokens. The 512-token limit covers the full content of most articles while keeping computational requirements manageable. Extending the limit to 1024 tokens allows the model to capture additional context from longer articles that exceed 512 tokens. Articles longer than 1024 tokens are relatively uncommon, so 1024 was deemed a reasonable upper bound. For any article exceeding the chosen maximum length, we apply truncation to fit the input size of the model, ensuring that we balance coverage of the article content with efficiency.
-
+Based on this distribution, we chose an initial maximum sequence length of 512 tokens and an extended sequence length of 1024 tokens. The \textbf{512-token limit} covers the full content of most articles while keeping computational requirements manageable. Extending the \textbf{limit to 1024 tokens} allows the model to capture additional context from longer articles that exceed 512 tokens. Articles longer than 1024 tokens are relatively uncommon, so 1024 was deemed a reasonable upper bound. For any article exceeding the chosen maximum length, we apply truncation to fit the input size of the model, ensuring that we balance coverage of the article content with efficiency.
 
 \newpage
-\section{Training Methodology}
 
-After designing the hybrid loss function and addressing class imbalance, we proceeded to fine-tune the \ac{DeBERTaV3} model with a carefully planned training regime to mitigate rapid overfitting. Fine-tuning a large pre-trained model on a relatively small dataset can quickly lead to the model memorizing the training set. To counter this, our training methodology incorporated staged training, learning rate scheduling with warmup, and strong regularization through weight decay (L2 penalty) and dropout. All model training used the final loss function from Section~\ref{sec:loss_function} - the weighted cross-entropy combined with an MSE term (Equation~\ref{eq:final_loss}) - to ensure the model optimized both classification accuracy and ordinal consistency during training.
+% \subsection{Shortcomings of Using CE Alone}
+% \textbf{Ordinal Errors Treated Equally:} In our task, the four quality classes have an inherent order (from \ac{Class 0} up to \ac{Class 3}). A misclassification that is off by several levels (e.g. predicting class 0 for an article that is truly class 3) is far more severe than a misclassification to an adjacent class. Yet, standard cross-entropy provides no mechanism to differentiate these cases - it penalizes any incorrect prediction based only on the probability assigned to the true class, not how far off the predicted class is. In practice this meant the model might treat a confusion between class 3 vs 0 as no worse than between class 3 vs 2, despite the former being a much larger error in an ordinal sense. Such behavior is undesirable for quality assessment, where we want to strongly discourage large deviations in predicted quality. This limitation is well-recognized in ordinal classification literature: common classification losses “do not account for any distance information between prompting the introduction of specialized ordinal losses that penalize distant misclassifications more heavily. 
 
-\subsection{Two-Stage Fine-Tuning}
-We adopted a staged training strategy to gradually introduce the full capacity of \ac{DeBERTaV3}. In the first stage, we trained only the classifier head (the final linear layer and task-specific parameters) while keeping all pre-trained Transformer layers frozen. This allowed the new classification layer to learn basic separations between classes without immediately over-fitting the entire model to the limited data. We ran this head-only training for a short period until the head's performance plateaued. In the second stage, we unfroze the full \ac{DeBERTaV3} model and continued fine-tuning all layers. At this point, the classifier head was already reasonably calibrated, so the Transformer layers could adjust more subtly to improve performance. This two-stage approach meant the model started in a conservative regime and only later used its full complexity, reducing the risk of early overfitting. We found that the transition between these stages led to a noticeable improvement in validation loss - as soon as the Transformer layers were unfrozen and fine-tuning began, the model's validation loss dropped significantly (indicating it could fit the data better once allowed to update the base weights). We used the same optimizer and learning rate schedule across both stages, but reset the learning rate to a slightly lower value upon unfreezing to ensure stability (since large updates to all weights after unfreezing could destabilize training). By the end of stage two, the model was fine-tuned end-to-end, having benefited from a “warm start” in the classifier layer.
+% \textbf{Class Imbalance:} Moreover, the dataset was highly imbalanced. Using plain cross-entropy, the model tended to optimize for the majority classes and could virtually ignore the minority class, since mis-predicting the rare class had minimal impact on the average loss. Indeed, an initial model with unweighted \ac{CE} practically never predicted the \ac{Class 3}, leading to an extremely low recall for that category (the model would default to predicting more frequent classes to minimize loss). This is a common outcome in imbalanced data settings, where the loss is dominated by the prevalent classes. Thus, additional measures were needed to ensure the model learned to recognize the minority class and to account for the ordinal scale of errors.
+
+% \subsection{Addressing Class Imbalance: Focal Loss vs. Class Weighting}
+% While the \ac{CE} loss served as a strong initial baseline, we still needed to tackle the class imbalance so that minority classes (especially \ac{Class 3}) would be properly recognized. Two strategies were explored: \textbf{Focal Loss} and \textbf{class weighting} within the cross-entropy.
+
+% \subsubsection{Focal Loss Attempt}
+% Focal loss was considered because it is specifically designed by \cite{lin2017focal} to address class imbalance by down-weighting easy, majority-class examples. Focal loss adds a modulating factor $(1-p)^\gamma$ to the standard \ac{CE} loss, so that well-classified examples (with high $p$ for the true class) incur much smaller loss, focusing training on the hard, misclassified examples. The focal loss (without class-specific weighting) is:
+% \begin{equation}
+%     L_{\mathrm{FL}} = -\frac{1}{N} \sum_{i=1}^{N} (1 - \hat{p}_{i,y_i})^\gamma \log(\hat{p}_{i,y_i}),
+% \end{equation}
+% where $\gamma\ge 0$ is the focusing parameter. In theory, this loss would make the model devote more attention to the \ac{Class 3}, since those examples were consistently mispredicted (i.e. $\hat{p}{i,y_i}$ for class 3 was often low, making $(1-\hat{p}{i,y_i})^\gamma$ large and thus boosting their loss contribution). Focal loss has seen success in extreme imbalance settings (e.g. one-stage object detectors where background examples vastly outnumber foreground objects).
+
+% \textbf{Outcomes with Focal Loss}
+
+% In our setting, however, focal loss did not yield the desired improvements. The model trained with focal loss showed lower overall F1 than the simpler weighted loss approach (described in Section~\ref{sec:class_weighting}), and it especially underperformed on the minority class. Several factors may explain this result. 
+
+% First, the imbalance in our data, while significant, is not as astronomical as in some detection problems - thus the benefit of focal modulation was less pronounced.
+% Second, focal loss can implicitly down-weight not just easy majority-class examples but also easy examples of all classes; this means some well-classified minority instances might receive less focus than they deserve. 
+% In practice, we found that the model still struggled to identify High-Quality articles with focal loss - presumably because those samples were extremely rare to begin with, and focal loss alone cannot increase their presence in the training signal enough. Tuning $\gamma$ did not reverse this trend, and the added complexity of focal loss did not justify itself for our problem. Similar observations have been noted in literature when using focal loss outside its original context - if the class imbalance is better handled by explicit re-weighting, focal loss can sometimes even degrade performance by over-focusing on a handful of difficult cases and under-training on the rest. Given these findings, we turned to a more direct approach: class-weighted loss, which ultimately proved more effective.
+
+% \subsubsection{Class Weighting}\label{sec:class_weighting}
+% The final loss function incorporated class weights into the cross-entropy term to directly counteract the imbalance. We assigned a weight $w_c$ to each class $c$ in the cross-entropy calculation, so that errors on minority classes are amplified and errors on majority classes are down-weighted. The weights were set inversely proportional to class frequencies (with some manual tuning). In the end, the chosen weights were:
+% \begin{itemize}
+%   \item $w_{0}=1.0$ for class 0: \ac{Class 0}
+%   \item $w_{1}=0.5$ for class 1: \ac{Class 1}
+%   \item $w_{2}=1.0$ for class 2: \ac{Class 2}
+%   \item $w_{3}=20.0$ for class 3: \ac{Class 3}
+% \end{itemize}
+% These values mean, for example, that misclassifying a \ac{Class 3} incurs $20\times$ the loss of misclassifying a \ac{Class 2}, reflecting the high importance and rarity of Class 3. The weight for Class 1 was set to 0.5 because \ac{Class 1} was the most over-represented category (so its loss is halved to prevent the model from over-focusing on it). The weighted cross-entropy loss thus became 
+% \begin{equation}
+%   L_{CE}^{*} = -\frac{1}{N}\sum_i w_{y_i}\log \hat{p}_{i,y_i}.
+% \end{equation}
+
+\newpage
+
+\section{Training Methodology}\label{sec:training_methodology}
+
+After designing the hybrid loss function and addressing class imbalance, we proceeded to fine-tune the \ac{DeBERTaV3} model with a carefully planned training regime to mitigate rapid overfitting. Fine-tuning a large pre-trained model on a relatively small dataset can quickly lead to the model memorizing the training set. To counter this, our training methodology incorporated staged training, learning rate scheduling with warmup, and strong regularization through weight decay (L2 penalty) and dropout. All model training used \textit{the final loss function} from Section~\ref{sec:loss_function}.
+
+% \subsection{Two-Stage Fine-Tuning}
+% We adopted a staged training strategy to gradually introduce the full capacity of \ac{DeBERTaV3}. In the first stage, we trained only the classifier head (the final linear layer and task-specific parameters) while keeping all pre-trained Transformer layers frozen. This allowed the new classification layer to learn basic separations between classes without immediately over-fitting the entire model to the limited data. We ran this head-only training for a short period until the head's performance plateaued. In the second stage, we unfroze the full \ac{DeBERTaV3} model and continued fine-tuning all layers. At this point, the classifier head was already reasonably calibrated, so the Transformer layers could adjust more subtly to improve performance. This two-stage approach meant the model started in a conservative regime and only later used its full complexity, reducing the risk of early overfitting. We found that the transition between these stages led to a noticeable improvement in validation loss - as soon as the Transformer layers were unfrozen and fine-tuning began, the model's validation loss dropped significantly (indicating it could fit the data better once allowed to update the base weights). We used the same optimizer and learning rate schedule across both stages, but reset the learning rate to a slightly lower value upon unfreezing to ensure stability (since large updates to all weights after unfreezing could destabilize training). By the end of stage two, the model was fine-tuned end-to-end, having benefited from a “warm start” in the classifier layer.
+
+\subsection{Two-Stage Fine-Tuning Strategy}
+
+To make the most of the pre-trained \ac{DeBERTaV3} model while avoiding overfitting on limited data, we employed a structured training procedure consisting of two stages: \textbf{head-only training} followed by \textbf{full fine-tuning}.
+
+\subsubsection*{Stage 1: Head-Only Training}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Purpose:} Allow the classification head to learn basic decision boundaries without influencing the pre-trained backbone.
+    \item \textbf{Method:}
+    \begin{itemize}
+        \item All Transformer layers were \textbf{frozen}.
+        \item Only the \textbf{classifier head} (final linear layer and task-specific parameters) was trained.
+    \end{itemize}
+    \item \textbf{Duration:} Training continued until the head's performance \textbf{plateaued}, typically after a few thousand steps.
+    \item \textbf{Effect:}
+    \begin{itemize}
+        \item Provided a \textit{warm start} for the classifier.
+        \item Prevented early overfitting of the entire model on a small dataset.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Stage 2: Full Fine-Tuning}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Purpose:} Fine-tune the full model to refine representations and improve classification performance.
+    \item \textbf{Method:}
+    \begin{itemize}
+        \item All \ac{DeBERTaV3} layers were \textbf{unfrozen}.
+        \item Training resumed using the \textbf{same optimizer} and learning rate scheduler.
+        \item The learning rate was \textbf{slightly reduced} to ensure stability during full-model updates.
+    \end{itemize}
+    \item \textbf{Effect:}
+    \begin{itemize}
+        \item Enabled the Transformer layers to adapt to task-specific patterns.
+        \item Resulted in a \textbf{sharp reduction in validation loss} shortly after unfreezing.
+    \end{itemize}
+\end{itemize}
+
+% \subsubsection*{Summary}
+\vspace{1.5em}
+This two-stage approach allowed training to begin in a conservative regime and gradually ramp up to full capacity. By isolating the learning dynamics of the classifier head first, and only later involving the full model, we significantly reduced the risk of early overfitting while fully leveraging the representational power of \ac{DeBERTaV3}.
+
+% \subsection*{Training Timeline Diagram}
+% \begin{center}
+% \begin{tikzpicture}
+%     % Timeline
+%     \draw[->, thick] (0,0) -- (10,0) node[right]{Time};
+
+%     % Stage 1
+%     \draw[fill=blue!20] (0,0.5) rectangle (4,1.5);
+%     \node at (2,1) {\textbf{Stage 1}};
+%     \node at (2,0.3) {\small Head-Only Training};
+
+%     % Stage 2
+%     \draw[fill=green!20] (4.2,0.5) rectangle (9.8,1.5);
+%     \node at (7,1) {\textbf{Stage 2}};
+%     \node at (7,0.3) {\small Full Fine-Tuning};
+
+%     % Arrows and annotations
+%     \draw[->] (4,1.6) -- (4,2.2);
+%     \node at (4,2.5) {\small Unfreeze Transformer};
+
+%     \draw[->] (7,1.6) -- (7,2.2);
+%     \node at (7,2.5) {\small Validation Loss ↓↓};
+
+%     \draw[->] (4,0.5) -- (4,-0.5);
+%     \node at (4,-0.8) {\small LR ↓};
+% \end{tikzpicture}
+% \end{center}
+
 
 \subsection{Learning Rate Warmup and Scheduling}
-A key element in preventing overfitting and training instability was the use of a tailored learning rate schedule. We employed a short warmup period at the start of training, during which the learning rate was gradually increased from a very low value to the target peak rate. In practice, we linearly ramped up the learning rate over the first ~10\% of training steps. This warmup phase avoids sudden large weight updates in the early iterations when the model's pre-trained weights are still adjusting to the new task. Without warmup, we observed that the validation loss could briefly spike early on - indicative of the model overfitting or diverging on easier patterns too quickly. The warmup helps “fight early overfitting” by starting training gently giving the optimizer time to find a stable direction before full step sizes are used. 
-Once warmup was completed and the learning rate reached its maximum (we used a peak rate of 1e-05 for full-model training, typical for base-sized transformers), we switched to a \textbf{cosine decay scheduler} for the remainder of training. The cosine learning rate schedule gradually decreased the learning rate after the warmup, following a cosine curve down to a very low rate by the end of training. This scheduling ensured that as training progressed, updates became smaller and more fine-grained, which helps the model converge to a minimum without overshooting. In effect, the high learning rate early on (after warmup) allows the model to make swift progress on fitting the data, while the continuously decreasing learning rate later allows convergence to stabilize and reduces the chance of the model overfitting in the final epochs. No learning rate restarts were used (i.e., we did not reset to high LR again), since our goal was a smooth decay to aid convergence. The combination of warmup and cosine annealing proved effective: the warmup prevented unstable jumps at start, and the slow tapering of learning rate toward zero acted as an implicit regularizer (making it harder for the model to overfit late in training, as it can only make tiny adjustments by then).
+
+To prevent overfitting and training instability, we employed a tailored learning rate strategy consisting of two components: \textbf{a short warmup phase} and \textbf{cosine decay scheduling}.
+
+\subsubsection*{Warmup Phase}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Purpose:} Prevent sudden large weight updates early in training, when the model is still adapting to the new task.
+    \item \textbf{Method:} Linearly increased the learning rate from a very low value to the target peak rate over the first $\approx$10\% of training steps.
+    \item \textbf{Effect:}
+    \begin{itemize}
+        \item Avoided sharp validation loss spikes at the start of training.
+        \item Helped mitigate early overfitting by giving the optimizer time to find a stable direction before applying full updates.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Cosine Decay Schedule}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Purpose:} Gradually reduce learning rate after warmup to improve convergence and stability.
+    \item \textbf{Method:} After reaching the peak learning rate (set to 1e-5), we applied a cosine decay schedule down to a near-zero rate over the remaining training steps.
+    \item \textbf{Effect:}
+    \begin{itemize}
+        \item Enabled fast learning early in training, while reducing the risk of overshooting minima later.
+        \item Acted as an implicit regularizer—by the final epochs, the model could only make small, fine-grained adjustments.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Additional Notes}
+No learning rate restarts were used—our goal was a \textbf{smooth decay to zero}, not cyclical training.
+
+The combination of warmup and cosine decay proved effective for stability and generalization.
 
 \subsection{Regularization and Hyperparameters}
 
-Along with the scheduling, we applied standard regularization techniques to further combat overfitting. We used the AdamW optimizer (Adam with decoupled weight decay) with a weight decay coefficient of 1e-3 on all Transformer weights. Weight decay acts as an L2 regularizer, continuously penalizing large weight magnitudes and thus discouraging the model from excessively complex or spiky weight patterns that could memorize the training data. This was especially important given the small dataset - without weight decay, the model could quickly drive some weights to extreme values to fit particular examples. We also retained dropout regularization in the model: \ac{DeBERTaV3}'s dropout rate of 15\% was kept active during fine-tuning. Dropout adds noise to the training process by randomly zeroing some activations, which also helps prevent the model from relying too much on any one feature and thus improves generalization. Together, weight decay and dropout provided a strong regularizing effect throughout training. In addition, we weighted the loss function to emphasize the minority class, as described in Section~\ref{sec:loss_function}. In each training batch, the loss from \ac{Class 3} articles was multiplied by $20\times$ (via the class weight in the cross-entropy term) to ensure those rare examples had a meaningful impact on the gradients. This class weighting, combined with the ordinal \ac{MSE} component, was crucial for learning the minority class without overfitting the majority classes. We used a batch size of 16 articles and shuffled the training data on each epoch to present the model with a different mix of articles each cycle (reducing the chance of seeing examples in a fixed order, which can also lead to overfitting patterns). The training was run for a maximum of 5 epochs. We evaluated the model on the validation set at the end of each epoch (and additionally every 500 steps) and tracked the validation loss and F1-macro score. Indeed, we found that the model often began to overfit after only a few epochs - so we load the model from checkpoint that have the highest f1 score, which corresponded to roughly 18k-20k training steps in our setup.
+To complement our learning rate scheduling and reduce overfitting risks, we employed a combination of standard regularization techniques and carefully chosen hyperparameters.
 
-\begin{figure}
+\subsubsection*{Regularization Techniques}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Weight Decay:} We used the AdamW optimizer (Adam with decoupled weight decay introduce by \cite{loshchilov2017fixing}) with a weight decay coefficient of $1\text{e}{-3}$ applied to all Transformer weights.
+    \begin{itemize}
+        \item Acts as an $L_2$ regularizer by penalizing large weights.
+        \item Especially helpful with small datasets, where the model might otherwise overfit by driving weights to extreme values.
+    \end{itemize}
+    
+    \item \textbf{Dropout:} We retained \ac{DeBERTaV3}'s default dropout rate of 15\% during fine-tuning.
+    \begin{itemize}
+        \item Randomly zeroes activations during training to prevent reliance on specific neurons.
+        \item Improves generalization by introducing noise into the optimization process.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection*{Training Setup}
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Batch size:} 16 articles.
+    \item \textbf{Shuffling:} Training data was shuffled at each epoch to avoid learning order-specific patterns.
+    \item \textbf{Epochs:} We trained for a maximum of 6 epochs, with evaluations:
+    \begin{itemize}
+        \item At the end of each epoch.
+        \item Every 500 steps during training.
+    \end{itemize}
+    \item We monitored both validation loss and F1 score to select the best model.
+\end{itemize}
+
+\subsubsection*{Checkpointing and Early Stopping}
+\begin{itemize}[leftmargin=1.5em]
+    \item Overfitting typically began after only a few epochs.
+    \item The best model (used for final evaluation) was selected based on validation F1 and loss, occurring between 18k--20k training steps.
+\end{itemize}
+
+\subsection*{Training Dynamics}
+\begin{figure}[h]
     \centering
     \includegraphics[width=1.0\textwidth]{./fig/plots/loss_function.png}
-    \caption{Validation loss over training steps.}
+    \caption{Validation loss over training steps}
     \label{fig:training_loss}
 \end{figure}
 
-The training dynamics under this methodology are illustrated in Figure~\ref{fig:training_loss}, which plots the validation loss as a function of training steps. We can observe several key turning points in this curve that correspond to our training strategy. First, the initial phase (left part of the curve) shows the validation loss starting around 1.5 and then declining steadily as the classifier head is trained (while the base is frozen). This downward trend confirms that even with the base model frozen, the new head was learning useful decision boundaries. However, the decline in loss is gradual and modest (hovering around 1.4-1.5) during the head-only stage, and we see a bit of noise - this was expected, as a single linear layer can only capture so much without adjusting the underlying representations. The most prominent feature of the curve is the sharp drop in validation loss that occurs around the transition between stage one and stage two of training. Just before 10k steps on the plot, the validation loss plunges from the mid-1.4 range down to about 1.0. This coincides with the point at which we unfroze the Transformer layers and began fine-tuning the entire model. The sudden improvement (nearly 0.4 reduction in loss) confirms that once the full model was allowed to adapt, it very quickly fit the data distribution much better - a testament to \ac{DeBERTaV3}'s capacity to model complex patterns when fine-tuned. This sharp valley in the curve (reaching a minimum validation loss of about 0.95 around step 16,000) represents the optimal model during training. Notably, after this point, the curve begins to flatten and then rise, marking the onset of overfitting. As training continued beyond ~20k steps, the validation loss started to increase again - slowly at first (between 20k-25k steps it oscillates upward around 1.2-1.3) and then more clearly climbing towards 1.35+ by 25k-30k steps. This upward turn indicates that the model began to memorize the training set at the expense of validation performance once it had exhausted the benefits of fine-tuning. In other words, after the initial gains, each additional training step was now slightly hurting generalization. We stopped training at this point and selected the best-performing checkpoint (the one at 16k steps where the validation loss was lowest and validation F1 highest) as our final model. It highlights the importance of our warmup and staged approach - the curve's smooth descent and single clear minimum suggest the training was well-behaved (no oscillations or chaotic jumps), and the worst overfitting was kept at bay until late in training. Had we not used these techniques, the validation loss might have bottomed out much earlier and risen more sharply.
+As shown in Figure~\ref{fig:training_loss}, the validation loss illustrates key transitions in our training process:
 
-In summary, our training methodology balanced aggressive optimization (to quickly fit the data) with regularization and cautious scheduling (to avoid overfitting). By first training the classifier head and then fine-tuning the full model with a warmed-up, decaying learning rate, we achieved a stable training process that fully utilized the hybrid loss's benefits. The use of weight decay and dropout further kept the model's complexity in check, while class weighting ensured the model learned from minority class examples rather than ignoring them. This careful training setup was crucial for the model to achieve high validation performance. Ultimately, the best model - trained with the hybrid CE+MSE loss and these methodological safeguards - attained a significantly improved generalization compared to baseline attempts. It maintained a low validation loss until the point of overfitting, demonstrating that the model learned a robust representation of journalistic quality features without succumbing too early to noise in the training data.
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Stage 1 (Head-Only Training):}
+    \begin{itemize}
+        \item Validation loss declines slowly from around 1.6 to 1.4.
+        \item The curve is noisy and flat due to limited learning capacity in the linear head alone.
+    \end{itemize}
+    
+    \item \textbf{Stage 2 (Full Fine-Tuning):}
+    \begin{itemize}
+        \item Around step 10k, a sharp drop in validation loss occurs - from $\sim$1.4 to $\sim$1.0.
+          \item This corresponds to unfreezing the Transformer layers, allowing deeper adaptation.
+          \item The minimum loss ($\sim$0.95) is reached near step 16k.   \end{itemize}
+    
+    \item \textbf{Onset of Overfitting:}
+    \begin{itemize}
+        \item After 20k steps, the validation loss begins to rise again.
+        \item By 25k--30k steps, it climbs toward 1.35+, indicating the model is memorizing training data.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Training Summary}
+\begin{itemize}[leftmargin=1.5em]
+    \item The curve's smooth descent and clear minimum show stable training without chaotic fluctuations.
+    \item Our chosen checkpoint at 16k steps provided the best generalization performance.
+    \item This confirms the value of our two-stage strategy and regularization approach.
+\end{itemize}
+
+\subsection*{Conclusion}
+Our training methodology carefully balanced optimization power and regularization:
+\begin{itemize}[leftmargin=1.5em]
+    \item Warmup and staged training helped stabilize early learning.
+    \item Weight decay and dropout reduced model complexity and overfitting risk.
+    \item Class weighting ensured rare examples were not neglected.
+\end{itemize}
+These design choices enabled the model to leverage hybrid loss objectives and extract high-quality representations while maintaining generalization performance.
+
 
 \section{Model Evaluation}\label{sec:evaluation}
 
@@ -298,11 +543,11 @@ After adding several features from Section~\ref{sec:features_creating}, the \ac{
   \item Weighted F1: 0.766
 \end{itemize}
 
-The confusion matrix in Figure~\ref{fig:confusion_matrix_llm} shows that the model still often confuses Class 3 examples with Class 1 and Class 2. However, the overall balance of predictions has improved compared to earlier results, indicating that the hand-crafted features had a positive effect on performance.
+The confusion matrix in \reffig{fig:confusion_matrix_llm} shows that the model still often confuses Class 3 examples with Class 1 and Class 2. However, the overall balance of predictions has improved compared to earlier results, indicating that the hand-crafted features had a positive effect on performance.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.7\textwidth]{./fig/conf_matrix/llm_valid.png}
-  \caption{Confusion matrix of the final model’s predictions on the validation set, highlighting the remaining misclassifications between classes.}
+  \caption{Confusion matrix of the final model’s predictions on the validation set.}
   \label{fig:confusion_matrix_llm}
 \end{figure}
