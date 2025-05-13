@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  13 MAY 2025 14:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  13 MAY 2025 18:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1777,25 +1777,28 @@ Package pdftex.def Info: ./fig/conf_matrix/llm_valid.png  used on input line 550
 LaTeX Warning: Citation 'prokhorenkova2018catboost' on page 41 undefined on input line 5.
 
 [41 <./fig/conf_matrix/llm_valid.png>]
-<./fig/cat_boost/cat_boost_training_loss.png, id=1132, 827.09pt x 451.6875pt>
+LaTeX Font Info:    Trying to load font information for OT1+zi4 on input line 31.
+ (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
+File: ot1zi4.fd 2018/01/14 OT1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 10.95pt on input line 31.
+ [42{/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}]
+<./fig/cat_boost/cat_boost_training_loss.png, id=1140, 827.09pt x 451.6875pt>
 File: ./fig/cat_boost/cat_boost_training_loss.png Graphic file (type png)
 <use ./fig/cat_boost/cat_boost_training_loss.png>
-Package pdftex.def Info: ./fig/cat_boost/cat_boost_training_loss.png  used on input line 32.
+Package pdftex.def Info: ./fig/cat_boost/cat_boost_training_loss.png  used on input line 67.
 (pdftex.def)             Requested size: 443.86319pt x 242.4051pt.
- [42 <./fig/cat_boost/cat_boost_training_loss.png>]
-Underfull \vbox (badness 1354) has occurred while \output is active []
-
- [43]
-<./fig/diagrams/hybrit_model_archytecture.png, id=1193, 593.21625pt x 292.09125pt>
+ [43 <./fig/cat_boost/cat_boost_training_loss.png>] [44]
+<./fig/diagrams/hybrit_model_archytecture.png, id=1200, 593.21625pt x 292.09125pt>
 File: ./fig/diagrams/hybrit_model_archytecture.png Graphic file (type png)
 <use ./fig/diagrams/hybrit_model_archytecture.png>
-Package pdftex.def Info: ./fig/diagrams/hybrit_model_archytecture.png  used on input line 83.
+Package pdftex.def Info: ./fig/diagrams/hybrit_model_archytecture.png  used on input line 114.
 (pdftex.def)             Requested size: 443.86319pt x 218.55978pt.
- [44]
 <./fig/conf_matrix/hybrid_valid.png, id=1201, 396.0396pt x 312.2064pt>
 File: ./fig/conf_matrix/hybrid_valid.png Graphic file (type png)
 <use ./fig/conf_matrix/hybrid_valid.png>
-Package pdftex.def Info: ./fig/conf_matrix/hybrid_valid.png  used on input line 104.
+Package pdftex.def Info: ./fig/conf_matrix/hybrid_valid.png  used on input line 135.
 (pdftex.def)             Requested size: 310.70287pt x 244.93489pt.
  [45 <./fig/diagrams/hybrit_model_archytecture.png>]) (./src/experiments.tex [46 <./fig/conf_matrix/hybrid_valid.png>]
 Chapter 5.
@@ -1860,7 +1863,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 70C95793225FFE0A8BD3DFB7D87A507E;16288.
+(rerunfilecheck)             Checksum: EABBF683822A21A5007AE5270507DE55;16285.
 
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                main
@@ -1871,18 +1874,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57520 strings out of 474116
- 1331996 string characters out of 5732613
- 2254041 words of memory out of 5000000
- 78693 multiletter control sequences out of 15000+600000
- 570217 words of font info for 80 fonts, out of 8000000 for 9000
+ 57545 strings out of 474116
+ 1332491 string characters out of 5732613
+ 2255039 words of memory out of 5000000
+ 78713 multiletter control sequences out of 15000+600000
+ 570421 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,17n,96p,2318b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (66 pages, 1791196 bytes).
+</opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on main.pdf (66 pages, 1804776 bytes).
 PDF statistics:
- 1453 PDF objects out of 1728 (max. 8388607)
- 1267 compressed objects within 13 object streams
+ 1458 PDF objects out of 1728 (max. 8388607)
+ 1270 compressed objects within 13 object streams
  232 named destinations out of 1000 (max. 500000)
  920 words of extra memory for PDF output out of 10000 (max. 10000000)
 

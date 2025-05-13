@@ -76,10 +76,10 @@
 \contentsline {section}{\numberline {4.9}Model Evaluation}{40}{section.4.9}%
 \contentsline {section}{\numberline {4.10}CatBoost}{41}{section.4.10}%
 \contentsline {subsection}{\numberline {4.10.1}Motivation and Suitability}{41}{subsection.4.10.1}%
-\contentsline {subsection}{\numberline {4.10.2}Hyperparameter Tuning}{42}{subsection.4.10.2}%
-\contentsline {subsection}{\numberline {4.10.3}Architecture and Feature Processing}{42}{subsection.4.10.3}%
-\contentsline {subsection}{\numberline {4.10.4}Feature‑Group Importance}{43}{subsection.4.10.4}%
-\contentsline {subsection}{\numberline {4.10.5}Performance and Practical Considerations}{43}{subsection.4.10.5}%
+\contentsline {subsection}{\numberline {4.10.2}Architecture and Feature Processing}{42}{subsection.4.10.2}%
+\contentsline {subsection}{\numberline {4.10.3}Hyperparameter Tuning}{42}{subsection.4.10.3}%
+\contentsline {subsection}{\numberline {4.10.4}Feature-Group Importance}{43}{subsection.4.10.4}%
+\contentsline {subsection}{\numberline {4.10.5}Performance and Practical Considerations}{44}{subsection.4.10.5}%
 \contentsline {section}{\numberline {4.11}Hybrid Model: CatBoost with Language Model Features}{44}{section.4.11}%
 \contentsline {chapter}{\numberline {5}Experiments and Results}{47}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Experimental Setup}{47}{section.5.1}%
