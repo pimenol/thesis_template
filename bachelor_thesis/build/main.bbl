@@ -28,14 +28,55 @@
     \strng{fullhash}{S1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2025}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{howpublished}{\url{https://www.seznam.cz/}}
     \field{note}{Accessed: 2025-05-05}
     \field{title}{Seznam.cz Homepage}
     \field{year}{2025}
+  \endentry
+
+  \entry{bednavr2024some}{inproceedings}{}{}
+    \name{author}{4}{}{%
+      {{hash=BJ}{%
+         family={Bedn{\'a}{\v{r}}},
+         familyi={B\bibinitperiod},
+         given={Ji{\v{r}}{\'\i}},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={N{\'a}plava},
+         familyi={N\bibinitperiod},
+         given={Jakub},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Baran{\v{c}}{\'\i}kov{\'a}},
+         familyi={B\bibinitperiod},
+         given={Petra},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=LO}{%
+         family={Lisick{\`y}},
+         familyi={L\bibinitperiod},
+         given={Ond{\v{r}}ej},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BJ+1}
+    \strng{fullhash}{BJNJBPLO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{Proceedings of the AAAI Conference on Artificial
+  Intelligence}
+    \field{number}{21}
+    \field{pages}{22734\bibrangedash 22742}
+    \field{title}{Some like it small: Czech semantic embedding models for
+  industry applications}
+    \field{volume}{38}
+    \field{year}{2024}
   \endentry
 
   \entry{calvo2024}{article}{}{}
@@ -57,8 +98,6 @@
     \strng{fullhash}{CRLMRTJL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2024}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \verb{doi}
@@ -90,55 +129,12 @@
     \strng{fullhash}{QS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2024}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
   \field{howpublished}{\url{https://medium.com/@SophiaQuantum/automated-content-quality-assessment-with-ai-6719b326ab15}}
     \field{note}{Accessed: January 2025}
     \field{title}{Automated content quality assessment with AI}
     \field{year}{2024}
-  \endentry
-
-  \entry{xiao2022retromae}{article}{}{}
-    \name{author}{4}{}{%
-      {{hash=XS}{%
-         family={Xiao},
-         familyi={X\bibinitperiod},
-         given={Shitao},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=LZ}{%
-         family={Liu},
-         familyi={L\bibinitperiod},
-         given={Zheng},
-         giveni={Z\bibinitperiod},
-      }}%
-      {{hash=SY}{%
-         family={Shao},
-         familyi={S\bibinitperiod},
-         given={Yingxia},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=CZ}{%
-         family={Cao},
-         familyi={C\bibinitperiod},
-         given={Zhao},
-         giveni={Z\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{XS+1}
-    \strng{fullhash}{XSLZSYCZ1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2022}
-    \field{labeldatesource}{}
-    \field{sortinit}{7}
-    \field{sortinithash}{7}
-    \field{title}{RetroMAE: Pre-training retrieval-oriented language models via
-  masked auto-encoder}
-    \field{journaltitle}{arXiv preprint arXiv:2205.12035}
-    \field{year}{2022}
   \endentry
 
   \entry{inbook}{inbook}{}{}
@@ -160,8 +156,6 @@
     \strng{fullhash}{BKCS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2021}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \verb{doi}
@@ -207,8 +201,6 @@
     \strng{fullhash}{GGCTMJMGMMySMG1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2021}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{pages}{169\bibrangedash 180}
@@ -248,8 +240,6 @@
     \strng{fullhash}{HPGJCW1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2021}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Debertav3: Improving deberta using electra-style pre-training
@@ -289,8 +279,6 @@
     \strng{fullhash}{CKLMTLQVMCD1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Electra: Pre-training text encoders as discriminators rather
@@ -342,8 +330,6 @@
     \strng{fullhash}{MSKNCENNCMGJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Deep Learning Based Text Classification: A Comprehensive
@@ -424,8 +410,6 @@
     \strng{fullhash}{WTDLSVCJDCMACPRTLRFM+1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2020}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the 2020 conference on empirical methods
@@ -466,8 +450,6 @@
     \strng{fullhash}{DJCMWLKTK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the 2019 conference of the North American
@@ -546,8 +528,6 @@
     \strng{fullhash}{LYOMGNDJJMCDLOLMZLSV1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Roberta: A robustly optimized bert pretraining approach}
@@ -568,8 +548,6 @@
     \strng{fullhash}{PA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Pytorch: An imperative style, high-performance deep learning
@@ -600,8 +578,6 @@
     \strng{fullhash}{SMZE1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the 15th International Symposium on Open
@@ -655,8 +631,6 @@
     \strng{fullhash}{PMKJRKBJSB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2018}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the 32nd AAAI Conference on Artificial
@@ -706,8 +680,6 @@
     \strng{fullhash}{PLGGVADAVGA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2018}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{CatBoost: unbiased boosting with categorical features}
@@ -753,8 +725,6 @@
     \strng{fullhash}{LTYGPGRHKDP1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2017}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the IEEE international conference on
@@ -785,8 +755,6 @@
     \strng{fullhash}{LIHF+1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2017}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{pages}{5}
@@ -851,8 +819,6 @@
     \strng{fullhash}{VASNPNUJJLGANKLPI1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2017}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Attention is all you need}
@@ -880,8 +846,6 @@
     \strng{fullhash}{HDGK1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2016}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{title}{Gaussian error linear units (gelus)}
@@ -908,8 +872,6 @@
     \strng{fullhash}{LSRT1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2015}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{howpublished}{\url{https://www.jwac.org/Lacy.pdf}}
@@ -937,8 +899,6 @@
     \strng{fullhash}{PENA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2008}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{booktitle}{Proceedings of the 2008 Conference on Empirical Methods
@@ -966,8 +926,6 @@
     \strng{fullhash}{FR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2007}
-    \field{labeldatesource}{}
     \field{sortinit}{7}
     \field{sortinithash}{7}
     \field{number}{3}
@@ -994,8 +952,6 @@
     \strng{fullhash}{GR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{1969}
-    \field{labeldatesource}{}
     \field{sortinit}{8}
     \field{sortinithash}{8}
     \field{number}{2}

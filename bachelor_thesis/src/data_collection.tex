@@ -4,7 +4,7 @@
 
 \section{Data Source}
 
-The data for this research originates from the internal systems of Seznam.cz, a major Czech online platform. The dataset comprises articles published on the platform, along with associated metadata and quality assessments provided by the editorial team. For the purpose of this thesis, we primarily utilized the following information for each article:
+The data for this research originates from the internal systems of Seznam.cz. The dataset comprises articles published on the platform, along with associated metadata and quality assessments provided by the editorial team. For the purpose of this thesis, we primarily utilized the following information for each article:
 
 \begin{itemize}
   \item \textbf{Title:} The headline of the article.
@@ -13,25 +13,24 @@ The data for this research originates from the internal systems of Seznam.cz, a 
   \item \textbf{Entity type: }Type of entity (e.g., article, video, etc.)
   \item \textbf{Published date:} Date when the content was published
   \item \textbf{Content type:} Type of content (e.g., news, blog, etc.)
-  \item \textbf{Annotated Quality Correction:} The quality label assigned by a human editor, serving as the ground truth for our classification task.
 \end{itemize}
 
-\section{Data Collection Timeline and Challenges}
-Data collection for this study began in July 2023 but faced significant challenges due to data transmission issues between departments. These issues affected the integrity of the dataset during the initial phases of collection. To illustrate the impact of these challenges, a plot  (\reffig{fig:num_labeled_articles}) of the number of labeled articles per day reveals inconsistencies in labeling frequency.
+The data was collected from the last 6 months.
+% \section{Data Collection Timeline and Challenges}
+% Data collection for this study began in July 2023 but faced significant challenges due to data transmission issues between departments. These issues affected the integrity of the dataset during the initial phases of collection. To illustrate the impact of these challenges, a plot (\reffig{fig:num_labeled_articles}) of the number of labeled articles per day reveals inconsistencies in labeling frequency.
 
-These problems were resolved after \textbf{August 30, 2024}, when accurate recording of confirmations began. 
-% However, fully reliable and consistent data collection, aligned with improved editorial standards, was not achieved until \textbf{December 19, 2024}.
+% These problems were resolved after \textbf{August 30, 2024}, when accurate recording of confirmations began. 
 
-Additionally, discussions with editors revealed that the evaluation process evolved significantly over time. After \textbf{August 30, 2024}, more detailed training was introduced for editors, leading to cleaner and more consistent data. These improvements enhanced the quality of annotations, making the data collected after this date particularly robust.
+% Additionally, discussions with editors revealed that the evaluation process evolved significantly over time. After \textbf{August 30, 2024}, more detailed training was introduced for editors, leading to cleaner and more consistent data. These improvements enhanced the quality of annotations, making the data collected after this date particularly robust.
 
-As a result, the dataset used in this study benefits from a refined evaluation process and improved editor training, ensuring higher reliability and consistency in the annotations used for training and evaluating the classification model.
+% As a result, the dataset used in this study benefits from a refined evaluation process and improved editor training, ensuring higher reliability and consistency in the annotations used for training and evaluating the classification model.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=1\textwidth]{./fig/plots/num_editor_articles.png}
-  \caption{Number of labeled articles}
-  \label{fig:num_labeled_articles}
-\end{figure}
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=1\textwidth]{./fig/plots/num_editor_articles.png}
+%   \caption{Number of labeled articles}
+%   \label{fig:num_labeled_articles}
+% \end{figure}
 
 
 \section{Data Cleaning and Filtering}
@@ -52,7 +51,7 @@ Editors evaluate articles based on a set of internal guidelines, but also rely s
 
 \section{Dataset Statistics}\label{sec:dataset_statistics}
 \subsection{Dataset Size and Splits}
-After cleaning and filtering, the data was split into three sets: Training Set, Validation Set and Test set. The distribution of articles across the four quality labels within each dataset split is presented in ~\reftab{tab:class_distribution}
+After cleaning and filtering, the data was split into three sets: Training Set, Validation Set and Test set. The distribution of articles across the four quality labels within each dataset split is presented in \reftab{tab:class_distribution}
 
 \begin{table}[h]
   \centering
@@ -69,15 +68,15 @@ After cleaning and filtering, the data was split into three sets: Training Set, 
   \end{tabular}
 \end{table}
 
-As clearly visible from ~\reftab{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
+As clearly visible from \reftab{tab:class_distribution}, the dataset exhibits significant class imbalance. The \ac{Class 1} constitutes the majority (over 58\%) of the articles, while the \ac{Class 3} is extremely rare, representing less than 1\% of the data. This imbalance presents a major challenge for model training, as standard algorithms tend to become biased towards the majority classes. Addressing this imbalance effectively is a key focus of the methodology described in the next chapter.
 
 
 \section{Data Analysis}\label{sec:data_analysis}
 
 \subsection{Article length}  
-Figure \reffig{fig:num_words} shows the marginal distribution of article length in words for each class. The average article length is 545 words. 
+\reffig{fig:num_words} shows the marginal distribution of article length in words for each class. The average article length is 545 words. 
 
-The distribution is strongly right–skewed: the shortest admissible texts contain 51 words, the median is 434 words and the longest article reaches almost 9000 words.
+The distribution is strongly right–skewed: the median is 434 words and the longest article reaches almost 9000 words.
 This long tail already hints at a qualitative difference between routine news briefs and in-depth reporting.
 \begin{figure}[htbp]
   \centering
@@ -88,7 +87,7 @@ This long tail already hints at a qualitative difference between routine news br
 
 \subsection{Length by label}
 
-This \reffig{fig:num_words_per_label} shows the distribution of article lengths for each quality label. The x-axis represents the number of words in an article, and the y-axis shows the probability density, so we can compare how article lengths differ across quality levels.
+\reffig{fig:num_words_per_label} shows the distribution of article lengths for each quality label. The x-axis represents the number of words in an article, and the y-axis shows the probability density, so we can compare how article lengths differ across quality levels.
 
 The results clearly show that better articles tend to be longer:
 
@@ -100,7 +99,7 @@ The results clearly show that better articles tend to be longer:
 
 This confirms that article length is a strong signal for quality. Longer texts are more likely to include detailed explanations, sources, and structured content—all features editors associate with high-quality journalism.
 
-However, since the distributions overlap, especially between classes 1 and 2, article length alone is not enough to classify quality.
+However, since the distributions overlap, article length alone is not enough to classify quality.
 
 
 \begin{figure}[htbp]
@@ -112,11 +111,11 @@ However, since the distributions overlap, especially between classes 1 and 2, ar
 
 \subsection{Unique-token probability density}
 
-The number of unique words in each article helps show how rich and varied the language is. Figure~\reffig{fig:num_unique_tokens} shows that higher-quality articles usually have more unique words.
+The number of unique words in each article helps show how rich and varied the language is. \reffig{fig:num_unique_tokens} shows that higher-quality articles usually have more unique words.
 
 \ac{Class 0} often have between 280 and 380 unique words and rarely go above 800. Most articles in \ac{Class 1} also stay under 500 unique words. \ac{Class 2} articles use more words, and \ac{Class 3} articles often have over 1000 unique words. Some even go above 3000.
 
-This means that better articles tend to use a wider vocabulary. However, there is still a lot of overlap between the groups, especially for shorter texts. So, the number of unique words alone cannot perfectly tell the article quality but is still a useful signal. It works best when combined with other features like article length and sentence structure.
+This means that better articles tend to use a wider vocabulary. However, there is still a lot of overlap between the groups, especially for shorter texts. So, the number of unique words alone cannot perfectly tell the article quality but is still a useful signal.
 
 \begin{figure}[htbp]
   \centering
@@ -126,14 +125,14 @@ This means that better articles tend to use a wider vocabulary. However, there i
 \end{figure}
 
 \section{Dataset Balancing Strategies}
-\subsection{Data Augmentation}
+% \subsection{Data Augmentation}
 
-To increase the representation of Class 3 (the minority class), an attempt was made to augment the training data by including all available Class 3 articles from the full dataset, even those outside the original training period. This added approximately 2000 older articles to the training set. However, these older articles exhibited an outdated journalistic style that differed significantly from more recent content. Empirically, adding this data reduced the model’s generalization ability: the validation F1 score dropped from 0.75 to 0.70. Due to this degradation in performance, the data augmentation approach was ultimately not used in the final model.
+% To increase the representation of \ac{Class 3} (the minority class), an attempt was made to augment the training data by including all available \ac{Class 3} articles from the full dataset, even those outside the original training period. This added approximately 2000 older articles to the training set. However, these older articles exhibited an outdated journalistic style that differed significantly from more recent content. Empirically, adding this data reduced the model’s generalization ability: the validation F1 score dropped from 0.75 to 0.70. Due to this degradation in performance, the data augmentation approach was ultimately not used in the final model.
 
 \subsection{Oversampling}
 
-Another strategy was random oversampling of Class 3 instances. In this approach, existing Class 3 articles were duplicated until their total count matched the number of Class 2 articles (around 10,000). Oversampling did improve the model’s recall on Class 3 examples (approximately 0.30). However, it had significant drawbacks. Training time increased by roughly 20\%, and the model began to overfit the training data. As a result, the validation F1 score fell to 0.68. Given these trade-offs, oversampling was not incorporated into the final training procedure.
+To increase the representation of \ac{Class 3} (the minority class), an attempt was made to random oversampling of \ac{Class 3} instances. In this approach, existing \ac{Class 3} were duplicated until their total count matched the number of Class 2 articles (around 10,000). Oversampling did improve the model’s recall on \ac{Class 3} examples (approximately 0.30). However, it had significant drawbacks. Training time increased by roughly 20\%, and the model began to overfit the training data. Given these trade-offs, oversampling was not incorporated into the final training procedure.
 
 \subsection{Synthetic Data Generation}
 
-A third approach involved generating new Class 3 samples using a text-generation technique. In practice, Class 1 articles were rewritten into \ac{Class 3} in an attempt to synthesize additional Class 3 data. Unfortunately, the generated texts were not realistic and lacked the expected journalistic quality. The synthetic samples failed to resemble true Class 3 articles, and this approach did not improve model performance. Consequently, the synthetic data generation method was abandoned.
+Another strategy was to involve generating new \ac{Class 3} samples using a text-generation technique. In practice, \ac{Class 1} were rewritten into \ac{Class 3} in an attempt to synthesize additional \ac{Class 3} data. Unfortunately, the generated texts were not realistic and lacked the expected journalistic quality. The synthetic samples failed to resemble true \ac{Class 3} articles, and this approach did not improve model performance. Consequently, the synthetic data generation method was abandoned.

@@ -159,7 +159,26 @@
 
 %% | ------------------------ biblatex ------------------------ |
 
-\usepackage[backend=bibtex,defernumbers=true,style=authoryear,sorting=ydnt,sortcites=true]{biblatex}
+\usepackage[backend=bibtex,defernumbers=true,style=numeric,sorting=ydnt,sorting=ydnt]{biblatex}
+
+% \DeclareCiteCommand{\cite}
+%   {\usebibmacro{prenote}}
+%   {%
+%     \printnames{labelname}~\printdateextra~\hyperlink{cite.\thefield{entrykey}}{[\printfield{labelnumber}]}
+%   }
+%   {\multicitedelim}
+%   {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {%
+    \printtext[bibhyperref]{%
+      \printnames{labelname}~\printdateextra~[\printfield{labelnumber}]%
+    }%
+  }
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
 
 % define the source file with bibliography
 \addbibresource{main.bib}

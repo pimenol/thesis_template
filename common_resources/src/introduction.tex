@@ -4,35 +4,34 @@
 
 \section{Motivation}
 
-The digital content revolution has transformed journalism into a high-velocity industry where platforms must simultaneously manage exponential content growth and maintain rigorous quality standards. \cite{seznam2025} (~\reffig{fig:main_page}), serving over 5 million daily users, currently relies on human editors to manually assess only 20\% of submitted articles - an unsustainable practice given the platform's 50\% annual content growth rate. This manual process introduces significant challenges:
+The digital content revolution has transformed journalism into a high-velocity industry where platforms must simultaneously manage exponential content growth and maintain rigorous quality standards. \cite{seznam2025} (\reffig{fig:main_page}), serving over 5 million daily users, now employs an automated system to classify the quality of all submitted articles. To ensure the reliability of this system, a randomly selected subset of articles is reviewed manually by human editors. This approach addresses the key challenges posed by the scale and speed of modern content production:
 \begin{itemize}
-  \item \textbf{Scalability limitations:} With article submissions increasing by 50\% annually, human editors cannot maintain pace without compromising review depth
-  \item \textbf{Consistency issues:} Inter-editor agreement analysis reveals 20\% variance in quality ratings for identical content
-  \item \textbf{Quality degradation risks:} Unreviewed articles risk platform credibility through potential misinformation or poorly structured content
+\item \textbf{Scalability limitations:} With article submissions increasing by 50\% annually, manual evaluation of all content is no longer feasible
+\item \textbf{Consistency issues:} Human judgments can vary significantly, making automation essential for uniform quality standards
+\item \textbf{Quality degradation risks:} Unchecked content may harm platform credibility through misinformation or poor structure
 \end{itemize}
 
-These limitations highlight the need for more efficient and consistent methods for evaluating journalistic quality.
-Automated quality classification addresses these challenges by providing:
+Automated quality classification offers an effective solution by providing:
 \begin{itemize}
-  \item Real-time assessment for 100\% of submissions
-  \item Consistent application of editorial guidelines
-  \item Significantly reduce the workload on human editors
-  \item 24/7 operational capacity without human fatigue
-  \item Data-driven insights for continuous quality improvement
+\item Real-time assessment for 100\% of submissions
+\item Consistent application of editorial guidelines
+\item Significant reduction in human workload
+\item 24/7 operational capacity without fatigue
+\item Data-driven insights for continuous quality improvement
 \end{itemize}
 
-Therefore, the primary motivation for this research is to develop an automated system capable of classifying the journalistic quality of articles, mimicking the complex decision-making process of experienced human editors.
+Therefore, the primary motivation for this research is to develop and evaluate an automated system capable of classifying the journalistic quality of articles, replicating the nuanced decision-making of experienced human editors.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.45\textwidth]{./fig/photos/Seznam_main_page.png}
+  \includegraphics[width=0.5\textwidth]{./fig/photos/Seznam_main_page.png}
   \caption{Example of Seznam.cz Homepage Displaying News Content}
   \label{fig:main_page}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{./fig/photos/Current_Editorial_Workflow.png}
+  \includegraphics[width=0.4\textwidth]{./fig/photos/Current_Editorial_Workflow.png}
   \caption{Current Editorial Workflow}
   \label{fig:editor_workflow}
 \end{figure}
@@ -45,8 +44,7 @@ The core problem addressed in this thesis is the multi-class supervised classifi
   \item \ac{Class 0}: Low-quality content that lacks structure and depth.
   \item \ac{Class 1}: Lacks depth and analysis, often recycling
   known information with limited sources.
-  \item \ac{Class 2}: Reliable news articles with at least five paragraphs and
-  two references.
+  \item \ac{Class 2}: Sufficiently developed content with clear structure and supported by multiple references.
   \item \ac{Class 3}: Long, detailed, well-structured articles with visuals,
   subheadings, and references.
 \end{itemize}
@@ -62,11 +60,11 @@ Chapter~\ref{chap:evaluation} covers the evaluation metrics used to assess the c
 
 Chapter~\ref{chap:methodology} outlines the methodology of the thesis. It explains the overall approach to classifying article quality, including how baseline models are developed and how advanced models are used. It also discusses feature engineering, the use of pre-trained language models and \ac{CatBoost}, and how the models are trained and tuned. 
 
-Chapter ~\ref{chap:experiments} presents the experiments and results. It describes the experimental setup and compares the performance of different classification models. It also shows the results of those models. 
+Chapter~\ref{chap:experiments} presents the experiments and results. It describes the experimental setup and compares the performance of different classification models. It also shows the results of those models. 
 
-Chapter ~\ref{chap:discussion} provides a discussion of the findings and suggests directions for future work. It interprets the results in the context of the research goals. It also considers possible improvements or extensions. 
+Chapter~\ref{chap:discussion} provides a discussion of the findings and suggests directions for future work. It interprets the results in the context of the research goals. It also considers possible improvements or extensions. 
 
-Finally, Chapter ~\ref{chap:conclusion} concludes the thesis by summarizing the main contributions of the work. It outlines the overall conclusions of the study.
+Finally, Chapter~\ref{chap:conclusion} concludes the thesis by summarizing the main contributions of the work. It outlines the overall conclusions of the study.
 
 \clearpage
 \section{Related Work}
@@ -116,9 +114,9 @@ Similarly, \cite{schmidt2019} introduced a multi-class approach for classifying 
 
 % The integration of AI in journalism has transformed news production, as evidenced by recent studies. \cite{newman2025} report that 87\% of newsrooms have adopted generative AI for tasks like content creation (77\% deem it important) and automation. However, they note concerns about "AI slop" (low-quality AI-generated content) and the need for transparency, such as adopting C2PA metadata standards. A 2025 mini-review by \cite{frontiers2025} found that AI has revolutionized news production but poses ethical challenges, including reduced nuance in storytelling. These findings underscore the need for automated quality assessment tools that align with journalistic values.
 
-\subsection{Linguistic Features for Quality Assessment}
+% \subsection{Linguistic Features for Quality Assessment}
 
-Identifying linguistic features that correlate with quality is a key research area. \cite{schmidt2019} utilized document embeddings to capture semantic content, combined with features like section length and readability scores, to assess article quality. In journalism, similar features—such as Flesch-Kincaid readability, lexical diversity, and syntactic complexity—can indicate quality but must be tailored to journalistic standards. The Czech language, with its rich morphology and inflectional system, presents unique challenges for \ac{NLP} tools, as standard models designed for English may underperform.
+% Identifying linguistic features that correlate with quality is a key research area. \cite{schmidt2019} utilized document embeddings to capture semantic content, combined with features like section length and readability scores, to assess article quality. In journalism, similar features—such as Flesch-Kincaid readability, lexical diversity, and syntactic complexity—can indicate quality but must be tailored to journalistic standards. The Czech language, with its rich morphology and inflectional system, presents unique challenges for \ac{NLP} tools, as standard models designed for English may underperform.
 
 \subsection{Research Gaps}
 Despite progress, several gaps persist in the literature. First, most studies focus on English-language content, with limited exploration of languages like Czech, where morphological complexity affects \ac{NLP} performance. Second, many approaches rely on binary classification, which oversimplifies the multi-dimensional nature of journalistic quality. Third, few studies address the specific needs of news aggregation platforms like Seznam.cz, where high content volume and diversity demand scalable, language-specific solutions. Finally, ethical concerns, such as bias in AI models and the loss of human judgment, remain underexplored in automated quality assessment.
