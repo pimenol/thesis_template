@@ -9,11 +9,12 @@
 
 \sloppy
 
-Tato bakalářská práce se zabývá úkolem automatické klasifikace žurnalistické kvality článků v českém jazyce. Motivací je rostoucí objem digitálního obsahu, který ztěžuje redakčním týmům udržování konzistentní kvality. Pro podporu automatizovaného hodnocení byl poskytnut anotovaný datový soubor českých článků od společnosti Seznam.cz, přičemž každý článek byl lidskými editory zařazen do jedné ze čtyř kategorií kvality – od nedostatečné až po vysokou kvalitu.
+Tato bakalářská práce se zabývá úkolem automatické klasifikace žurnalistické kvality článků v českém jazyce. Motivací je rostoucí objem digitálního obsahu, který redakčním týmům fakticky znemožňuje udržovat konzistentní úroveň kvality. Pro podporu automatizovaného hodnocení byl poskytnut anotovaný datový soubor českých článků od společnosti Seznam.cz, přičemž každý článek byl lidskými editory zařazen do jedné ze čtyř kategorií kvality - od nedostatečné až po vysokou kvalitu.
 
 Práce zahrnovala důkladné předzpracování dat, včetně čištění a filtrování textu. Byla zjištěna výrazná nevyváženost tříd, která byla řešena pomocí několika technik, jako je vážení tříd a kombinované ztrátové funkce. Bylo implementováno několik modelů strojového učení, včetně modelů založených na transformerech, které byly doladěny pro úlohu klasifikace kvality, a modelu CatBoost, který byl trénován na lingvistických a strukturálních rysech textu. Nakonec byl navržen hybridní model, který kombinuje oba přístupy.
 
-Vyhodnocení bylo provedeno pomocí metrik pro vícetřídní klasifikaci, přičemž hlavním ukazatelem výkonnosti byla vážená F1 míra. Konečný hybridní model dosáhl nejlepších výsledků, což potvrzuje, že kombinace hlubokých jazykových modelů s klasifikátory založenými na ručně navržených rysech může zvýšit přesnost předpovědi kvality. Výsledky ukazují potenciál automatizovaných nástrojů při podpoře redakčního rozhodování a zajištění kvality obsahu ve velkém rozsahu.
+Vyhodnocení bylo provedeno pomocí metrik pro vícetřídní klasifikaci, přičemž hlavním ukazatelem výkonnosti byla vážená F1 míra. Konečný hybridní model dosáhl nejlepších výsledků, což potvrzuje, že kombinace hlubokých jazykových modelů s klasifikátory založenými na ručně navržených rysech může zvýšit přesnost předpovědi kvality. 
+Výsledky ukazují potenciál automatizovaných nástrojů při podpoře redakčního rozhodování a zajištění kvality obsahu v prostředí s vysokým objemem dat.
 
 \vskip 1em
 

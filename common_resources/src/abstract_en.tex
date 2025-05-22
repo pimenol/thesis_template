@@ -9,7 +9,11 @@
 
 This thesis explores the task of automatically classifying the journalistic quality of articles in the Czech language. The motivation stems from the increasing volume of digital content, which challenges the ability of editorial teams to maintain consistent quality. To support automated assessment, a labeled dataset of Czech articles was provided by Seznam.cz, with each article annotated by human editors into one of four quality categories ranging from insufficient to high-quality.
 
-The work involved detailed data preprocessing, including text cleaning and filtering. Significant class imbalance was observed and addressed using several techniques such as class weighting and hybrid loss functions. Various machine learning models were implemented, including transformer-based models fine-tuned for quality classification, and the CatBoost gradient boosting model trained on linguistic and structural features. Finally, a hybrid model combining both approaches was introduced.
+The work involved detailed data preprocessing, including text cleaning and filtering. Significant class imbalance was observed and addressed using several techniques such as class weighting and hybrid loss functions. 
+Several transformer-based language models were fine-tuned for the quality classification task, and a CatBoost gradient boosting model was trained using a set of manually engineered linguistic and structural features. 
+% Ultimately, a hybrid architecture combining the best-performing transformer model with CatBoost yielded the highest predictive performance, demonstrating that the integration of semantic representations from deep language models with explicit feature-based classifiers can be highly effective.
+% Various machine learning models were implemented, including transformer-based models fine-tuned for quality classification, and the CatBoost gradient boosting model trained on linguistic and structural features. 
+Finally, a hybrid model combining both approaches was introduced.
 
 Evaluation was conducted using multi-class classification metrics, with weighted F1 score as the primary indicator of performance. The final hybrid model showed superior results, confirming that combining deep language models with feature-based classifiers can improve the accuracy of quality prediction. The results demonstrate the potential of automated tools to support editorial decision-making and ensure content quality at scale.
 

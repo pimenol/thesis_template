@@ -14,8 +14,8 @@
 \contentsline {section}{\numberline {2.1}Data Source}{6}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Data Cleaning and Filtering}{6}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Annotation Process}{6}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Dataset Statistics}{6}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Dataset Size and Splits}{6}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.4}Dataset Statistics}{7}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Dataset Size and Splits}{7}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Data Analysis}{7}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Article length}{7}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Length by label}{7}{subsection.2.5.2}%
@@ -83,8 +83,8 @@
 \contentsline {section}{\numberline {5.3}CatBoost Model}{43}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Hybrid Model Results}{45}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Summary of Results}{45}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Discussion and Future Work}{47}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Discussion}{47}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Future Work}{47}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Conclusion}{49}{chapter.7}%
-\contentsline {chapter}{\numberline {8}References}{50}{chapter.8}%
+\contentsline {chapter}{\numberline {6}Discussion}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Practical Impact}{47}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Future Work}{49}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusion}{50}{chapter.8}%
+\contentsline {chapter}{\numberline {9}References}{51}{chapter.9}%

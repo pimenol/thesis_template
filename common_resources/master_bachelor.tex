@@ -76,10 +76,14 @@
 \conditionalClearPage
 
 \input{src/abstract_en.tex}
+% Various machine learning models were implemented, including transformer-based models fine-tuned for quality classification, and the CatBoost gradient boosting model trained on linguistic and structural features.
 
 \conditionalClearPage
 
 \input{src/abstrakt_cz.tex}
+% ktery ztezuje != zmeznuje!
+% pri velkem objemu dat != ve velkom rozsahu neni vono
+
 
 %% --------------------------------------------------------------
 %% |                        Abbreviations                       |
@@ -117,10 +121,14 @@
 %% -----------------------------------------------------------------------------------------
 
 \input{src/introduction.tex}
-
+% reflecting the standards used by editors at Seznam.cz. : -> 1.4 : CHECK
+% \item A dataset of Czech articles annotated with four quality levels was prepared for multi-class classification. Texts were cleaned and filtered to ensure high-quality input data.
+% annotaters -> editors: write that this is professional annotators
 
 
 \input{src/data_collection.tex}
+% why do we use this data 
+% experience -> professopnal annotators
 \input{src/evaluation_metrics.tex}
 
 
@@ -131,9 +139,15 @@
 
 \input{src/experiments.tex}
 
-% \input{src/how_to_write_thesis.tex}
-
 \input{src/discussion.tex}
+% In most cases, : delete -> have to be 'urcity'
+%  s (for instance, telling apart a very good article from an excellent one) - change to name of the classes
+%  although some care is needed. - delete. 
+% roughly -del 
+% which may be improved 
+% how it will improve the world 
+% Enhance explainability. 
+
 
 %% --------------------------------------------------------------
 %% |                         Conclusion                         |

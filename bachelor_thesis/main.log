@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  20 MAY 2025 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Homebrew) (preloaded format=pdflatex 2024.7.14)  22 MAY 2025 22:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1559,12 +1559,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{CatBoost}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.103 \conditionalClearPage
+l.107 \conditionalClearPage
                            
 pdfTeX warning (ext4): destination with the same identifier (name{NLP}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.103 \conditionalClearPage
+l.107 \conditionalClearPage
                            ] (./main.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (/opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1588,66 +1588,66 @@ Chapter 1.
 
 LaTeX Warning: Citation 'seznam2025' on page 1 undefined on input line 7.
 
-<./fig/photos/Seznam_main_page.png, id=658, 820.06375pt x 812.03375pt>
+<./fig/photos/Seznam_main_page.png, id=658, 814.04124pt x 776.9025pt>
 File: ./fig/photos/Seznam_main_page.png Graphic file (type png)
 <use ./fig/photos/Seznam_main_page.png>
-Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 27.
-(pdftex.def)             Requested size: 221.9316pt x 219.76006pt.
+Package pdftex.def Info: ./fig/photos/Seznam_main_page.png  used on input line 26.
+(pdftex.def)             Requested size: 221.9316pt x 211.80545pt.
 <./fig/photos/Current_Editorial_Workflow.png, id=660, 261.97874pt x 362.35374pt>
 File: ./fig/photos/Current_Editorial_Workflow.png Graphic file (type png)
 <use ./fig/photos/Current_Editorial_Workflow.png>
-Package pdftex.def Info: ./fig/photos/Current_Editorial_Workflow.png  used on input line 34.
+Package pdftex.def Info: ./fig/photos/Current_Editorial_Workflow.png  used on input line 33.
 (pdftex.def)             Requested size: 177.54256pt x 245.57346pt.
 [1
 
 
  <./fig/photos/Seznam_main_page.png>]
 Package acronym Info: Label `acro:Class 0' newly defined as it shall be overridden
-although it is yet undefined on input line 44.
+although it is yet undefined on input line 43.
 Package acronym Info: Label `acro:Class 1' newly defined as it shall be overridden
-although it is yet undefined on input line 45.
+although it is yet undefined on input line 44.
 Package acronym Info: Label `acro:Class 2' newly defined as it shall be overridden
-although it is yet undefined on input line 47.
+although it is yet undefined on input line 46.
 Package acronym Info: Label `acro:Class 3' newly defined as it shall be overridden
-although it is yet undefined on input line 48.
+although it is yet undefined on input line 47.
  [2 <./fig/photos/Current_Editorial_Workflow.png>]
 Package acronym Info: Label `acro:CatBoost' newly defined as it shall be overridden
-although it is yet undefined on input line 61.
+although it is yet undefined on input line 60.
  [3]
 Package acronym Info: Label `acro:NLP' newly defined as it shall be overridden
-although it is yet undefined on input line 72.
+although it is yet undefined on input line 71.
 Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
-although it is yet undefined on input line 72.
+although it is yet undefined on input line 71.
 
 
-LaTeX Warning: Citation 'lacy2015' on page 4 undefined on input line 77.
+LaTeX Warning: Citation 'lacy2015' on page 4 undefined on input line 76.
 
 
-LaTeX Warning: Citation 'calvo2024' on page 4 undefined on input line 77.
+LaTeX Warning: Citation 'calvo2024' on page 4 undefined on input line 76.
 
 
-LaTeX Warning: Citation 'pitler2008' on page 4 undefined on input line 92.
+LaTeX Warning: Citation 'pitler2008' on page 4 undefined on input line 91.
 
 
-LaTeX Warning: Citation 'quantum2024' on page 4 undefined on input line 92.
+LaTeX Warning: Citation 'quantum2024' on page 4 undefined on input line 91.
 
 
-LaTeX Warning: Citation 'potthast2018' on page 4 undefined on input line 96.
+LaTeX Warning: Citation 'potthast2018' on page 4 undefined on input line 95.
 
 
-LaTeX Warning: Citation 'gonzalez2021' on page 4 undefined on input line 96.
+LaTeX Warning: Citation 'gonzalez2021' on page 4 undefined on input line 95.
 
 
-LaTeX Warning: Citation 'minaee2020' on page 4 undefined on input line 109.
+LaTeX Warning: Citation 'minaee2020' on page 4 undefined on input line 108.
 
 [4
 
 ]
 
-LaTeX Warning: Citation 'schmidt2019' on page 5 undefined on input line 111.
+LaTeX Warning: Citation 'schmidt2019' on page 5 undefined on input line 110.
 
 Package acronym Info: Label `acro:DeBERTaV3' newly defined as it shall be overridden
-although it is yet undefined on input line 131.
+although it is yet undefined on input line 130.
 ) (./src/data_collection.tex [5]
 Chapter 2.
 [6
@@ -1656,23 +1656,20 @@ Chapter 2.
 <./fig/plots/num_words_plot.png, id=731, 1040.88875pt x 451.6875pt>
 File: ./fig/plots/num_words_plot.png Graphic file (type png)
 <use ./fig/plots/num_words_plot.png>
-Package pdftex.def Info: ./fig/plots/num_words_plot.png  used on input line 83.
+Package pdftex.def Info: ./fig/plots/num_words_plot.png  used on input line 90.
 (pdftex.def)             Requested size: 443.86319pt x 192.60905pt.
- [7 <./fig/plots/num_words_plot.png>]
-<./fig/plots/num_words_per_labelplot.png, id=747, 2167.09625pt x 451.6875pt>
+ [7]
+<./fig/plots/num_words_per_labelplot.png, id=746, 2167.09625pt x 451.6875pt>
 File: ./fig/plots/num_words_per_labelplot.png Graphic file (type png)
 <use ./fig/plots/num_words_per_labelplot.png>
-Package pdftex.def Info: ./fig/plots/num_words_per_labelplot.png  used on input line 107.
+Package pdftex.def Info: ./fig/plots/num_words_per_labelplot.png  used on input line 114.
 (pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
-<./fig/plots/num_unique_tokens_plot.png, id=753, 2167.09625pt x 451.6875pt>
+<./fig/plots/num_unique_tokens_plot.png, id=752, 2167.09625pt x 451.6875pt>
 File: ./fig/plots/num_unique_tokens_plot.png Graphic file (type png)
 <use ./fig/plots/num_unique_tokens_plot.png>
-Package pdftex.def Info: ./fig/plots/num_unique_tokens_plot.png  used on input line 122.
+Package pdftex.def Info: ./fig/plots/num_unique_tokens_plot.png  used on input line 129.
 (pdftex.def)             Requested size: 443.86319pt x 92.51382pt.
-
-Underfull \vbox (badness 2181) has occurred while \output is active []
-
- [8 <./fig/plots/num_words_per_labelplot.png> <./fig/plots/num_unique_tokens_plot.png>]) (./src/evaluation_metrics.tex [9]
+ [8 <./fig/plots/num_words_plot.png> <./fig/plots/num_words_per_labelplot.png>]) (./src/evaluation_metrics.tex [9 <./fig/plots/num_unique_tokens_plot.png>]
 Chapter 3.
 Package acronym Info: Label `acro:TP' newly defined as it shall be overridden
 although it is yet undefined on input line 18.
@@ -1848,16 +1845,20 @@ Package pdftex.def Info: ./fig/conf_matrix/hybrid_test.png  used on input line 4
 Chapter 6.
 [47
 
-]) (./src/conclusion.tex [48]
+] [48]
 Chapter 7.
-) [49
+) (./src/conclusion.tex [49
 
 ]
 Chapter 8.
+) [50
 
-LaTeX Warning: Empty bibliography on input line 150.
+]
+Chapter 9.
 
-[50
+LaTeX Warning: Empty bibliography on input line 164.
+
+[51
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
@@ -1877,7 +1878,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 4931D767FEC45B8157646DDBA01A62EC;15267.
+(rerunfilecheck)             Checksum: 1BF1F2D649B779304DFC3534E2411EBE;15200.
 
 Package biblatex Warning: Please (re)run BibTeX on the file(s):
 (biblatex)                main
@@ -1888,18 +1889,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57524 strings out of 474116
- 1332033 string characters out of 5732613
- 2251993 words of memory out of 5000000
- 78706 multiletter control sequences out of 15000+600000
+ 57526 strings out of 474116
+ 1332054 string characters out of 5732613
+ 2252012 words of memory out of 5000000
+ 78707 multiletter control sequences out of 15000+600000
  570421 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,17n,96p,1933b,2811s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20240312_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (61 pages, 1610319 bytes).
+Output written on main.pdf (62 pages, 1549329 bytes).
 PDF statistics:
- 1437 PDF objects out of 1440 (max. 8388607)
- 1246 compressed objects within 13 object streams
- 221 named destinations out of 1000 (max. 500000)
+ 1449 PDF objects out of 1728 (max. 8388607)
+ 1257 compressed objects within 13 object streams
+ 222 named destinations out of 1000 (max. 500000)
  895 words of extra memory for PDF output out of 10000 (max. 10000000)
 
